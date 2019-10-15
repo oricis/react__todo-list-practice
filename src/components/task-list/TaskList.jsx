@@ -17,7 +17,7 @@ class TaskList extends Component
     {
         return (
             <section class="App-task-list">
-                <article>
+                <article class="task-intro">
                     <label htmlFor="create-task">Introduce una tarea:</label>
                     <input type="text" id="create-task" />
                 </article>
@@ -25,13 +25,17 @@ class TaskList extends Component
                 <article class="task-list">
                     <div class="task">
                         <p class="task-title">Foo</p>
-                        <input type="button" class="btn" value="Completada" />
-                        <input type="button" class="btn" value="Eliminar" />
+                        <div className="task-buttons">
+                            <input type="button" class="btn btn-primary" value="Completada" />
+                            <input type="button" class="btn btn-primary" value="Eliminar" />
+                        </div>
                     </div>
                     <div class="task">
                         <p class="task-title">Lorem ipsum</p>
-                        <input type="button" class="btn" value="Completada" />
-                        <input type="button" class="btn" value="Eliminar" />
+                        <div className="task-buttons">
+                            <input type="button" class="btn btn-primary" value="Completada" />
+                            <input type="button" class="btn btn-primary" value="Eliminar" />
+                        </div>
                     </div>
                 </article>
             </section>

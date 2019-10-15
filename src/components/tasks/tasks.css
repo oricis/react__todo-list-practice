@@ -1,0 +1,31 @@
+
+/***
+ * Component styles
+ *
+ */
+
+.App-task-list .btn {
+    border-radius: 5px;
+}
+.task-buttons .btn:first-child {
+    border-radius: 5px 0 0 5px;
+    border-right:  0;
+}
+.task-buttons .btn:last-child {
+    border-radius: 0 5px 5px 0;
+}
+.task {
+    display: inline-block;
+}
+.task .task-title {
+    margin-bottom: .5rem;
+}
+.task-list {
+    margin-bottom: -0.5rem;
+    margin-top:    2rem;
+    text-align:    left;
+}
+.task-list .task {
+    margin-bottom: .5rem;
+    margin-right:  .5rem;
+}

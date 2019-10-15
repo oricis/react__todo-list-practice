@@ -68,3 +68,9 @@ section {
 .btn-primary:active {
     background: #0c7ae0;
 }
+.content-box {
+    background:  #edf2f7;
+    border-radius: 9px;
+    border:        1px solid gray;
+    padding:       1rem;
+}

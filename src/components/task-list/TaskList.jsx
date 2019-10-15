@@ -1,5 +1,6 @@
 import './task-list.css';
 import React, { Component } from 'react';
+import Tasks from '../tasks/Tasks';
 
 class TaskList extends Component
 {
@@ -17,27 +18,12 @@ class TaskList extends Component
     {
         return (
             <section className="App-task-list">
-                <article className="task-intro">
+                <article className="content-box task-intro">
                     <label htmlFor="create-task">Introduce una tarea:</label>
                     <input type="text" id="create-task" />
                 </article>
 
-                <article className="task-list">
-                    <div className="task">
-                        <p className="task-title">Foo</p>
-                        <div className="task-buttons">
-                            <input type="button" className="btn btn-primary" value="Completada" />
-                            <input type="button" className="btn btn-primary" value="Eliminar" />
-                        </div>
-                    </div>
-                    <div className="task">
-                        <p className="task-title">Lorem ipsum</p>
-                        <div className="task-buttons">
-                            <input type="button" className="btn btn-primary" value="Completada" />
-                            <input type="button" className="btn btn-primary" value="Eliminar" />
-                        </div>
-                    </div>
-                </article>
+                <Tasks></Tasks>
             </section>
         );
     }

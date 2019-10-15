@@ -9,43 +9,10 @@
     border-radius: 9px;
     margin-top:    2rem;
 }
-.App-task-list  article:last-child {
-    margin-top: 2rem;
-}
-
-.App-task-list .btn {
-    border-radius: 5px;
-}
-.task-buttons .btn:first-child {
-    border-radius: 5px 0 0 5px;
-    border-right:  0;
-}
-.task-buttons .btn:last-child {
-    border-radius: 0 5px 5px 0;
-}
-.task {
-    display: inline-block;
-}
-.task .task-title {
-    margin-bottom: .5rem;
-}
-.task,
-.task-intro {
-    background:  #edf2f7;
-    border-radius: 9px;
-    border:        1px solid gray;
-    padding:       1rem;
-}
 .task-intro input,
 .task-intro label {
     display:       inline-block;
     margin-bottom: .5rem;
     text-align:    left;
     width:         90%;
-}
-.task-list {
-    text-align: left;
-}
-.task-list .task {
-    margin-right: .5rem;
 }

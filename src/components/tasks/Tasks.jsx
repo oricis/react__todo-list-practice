@@ -11,18 +11,7 @@ class Tasks extends Component
 
         // Set default values
         this.state = {
-            tasks: [
-                {
-                    text: 'Foo',
-                    completed: false,
-                    id: generateID(),
-                },
-                {
-                    text: 'Lorem ipsum',
-                    completed: true,
-                    id: generateID(),
-                },
-            ],
+            tasks: props.taskList
         };
     }
 

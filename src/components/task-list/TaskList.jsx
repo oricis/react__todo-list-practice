@@ -1,6 +1,7 @@
 import './task-list.css';
 import React, { Component } from 'react';
 import Tasks from '../tasks/Tasks';
+import generateID from '../../helpers/generateID.js';
 
 class TaskList extends Component
 {
@@ -10,7 +11,18 @@ class TaskList extends Component
 
         // Set default values
         this.state = {
-
+            tasks: [
+                {
+                    text: 'Foo',
+                    completed: false,
+                    id: generateID(),
+                },
+                {
+                    text: 'Lorem ipsum',
+                    completed: true,
+                    id: generateID(),
+                },
+            ],
         };
     }
 
@@ -23,7 +35,7 @@ class TaskList extends Component
                     <input type="text" id="create-task" />
                 </article>
 
-                <Tasks></Tasks>
+                <Tasks taskList={ this.state.tasks }></Tasks>
             </section>
         );
     }

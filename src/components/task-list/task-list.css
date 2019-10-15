@@ -3,3 +3,12 @@
  * Component styles
  *
  */
+
+.App-task-list {
+    background:    rgb(145, 146, 146);
+    border-radius: 9px;
+    margin-top:    2rem;
+}
+.App-task-list  article:last-child {
+    margin-top: 2rem;
+}

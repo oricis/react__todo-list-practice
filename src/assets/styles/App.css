@@ -37,14 +37,6 @@ section {
     width:   80%;
 }
 
-.App-body {
-    background:    rgb(145, 146, 146);
-    border-radius: 9px;
-    margin-top:    2rem;
-}
-.App-body article:last-child {
-    margin-top: 2rem;
-}
 .App-logo {
   width: 5rem;
 }

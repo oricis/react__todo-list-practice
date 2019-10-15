@@ -16,7 +16,7 @@ class TaskList extends Component
     render()
     {
         return (
-            <section class="App-body">
+            <section class="App-task-list">
                 <article>
                     <label htmlFor="create-task">Introduce una tarea:</label>
                     <input type="text" id="create-task" />

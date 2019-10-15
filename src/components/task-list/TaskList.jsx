@@ -35,7 +35,9 @@ class TaskList extends Component
                     <input type="text" id="create-task" />
                 </article>
 
-                <Tasks taskList={ this.state.tasks }></Tasks>
+                { (this.state.tasks.length > 0 )
+                    ? <Tasks taskList={ this.state.tasks }></Tasks> : ''
+                }
             </section>
         );
     }

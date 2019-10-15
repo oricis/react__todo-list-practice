@@ -1,7 +1,7 @@
 
 import './tasks.css';
 import React, { Component } from 'react';
-import generateID from '../../helpers/generateID.js';
+import Task from '../task/Task';
 
 class Tasks extends Component
 {
@@ -19,20 +19,10 @@ class Tasks extends Component
     {
         return (
             <article className="task-list">
-                <div className="content-box task" data-id={ this.state.tasks[0].id }>
-                    <p className="task-title">{ this.state.tasks[0].text }</p>
-                    <div className="task-buttons">
-                        <input type="button" className="btn btn-primary" value="Completada" />
-                        <input type="button" className="btn btn-primary" value="Eliminar" />
-                    </div>
-                </div>
-                <div className="content-box task" data-id="{ this.state.tasks[1].id }">
-                    <p className="task-title">{ this.state.tasks[1].text }</p>
-                    <div className="task-buttons">
-                        <input type="button" className="btn btn-primary" value="Completada" />
-                        <input type="button" className="btn btn-primary" value="Eliminar" />
-                    </div>
-                </div>
+                <Task text={this.state.tasks[0].text}
+                    dataId={this.state.tasks[0].id}></Task>
+                <Task text={this.state.tasks[1].text}
+                    dataId={this.state.tasks[1].id}></Task>
             </article>
         );
     }

@@ -19,10 +19,11 @@ class Tasks extends Component
     {
         return (
             <article className="task-list">
-                <Task text={this.state.tasks[0].text}
-                    dataId={this.state.tasks[0].id}></Task>
-                <Task text={this.state.tasks[1].text}
-                    dataId={this.state.tasks[1].id}></Task>
+                {this.state.tasks.map(
+                    task => <Task key={task.id}
+                        text={task.text}
+                        dataId={task.id}></Task>
+                )}
             </article>
         );
     }

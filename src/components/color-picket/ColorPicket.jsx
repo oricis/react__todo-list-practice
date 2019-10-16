@@ -8,7 +8,7 @@ class ColorPicket extends Component
     {
         console.log(this.props.bgColor);
         return (
-            <div class="color-picket">
+            <div className="color-picket">
                 <div style={{ background: this.props.bgColor }}></div>
             </div>
         );

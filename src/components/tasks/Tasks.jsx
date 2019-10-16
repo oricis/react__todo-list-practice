@@ -5,23 +5,14 @@ import Task from '../task/Task';
 
 class Tasks extends Component
 {
-    constructor(props)
-    {
-        super(props);
-
-        // Set default values
-        this.state = {
-            tasks: props.taskList
-        };
-    }
 
     render()
     {
         return (
             <article className="task-list">
-                {this.state.tasks.map(
+                {this.props.taskList.map(
                     task => <Task key={task.id}
-                        bgColor={task.bgColor}
+                        bgColor={task.color}
                         text={task.text}
                         dataId={task.id}></Task>
                 )}

@@ -1,7 +1,9 @@
 import './task-list.scss';
 import React, { Component } from 'react';
 import Tasks from '../tasks/Tasks';
-import generateID from '../../helpers/generateID.js';
+import PropTypes from 'prop-types';
+import Task from '../../classes/Task.js';
+
 
 class TaskList extends Component
 {
@@ -10,19 +12,20 @@ class TaskList extends Component
         super(props);
 
         // Set default values
+        this.defaultTaskColor = 'green';
         this.state = {
             tasks: [
                 {
                     text: 'Foo',
                     completed: false,
-                    bgColor: 'green',
-                    id: generateID(),
+                    color: 'green',
+                    id: 'as3434as',
                 },
                 {
                     text: 'Lorem ipsum',
                     completed: true,
-                    bgColor: 'tomato',
-                    id: generateID(),
+                    color: 'tomato',
+                    id: 'ccjm23er',
                 },
             ],
         };
@@ -34,7 +37,7 @@ class TaskList extends Component
             <section className="App-task-list">
                 <article className="content-box task-intro">
                     <label htmlFor="create-task">Introduce una tarea:</label>
-                    <input type="text" id="create-task" />
+                    <input type="text" id="create-task" onKeyUp={this.addTask} />
                 </article>
 
                 { (this.state.tasks.length > 0 )
@@ -42,6 +45,43 @@ class TaskList extends Component
                 }
             </section>
         );
+    }
+
+    componentDidMount()
+    {
+        console.log('componentes inicio: ' + this.state.tasks.length); // HACK:
+    }
+    componentDidUpdate()
+    {
+        console.log('tareas: ' + this.state.tasks.length); // HACK:
+    }
+
+    /**
+     * Custom methods
+     *
+     */
+    addTask = (event) =>
+    {
+        if (event.key === 'Enter') {
+            // const text  = document.getElementById('create-task').value.trim();
+            const text     = event.target.value.trim();
+            const newTask  = this.createTask(text, this.defaultTaskColor);
+            const arrTasks = [... this.state.tasks, newTask];
+
+            this.setState({
+                tasks: arrTasks
+            });
+        }
+    }
+
+    createTask = (
+        text: PropTypes.string,
+        color: PropTypes.string
+    ) => {
+        let tasksLength = this.state.tasks.length;
+        const taskText = text || 'Task ' + ++tasksLength;
+
+        return new Task(taskText, color);
     }
 }
 

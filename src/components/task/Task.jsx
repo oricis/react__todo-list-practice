@@ -2,19 +2,9 @@
 import './task.scss';
 import ColorPicket from '../color-picket/ColorPicket';
 import React, { Component } from 'react';
-import generateID from '../../helpers/generateID.js';
 
 class Task extends Component
 {
-    constructor(props)
-    {
-        super(props);
-
-        // Set default values
-        this.state = {
-
-        };
-    }
 
     render()
     {

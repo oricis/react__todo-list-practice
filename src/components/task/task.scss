@@ -16,8 +16,10 @@
 }
 .task-list .task {
     display:       inline-block;
-    margin-bottom: .5rem;
-    margin-right:  .5rem;
+    margin-bottom:  .5rem;
+    margin-right:   .5rem;
+    padding:        .5rem;
+    padding-bottom: 0;
 }
 .task-title {
     margin-bottom: .5rem;

@@ -1,5 +1,5 @@
 
-import './tasks.css';
+import './tasks.scss';
 import React, { Component } from 'react';
 import Task from '../task/Task';
 

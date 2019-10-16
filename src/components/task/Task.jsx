@@ -1,5 +1,5 @@
 
-import './task.css';
+import './task.scss';
 import React, { Component } from 'react';
 import generateID from '../../helpers/generateID.js';
 

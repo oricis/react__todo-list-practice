@@ -1,4 +1,4 @@
-import './task-list.css';
+import './task-list.scss';
 import React, { Component } from 'react';
 import Tasks from '../tasks/Tasks';
 import generateID from '../../helpers/generateID.js';

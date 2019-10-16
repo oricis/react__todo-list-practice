@@ -21,6 +21,7 @@ class Tasks extends Component
             <article className="task-list">
                 {this.state.tasks.map(
                     task => <Task key={task.id}
+                        bgColor={task.bgColor}
                         text={task.text}
                         dataId={task.id}></Task>
                 )}

@@ -15,11 +15,13 @@ class TaskList extends Component
                 {
                     text: 'Foo',
                     completed: false,
+                    bgColor: 'green',
                     id: generateID(),
                 },
                 {
                     text: 'Lorem ipsum',
                     completed: true,
+                    bgColor: 'tomato',
                     id: generateID(),
                 },
             ],

@@ -15,20 +15,7 @@ class TaskList extends Component
         this.defaultTaskColor = 'green';
         this.state = {
             newTaskText: '',
-            tasks: [
-                {
-                    text: 'Foo',
-                    completed: false,
-                    color: 'green',
-                    id: 'as3434as',
-                },
-                {
-                    text: 'Lorem ipsum',
-                    completed: true,
-                    color: 'tomato',
-                    id: 'ccjm23er',
-                },
-            ],
+            tasks: [],
         };
     }
 

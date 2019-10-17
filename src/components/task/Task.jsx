@@ -10,9 +10,13 @@ class Task extends Component
     {
         super(props);
 
-        this.cssClassesForCompleteBtn = (props.completed === true)
+        const cssClassesForCompleteBtn = (props.completed === true)
             ? 'btn btn-dafault'
             : 'btn btn-primary';
+
+        this.state = {
+            cssClassesForCompleteBtn: cssClassesForCompleteBtn
+        }
     }
 
     render()
@@ -31,7 +35,7 @@ class Task extends Component
                     }
                 </p>
                 <div className="task-buttons">
-                    <button className={this.cssClassesForCompleteBtn}
+                    <button className={this.state.cssClassesForCompleteBtn}
                         disabled={this.props.completed}
                         onClick={() => { this.completeTask(this.props.dataId); }}>
                         Completada
@@ -50,6 +54,9 @@ class Task extends Component
         console.log('Task / completeTask() - ID: ' + id); // HACK:
 
         this.props.onCompleteTask(id);
+        this.setState({
+            cssClassesForCompleteBtn: 'btn btn-dafault'
+        });
     }
 
     deleteTask = (id) =>

@@ -54,7 +54,8 @@ class TaskList extends Component
 
                 {
                     (this.state.tasks.length > 0 )
-                        ? <Tasks taskList={ this.state.tasks }></Tasks>
+                        ? <Tasks taskList={this.state.tasks}
+                            onDeleteTask={(id) => { this.deleteTask(id); }}></Tasks>
                         : ''
                 }
             </section>
@@ -106,6 +107,8 @@ class TaskList extends Component
 
     deleteTask = (id: PropTypes.string) =>
     {
+        console.log('TaskList / deleteTask() - ID: ' + id); // HACK:
+
         const arrTasks = this.state.tasks.filter(task => task.id !== id);
         this.setState({
             tasks: arrTasks

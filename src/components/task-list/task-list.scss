@@ -1,0 +1,28 @@
+
+/***
+ * Component styles
+ *
+ */
+
+.App-task-list {
+    background:    rgb(145, 146, 146);
+    border-radius: 9px;
+    margin-top:    2rem;
+}
+.task-intro {
+    input,
+    label {
+        display:       inline-block;
+        margin-bottom: .5rem;
+        text-align:    left;
+        width:         90%;
+    }
+    input {
+        width: 72%;
+    }
+
+    .btn {
+        height: 3rem;
+        margin: .5rem
+    }
+}

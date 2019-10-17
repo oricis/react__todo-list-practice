@@ -1,4 +1,4 @@
-import '../assets/styles/App.css';
+import '../assets/styles/App.scss';
 import React from 'react';
 import TaskList from "./task-list/TaskList";
 import logo from '../assets/images/logo.svg';

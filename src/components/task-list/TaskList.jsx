@@ -53,7 +53,7 @@ class TaskList extends Component
                 </article>
 
                 {
-                    (this.state.tasks.length > 0 )
+                    (this.state.tasks.length > 0)
                         ? <Tasks taskList={this.state.tasks}
                             onCompleteTask={(id) => { this.completeTask(id); }}
                             onDeleteTask={(id) => { this.deleteTask(id); }}></Tasks>
@@ -108,6 +108,11 @@ class TaskList extends Component
 
     completeTask = (id: PropTypes.string) => {
         console.log('TaskList / completeTask() - ID: ' + id); // HACK:
+
+        const arrTasks = this.markTaskAsCompleted(this.state.tasks, id);
+        this.setState({
+            tasks: arrTasks
+        });
     }
 
     deleteTask = (id: PropTypes.string) =>
@@ -118,6 +123,17 @@ class TaskList extends Component
         this.setState({
             tasks: arrTasks
         });
+    }
+
+    markTaskAsCompleted(tasks: PropTypes.array, taskId: PropTypes.string)
+    {
+        tasks.forEach(task => {
+            if (task.id === taskId) {
+                task.completed = true;
+            }
+        });
+
+        return tasks;
     }
 }
 

@@ -2,6 +2,7 @@ import './task-list.scss';
 import React, { Component } from 'react';
 import Tasks from '../tasks/Tasks';
 import PropTypes from 'prop-types';
+import Storage from '../../services/Storage.js';
 import Task from '../../classes/Task.js';
 
 
@@ -13,10 +14,19 @@ class TaskList extends Component
 
         // Set default values
         this.defaultTaskColor = 'green';
-        this.state = {
+        this.storage = new Storage();
+
+        const INITIAL = {
             newTaskText: '',
             tasks: [],
         };
+
+        const data = this.storage.get('stored-tasks');
+        if (data) {
+            INITIAL.tasks = data;
+        }
+
+        this.state = INITIAL;
     }
 
     render()
@@ -52,7 +62,7 @@ class TaskList extends Component
 
     componentDidUpdate()
     {
-        console.log('tareas: ' + this.state.tasks.length); // HACK:
+        this.updatedTasksStorage();
     }
 
 
@@ -116,6 +126,11 @@ class TaskList extends Component
         });
 
         return tasks;
+    }
+
+    updatedTasksStorage()
+    {
+        this.storage.set('stored-tasks', this.state.tasks);
     }
 }
 

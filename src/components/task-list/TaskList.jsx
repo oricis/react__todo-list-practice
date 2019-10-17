@@ -14,6 +14,7 @@ class TaskList extends Component
         // Set default values
         this.defaultTaskColor = 'green';
         this.state = {
+            newTaskText: '',
             tasks: [
                 {
                     text: 'Foo',
@@ -37,7 +38,17 @@ class TaskList extends Component
             <section className="App-task-list">
                 <article className="content-box task-intro">
                     <label htmlFor="create-task">Introduce una tarea:</label>
-                    <input type="text" id="create-task" onKeyUp={this.addTask} />
+                    <input type="text"
+                        id="create-task"
+                        value={this.state.newTaskText}
+                        onChange={event =>
+                            this.setState({ newTaskText: event.target.value })
+                        }
+                        onKeyUp={this.addTask}/>
+
+                    <button className="btn" onClick={this.cleanTaskInput}>
+                        Clean
+                    </button>
                 </article>
 
                 { (this.state.tasks.length > 0 )
@@ -47,19 +58,17 @@ class TaskList extends Component
         );
     }
 
-    componentDidMount()
-    {
-        console.log('componentes inicio: ' + this.state.tasks.length); // HACK:
-    }
     componentDidUpdate()
     {
         console.log('tareas: ' + this.state.tasks.length); // HACK:
     }
 
+
     /**
      * Custom methods
      *
      */
+
     addTask = (event) =>
     {
         if (event.key === 'Enter') {
@@ -69,9 +78,17 @@ class TaskList extends Component
             const arrTasks = [... this.state.tasks, newTask];
 
             this.setState({
+                newTaskText: '',
                 tasks: arrTasks
             });
         }
+    }
+
+    cleanTaskInput = () =>
+    {
+        this.setState({
+            newTaskText: ''
+        })
     }
 
     createTask = (

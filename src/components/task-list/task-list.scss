@@ -9,10 +9,20 @@
     border-radius: 9px;
     margin-top:    2rem;
 }
-.task-intro input,
-.task-intro label {
-    display:       inline-block;
-    margin-bottom: .5rem;
-    text-align:    left;
-    width:         90%;
+.task-intro {
+    input,
+    label {
+        display:       inline-block;
+        margin-bottom: .5rem;
+        text-align:    left;
+        width:         90%;
+    }
+    input {
+        width: 72%;
+    }
+
+    .btn {
+        height: 3rem;
+        margin: .5rem
+    }
 }

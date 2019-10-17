@@ -2,6 +2,7 @@ import './task-list.scss';
 import React, { Component } from 'react';
 import Tasks from '../tasks/Tasks';
 import PropTypes from 'prop-types';
+import Storage from '../../services/Storage.js';
 import Task from '../../classes/Task.js';
 
 
@@ -13,23 +14,19 @@ class TaskList extends Component
 
         // Set default values
         this.defaultTaskColor = 'green';
-        this.state = {
+        this.storage = new Storage();
+
+        const INITIAL = {
             newTaskText: '',
-            tasks: [
-                {
-                    text: 'Foo',
-                    completed: false,
-                    color: 'green',
-                    id: 'as3434as',
-                },
-                {
-                    text: 'Lorem ipsum',
-                    completed: true,
-                    color: 'tomato',
-                    id: 'ccjm23er',
-                },
-            ],
+            tasks: [],
         };
+
+        const data = this.storage.get('stored-tasks');
+        if (data) {
+            INITIAL.tasks = data;
+        }
+
+        this.state = INITIAL;
     }
 
     render()
@@ -65,7 +62,7 @@ class TaskList extends Component
 
     componentDidUpdate()
     {
-        console.log('tareas: ' + this.state.tasks.length); // HACK:
+        this.updatedTasksStorage();
     }
 
 
@@ -96,19 +93,16 @@ class TaskList extends Component
         });
     }
 
-    createTask = (
-        text: PropTypes.string,
-        color: PropTypes.string
-    ) => {
+    createTask = (text: PropTypes.string, color: PropTypes.string) =>
+    {
         let tasksLength = this.state.tasks.length;
         const taskText = text || 'Task ' + ++tasksLength;
 
         return new Task(taskText, color);
     }
 
-    completeTask = (id: PropTypes.string) => {
-        console.log('TaskList / completeTask() - ID: ' + id); // HACK:
-
+    completeTask = (id: PropTypes.string) =>
+    {
         const arrTasks = this.markTaskAsCompleted(this.state.tasks, id);
         this.setState({
             tasks: arrTasks
@@ -117,8 +111,6 @@ class TaskList extends Component
 
     deleteTask = (id: PropTypes.string) =>
     {
-        console.log('TaskList / deleteTask() - ID: ' + id); // HACK:
-
         const arrTasks = this.state.tasks.filter(task => task.id !== id);
         this.setState({
             tasks: arrTasks
@@ -134,6 +126,11 @@ class TaskList extends Component
         });
 
         return tasks;
+    }
+
+    updatedTasksStorage()
+    {
+        this.storage.set('stored-tasks', this.state.tasks);
     }
 }
 

@@ -50,9 +50,8 @@ class Task extends Component
     }
 
 
-    completeTask = (id) => {
-        console.log('Task / completeTask() - ID: ' + id); // HACK:
-
+    completeTask = (id) =>
+    {
         this.props.onCompleteTask(id);
         this.setState({
             cssClassesForCompleteBtn: 'btn btn-dafault'
@@ -61,8 +60,6 @@ class Task extends Component
 
     deleteTask = (id) =>
     {
-        console.log('Task / deleteTask() - ID: ' + id); // HACK:
-
         this.props.onDeleteTask(id);
     }
 }

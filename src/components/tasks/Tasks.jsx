@@ -8,8 +8,9 @@ class Tasks extends Component
 
     render()
     {
+
         return (
-            <article className="task-list"/* onDeleteTask={this.deleteTask}*/>
+            <article className="task-list">
                 {this.props.taskList.map(
                     task => <Task key={task.id}
                         bgColor={task.color}
@@ -25,14 +26,10 @@ class Tasks extends Component
 
 
     completeTask = (id) => {
-        console.log('Tasks / completeTask() - ID: ' + id); // HACK:
-
         this.props.onCompleteTask(id);
     }
 
     deleteTask = (id) => {
-        console.log('Tasks / deleteTask() - ID: ' + id); // HACK:
-
         this.props.onDeleteTask(id);
     }
 }

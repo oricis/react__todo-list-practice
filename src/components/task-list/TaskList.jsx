@@ -83,19 +83,16 @@ class TaskList extends Component
         });
     }
 
-    createTask = (
-        text: PropTypes.string,
-        color: PropTypes.string
-    ) => {
+    createTask = (text: PropTypes.string, color: PropTypes.string) =>
+    {
         let tasksLength = this.state.tasks.length;
         const taskText = text || 'Task ' + ++tasksLength;
 
         return new Task(taskText, color);
     }
 
-    completeTask = (id: PropTypes.string) => {
-        console.log('TaskList / completeTask() - ID: ' + id); // HACK:
-
+    completeTask = (id: PropTypes.string) =>
+    {
         const arrTasks = this.markTaskAsCompleted(this.state.tasks, id);
         this.setState({
             tasks: arrTasks
@@ -104,8 +101,6 @@ class TaskList extends Component
 
     deleteTask = (id: PropTypes.string) =>
     {
-        console.log('TaskList / deleteTask() - ID: ' + id); // HACK:
-
         const arrTasks = this.state.tasks.filter(task => task.id !== id);
         this.setState({
             tasks: arrTasks

@@ -6,18 +6,6 @@ import Task from '../task/Task';
 class Tasks extends Component
 {
 
-    completeTask = (id) => {
-        console.log('Tasks / completeTask() - ID: ' + id); // HACK:
-
-        this.props.onCompleteTask(id);
-    }
-
-    deleteTask = (id) => {
-        console.log('Tasks / deleteTask() - ID: ' + id); // HACK:
-
-        this.props.onDeleteTask(id);
-    }
-
     render()
     {
         return (
@@ -33,6 +21,19 @@ class Tasks extends Component
                 )}
             </article>
         );
+    }
+
+
+    completeTask = (id) => {
+        console.log('Tasks / completeTask() - ID: ' + id); // HACK:
+
+        this.props.onCompleteTask(id);
+    }
+
+    deleteTask = (id) => {
+        console.log('Tasks / deleteTask() - ID: ' + id); // HACK:
+
+        this.props.onDeleteTask(id);
     }
 }
 

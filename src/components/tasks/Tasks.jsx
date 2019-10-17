@@ -19,6 +19,7 @@ class Tasks extends Component
                 {this.props.taskList.map(
                     task => <Task key={task.id}
                         bgColor={task.color}
+                        completed={task.completed}
                         text={task.text}
                         dataId={task.id}
                         onDeleteTask={(id) => { this.deleteTask(id); }}></Task>

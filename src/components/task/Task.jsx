@@ -6,15 +6,33 @@ import React, { Component } from 'react';
 class Task extends Component
 {
 
+    constructor(props)
+    {
+        super(props);
+
+        this.cssClassesForCompleteBtn = (props.completed === true)
+            ? 'btn btn-dafault'
+            : 'btn btn-primary';
+    }
+
     render()
     {
+
+
         return (
             <div className="content-box task" data-id={this.props.dataId}>
                 <ColorPicket bgColor={this.props.bgColor}></ColorPicket>
 
-                <p className="task-title">{ this.props.text }</p>
+                <p className="task-title">
+                    {
+                        (this.props.completed === true)
+                            ? <span className="strikethrough-text opacity50">this.props.text</span>
+                            : this.props.text
+                    }
+                </p>
                 <div className="task-buttons">
-                    <button className="btn btn-primary">
+                    <button className={this.cssClassesForCompleteBtn}
+                        disabled={this.props.completed}>
                         Completada
                     </button>
                     <button className="btn btn-primary"
@@ -25,6 +43,7 @@ class Task extends Component
             </div>
         );
     }
+
 
     deleteTask = (id) =>
     {

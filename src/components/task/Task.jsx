@@ -32,7 +32,8 @@ class Task extends Component
                 </p>
                 <div className="task-buttons">
                     <button className={this.cssClassesForCompleteBtn}
-                        disabled={this.props.completed}>
+                        disabled={this.props.completed}
+                        onClick={() => { this.completeTask(this.props.dataId); }}>
                         Completada
                     </button>
                     <button className="btn btn-primary"
@@ -44,6 +45,12 @@ class Task extends Component
         );
     }
 
+
+    completeTask = (id) => {
+        console.log('Task / completeTask() - ID: ' + id); // HACK:
+
+        this.props.onCompleteTask(id);
+    }
 
     deleteTask = (id) =>
     {

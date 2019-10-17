@@ -55,6 +55,7 @@ class TaskList extends Component
                 {
                     (this.state.tasks.length > 0 )
                         ? <Tasks taskList={this.state.tasks}
+                            onCompleteTask={(id) => { this.completeTask(id); }}
                             onDeleteTask={(id) => { this.deleteTask(id); }}></Tasks>
                         : ''
                 }
@@ -103,6 +104,10 @@ class TaskList extends Component
         const taskText = text || 'Task ' + ++tasksLength;
 
         return new Task(taskText, color);
+    }
+
+    completeTask = (id: PropTypes.string) => {
+        console.log('TaskList / completeTask() - ID: ' + id); // HACK:
     }
 
     deleteTask = (id: PropTypes.string) =>

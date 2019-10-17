@@ -34,6 +34,7 @@ class TaskList extends Component
 
     render()
     {
+
         return (
             <section className="App-task-list">
                 <article className="content-box task-intro">
@@ -51,8 +52,10 @@ class TaskList extends Component
                     </button>
                 </article>
 
-                { (this.state.tasks.length > 0 )
-                    ? <Tasks taskList={ this.state.tasks }></Tasks> : ''
+                {
+                    (this.state.tasks.length > 0 )
+                        ? <Tasks taskList={ this.state.tasks }></Tasks>
+                        : ''
                 }
             </section>
         );
@@ -75,7 +78,7 @@ class TaskList extends Component
             // const text  = document.getElementById('create-task').value.trim();
             const text     = event.target.value.trim();
             const newTask  = this.createTask(text, this.defaultTaskColor);
-            const arrTasks = [... this.state.tasks, newTask];
+            const arrTasks = [...this.state.tasks, newTask];
 
             this.setState({
                 newTaskText: '',
@@ -88,7 +91,7 @@ class TaskList extends Component
     {
         this.setState({
             newTaskText: ''
-        })
+        });
     }
 
     createTask = (
@@ -99,6 +102,14 @@ class TaskList extends Component
         const taskText = text || 'Task ' + ++tasksLength;
 
         return new Task(taskText, color);
+    }
+
+    deleteTask = (id: PropTypes.string) =>
+    {
+        const arrTasks = this.state.tasks.filter(task => task.id !== id);
+        this.setState({
+            tasks: arrTasks
+        });
     }
 }
 

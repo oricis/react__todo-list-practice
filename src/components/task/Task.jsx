@@ -22,7 +22,6 @@ class Task extends Component
     render()
     {
 
-
         return (
             <div className="content-box task" data-id={this.props.dataId}>
                 <ColorPicket bgColor={this.props.bgColor}></ColorPicket>

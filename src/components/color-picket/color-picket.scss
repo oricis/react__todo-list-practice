@@ -1,3 +1,4 @@
+@import '../../assets/styles/sass_vars.scss';
 
 /***
  * Component styles
@@ -7,9 +8,9 @@
 .color-picket {
     clear:  both;
     height: 1.25rem;
-    
+
     div {
-        background: greenyellow;
+        background: $green;
         border-radius: 50%;
         float: right;
         height: 1rem;

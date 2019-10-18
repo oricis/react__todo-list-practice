@@ -1,3 +1,4 @@
+@import './sass_vars.scss';
 
 /***
  * Reset
@@ -52,6 +53,15 @@ section {
   padding:          2rem 0;
 }
 
+.bg-green {
+    background: $green;
+}
+.bg-red {
+    background: $red;
+}
+.bg-yellow {
+    background: $yellow;
+}
 .btn {
     border:      1px solid grey;
     cursor:      pointer;

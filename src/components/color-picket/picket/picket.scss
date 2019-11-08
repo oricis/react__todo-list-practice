@@ -7,11 +7,10 @@
 .picket {
     border:  1px solid grey;
     border-radius: .65rem;
-    margin:  5px auto;
-    display: none;
+    display: inline-block;//none; // HACK:
+    float: right;
 
     .color-box {
-
         border-radius: 50%;
         cursor:  pointer;
         display: inline-block;

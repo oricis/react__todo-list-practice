@@ -9,11 +9,11 @@
     clear:  both;
     height: 1.25rem;
 
-    div {
+    .actualColor {
         background: $green;
         border-radius: 50%;
-        float: right;
+        float:  right;
         height: 1rem;
-        width: 1rem;
+        width:  1rem;
     }
 }

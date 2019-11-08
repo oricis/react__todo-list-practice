@@ -9,7 +9,7 @@ class ColorPicket extends Component
     {
         return (
             <div className="color-picket">
-                <div style={{ background: this.props.bgColor }}></div>
+                <div className="actualColor" style={{ background: this.props.bgColor }}></div>
                 <Picket selectedColor={this.props.bgColor}></Picket>
             </div>
         );

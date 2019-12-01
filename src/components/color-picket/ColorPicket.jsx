@@ -4,15 +4,31 @@ import React, { Component } from 'react';
 
 class ColorPicket extends Component
 {
+    actualColorClassName = 'actualColor';
+
 
     render()
     {
+        if (this.props.bgColor) {
+            this.actualColorClassName += ' bg-' + this.props.bgColor;
+        }
+
         return (
             <div className="color-picket">
-                <div className="actualColor" style={{ background: this.props.bgColor }}></div>
-                <Picket selectedColor={this.props.bgColor}></Picket>
+                <div className={this.actualColorClassName}></div>
+
+                <Picket
+                    selectedColor={this.props.bgColor}
+                    setColorFromPicket={this.setColorFromPicket}>
+                </Picket>
             </div>
         );
+    }
+
+
+    setColorFromPicket(color)
+    {
+        console.log('ColorPicket - setColorFromPicket() - COLOR: ' + color);
     }
 }
 

@@ -13,7 +13,7 @@ class TaskList extends Component
         super(props);
 
         // Set default values
-        this.defaultTaskColor = 'rgb(6, 187, 6)';
+        this.defaultTaskColor = 'green';
         this.storage = new Storage();
 
         const INITIAL = {

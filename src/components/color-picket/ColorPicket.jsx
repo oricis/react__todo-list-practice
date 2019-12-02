@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 class ColorPicket extends Component
 {
     actualColorClassName = 'actualColor';
+    state = { colorSelectorVisible: false }
     taskColorClassName   = '';
 
 
@@ -14,12 +15,18 @@ class ColorPicket extends Component
             this.taskColorClassName
                 = this.actualColorClassName + ' bg-' + this.props.bgColor;
         }
+        const classToShowColor = (this.state.colorSelectorVisible)
+            ? ' d-none' : ' d-block';
+        this.taskColorClassName += classToShowColor;
 
         return (
             <div className="color-picket">
-                <div className={this.taskColorClassName}></div>
+                <div className={this.taskColorClassName}
+                    title="Cambiar color"
+                    onClick={this.swapPicketVisibility}></div>
 
                 <Picket
+                    isVisible={this.state.colorSelectorVisible}
                     selectedColor={this.props.bgColor}
                     setColorFromPicket={this.setColorFromPicket}>
                 </Picket>
@@ -34,6 +41,15 @@ class ColorPicket extends Component
     setColorFromPicket = (color) =>
     {
         this.props.setColorFromPicket(color);
+
+        this.swapPicketVisibility();
+    }
+
+     swapPicketVisibility = () =>
+    {
+        this.setState({
+            colorSelectorVisible: ! this.state.colorSelectorVisible
+        })
     }
 }
 

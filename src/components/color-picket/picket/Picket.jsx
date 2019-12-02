@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 class Picket extends Component
 {
+    defaultComponentClassName = 'picket';
     greenClassName  = 'color-box bg-green';
     redClassName    = 'color-box bg-red';
     yellowClassName = 'color-box bg-yellow';
@@ -11,9 +12,12 @@ class Picket extends Component
     render()
     {
         this.setSelectedColor(this.props.selectedColor);
+        const componentClassName = (this.props.isVisible)
+            ? this.defaultComponentClassName + ' d-block'
+            : this.defaultComponentClassName + ' d-none';
 
         return (
-            <div className="picket">
+            <div className={componentClassName}>
                 <div className={this.greenClassName}
                     onClick={this.setColor}></div>
                 <div className={this.redClassName}

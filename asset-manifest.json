@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/oricis/react__todo-list-practice/static/css/main.62c285a8.chunk.css",
+    "main.js": "/oricis/react__todo-list-practice/static/js/main.43182593.chunk.js",
+    "main.js.map": "/oricis/react__todo-list-practice/static/js/main.43182593.chunk.js.map",
+    "runtime-main.js": "/oricis/react__todo-list-practice/static/js/runtime-main.406dbbf0.js",
+    "runtime-main.js.map": "/oricis/react__todo-list-practice/static/js/runtime-main.406dbbf0.js.map",
+    "static/js/2.6678072c.chunk.js": "/oricis/react__todo-list-practice/static/js/2.6678072c.chunk.js",
+    "static/js/2.6678072c.chunk.js.map": "/oricis/react__todo-list-practice/static/js/2.6678072c.chunk.js.map",
+    "index.html": "/oricis/react__todo-list-practice/index.html",
+    "precache-manifest.bcb1203cb134e6ff716ded758864b44d.js": "/oricis/react__todo-list-practice/precache-manifest.bcb1203cb134e6ff716ded758864b44d.js",
+    "service-worker.js": "/oricis/react__todo-list-practice/service-worker.js",
+    "static/css/main.62c285a8.chunk.css.map": "/oricis/react__todo-list-practice/static/css/main.62c285a8.chunk.css.map",
+    "static/media/logo.svg": "/oricis/react__todo-list-practice/static/media/logo.8cc8eac2.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.406dbbf0.js",
+    "static/js/2.6678072c.chunk.js",
+    "static/css/main.62c285a8.chunk.css",
+    "static/js/main.43182593.chunk.js"
+  ]
+}

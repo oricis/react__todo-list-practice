@@ -7,14 +7,16 @@
 
 .color-picket {
     clear:  both;
-    height: 1.25rem;
+    height: 3rem;
 
     .actualColor {
         background: $green;
+        float:  right;
+    }
+    .color-circle {
         border-radius: 50%;
         cursor: pointer;
-        float:  right;
-        height: 1rem;
-        width:  1rem;
+        height: 2rem;
+        width:  2rem;
     }
 }

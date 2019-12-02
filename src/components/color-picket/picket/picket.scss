@@ -6,24 +6,17 @@
 
 .picket {
     border:  1px solid grey;
-    border-radius: .65rem;
+    border-radius: 1rem;
     float: right;
 
     .color-box {
-        border-radius: 50%;
-        cursor:  pointer;
         display: inline-block;
-        height:  1rem;
-        margin:  5px 5px -3px;
+        margin:  5px 9px;
         opacity: 0.8;
-        width:   1rem;
     }
-    .color-box:nth-of-type(2n) {
-        margin-left:  0;
-        margin-right: 0;
-    }
+
     .color-box.selected {
-        border: 3px solid #353030;
+        border: 2px solid #353030;
     }
     .color-box:hover {
         opacity: 1;

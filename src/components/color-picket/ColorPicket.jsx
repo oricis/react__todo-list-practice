@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 class ColorPicket extends Component
 {
-    actualColorClassName = 'actualColor';
+    actualColorClassName = 'actualColor color-circle';
     state = { colorSelectorVisible: false }
     taskColorClassName   = '';
 

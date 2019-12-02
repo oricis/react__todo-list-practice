@@ -4,16 +4,19 @@ import React, { Component } from 'react';
 class Picket extends Component
 {
     defaultComponentClassName = 'picket';
-    greenClassName  = 'color-box bg-green';
-    redClassName    = 'color-box bg-red';
-    yellowClassName = 'color-box bg-yellow';
+    defaultColorCircleClassName = 'color-box color-circle';
+    greenClassName  = 'bg-green';
+    redClassName    = 'bg-red';
+    yellowClassName = 'bg-yellow';
 
 
     render()
     {
+        this.resetColorClasses();
+
         this.setSelectedColor(this.props.selectedColor);
         const componentClassName = (this.props.isVisible)
-            ? this.defaultComponentClassName + ' d-block'
+            ? this.defaultComponentClassName + ' d-flex'
             : this.defaultComponentClassName + ' d-none';
 
         return (
@@ -31,9 +34,9 @@ class Picket extends Component
 
     resetColorClasses = () =>
     {
-        this.greenClassName  = 'color-box bg-green';
-        this.redClassName    = 'color-box bg-red';
-        this.yellowClassName = 'color-box bg-yellow';
+        this.greenClassName  = this.defaultColorCircleClassName + ' bg-green';
+        this.redClassName    = this.defaultColorCircleClassName + ' bg-red';
+        this.yellowClassName = this.defaultColorCircleClassName + ' bg-yellow';
     }
 
     setSelectedColor = (selectColor) =>

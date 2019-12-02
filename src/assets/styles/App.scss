@@ -36,7 +36,7 @@ input {
 section {
     margin:  0 auto;
     padding: 1rem;
-    width:   80%;
+    width:   95%;
 }
 
 .App-logo {
@@ -96,9 +96,19 @@ section {
 .d-none {
     display: none;
 }
+.opacity50 {
+    opacity: .5;
+}
 .strikethrough-text {
     text-decoration: line-through;
 }
-.opacity50 {
-    opacity: .5;
+.task {
+    max-width: 320px;
+    vertical-align: top;
+}
+
+@media (min-width:860px) {
+    section {
+        width: 80%;
+    }
 }

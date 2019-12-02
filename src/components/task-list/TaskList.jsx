@@ -38,17 +38,20 @@ class TaskList extends Component
         return (
             <section className="App-task-list">
                 <article className="content-box task-intro">
-                    <label htmlFor="create-task">Introduce una tarea:</label>
                     <input type="text"
                         id="create-task"
+                        placeholder="Introduce una tarea..."
                         value={this.state.newTaskText}
                         onChange={event =>
                             this.setState({ newTaskText: event.target.value })
                         }
                         onKeyUp={this.addTask}/>
 
+                    <button className="btn" onClick={this.addTaskFromInput}>
+                        Añadir
+                    </button>
                     <button className="btn" onClick={this.cleanTaskInput}>
-                        Clean
+                        Limpiar
                     </button>
                 </article>
 
@@ -71,16 +74,26 @@ class TaskList extends Component
     addTask = (event) =>
     {
         if (event.key === 'Enter') {
-            // const text  = document.getElementById('create-task').value.trim();
             const text     = event.target.value.trim();
-            const newTask  = this.createTask(text, this.defaultTaskColor);
-            const arrTasks = [...this.state.tasks, newTask];
-
-            this.setState({
-                newTaskText: '',
-                tasks: arrTasks
-            });
+            this.addTaskToState(text);
         }
+    }
+
+    addTaskFromInput = () =>
+    {
+        const text = document.getElementById('create-task').value.trim();
+        this.addTaskToState(text);
+    }
+
+    addTaskToState = (text) =>
+    {
+        const newTask = this.createTask(text, this.defaultTaskColor);
+        const arrTasks = [...this.state.tasks, newTask];
+
+        this.setState({
+            newTaskText: '',
+            tasks: arrTasks
+        });
     }
 
     cleanTaskInput = () =>

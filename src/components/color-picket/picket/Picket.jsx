@@ -10,7 +10,7 @@ class Picket extends Component
 
     render()
     {
-        this.setSelectedColor(this.props.selectColor);
+        this.setSelectedColor(this.props.selectedColor);
 
         return (
             <div className="picket">
@@ -25,8 +25,17 @@ class Picket extends Component
     }
 
 
+    resetColorClasses = () =>
+    {
+        this.greenClassName  = 'color-box bg-green';
+        this.redClassName    = 'color-box bg-red';
+        this.yellowClassName = 'color-box bg-yellow';
+    }
+
     setSelectedColor = (selectColor) =>
     {
+        this.resetColorClasses();
+
         switch (selectColor) {
             case 'green':
                 this.greenClassName += ' selected';

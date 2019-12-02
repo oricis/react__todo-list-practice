@@ -29,6 +29,7 @@ class Tasks extends Component
                         text={task.text}
                         dataId={task.id}
 
+                        setColorFromPicket={this.setColorFromPicket}
                         onCompleteTask={(id) => { this.completeTask(id); }}
                         onDeleteTask={(id) => { this.deleteTask(id); }}>
                     </Task>
@@ -46,6 +47,11 @@ class Tasks extends Component
 
     deleteTask = (id) => {
         this.props.onDeleteTask(id);
+    }
+
+    setColorFromPicket = (color, taskId) =>
+    {
+        this.props.setColorFromPicket(color, taskId);
     }
 }
 

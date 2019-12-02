@@ -16,21 +16,24 @@ class TaskList extends Component
         this.defaultTaskColor = 'green';
         this.storage = new Storage();
 
+        const data = this.storage.get('stored-tasks');
         const INITIAL = {
             newTaskText: '',
-            tasks: [],
+            tasks: data,
         };
-
-        const data = this.storage.get('stored-tasks');
-        if (data) {
-            INITIAL.tasks = data;
-        }
 
         this.state = INITIAL;
     }
 
     render()
     {
+        const tasks = (this.state.tasks.length > 0)
+            ? <Tasks
+                taskList={this.state.tasks}
+                setColorFromPicket={this.setColorFromPicket}
+                onCompleteTask={(id) => { this.completeTask(id); }}
+                onDeleteTask={(id) => { this.deleteTask(id); }}></Tasks>
+            : '';
 
         return (
             <section className="App-task-list">
@@ -49,13 +52,7 @@ class TaskList extends Component
                     </button>
                 </article>
 
-                {
-                    (this.state.tasks.length > 0)
-                        ? <Tasks taskList={this.state.tasks}
-                            onCompleteTask={(id) => { this.completeTask(id); }}
-                            onDeleteTask={(id) => { this.deleteTask(id); }}></Tasks>
-                        : ''
-                }
+                {tasks}
             </section>
         );
     }
@@ -126,6 +123,20 @@ class TaskList extends Component
         });
 
         return tasks;
+    }
+
+    setColorFromPicket = (color, taskId) =>
+    {
+        const arrTasks = this.state.tasks;
+        arrTasks.forEach(task => {
+            if (task.id === taskId) {
+                task.color = color;
+            }
+        });
+
+        this.setState({
+            tasks: arrTasks
+        });
     }
 
     updatedTasksStorage()

@@ -24,7 +24,10 @@ class Task extends Component
 
         return (
             <div className="content-box task" data-id={this.props.dataId}>
-                <ColorPicket bgColor={this.props.bgColor}></ColorPicket>
+                <ColorPicket
+                    bgColor={this.props.bgColor}
+                    setColorFromPicket={this.setColorFromPicket}>
+                </ColorPicket>
 
                 <p className="task-title">
                     {
@@ -48,6 +51,8 @@ class Task extends Component
         );
     }
 
+    ////////////////////////////////////////////////////////////////////
+    // Actions
 
     completeTask = (id) =>
     {
@@ -60,6 +65,11 @@ class Task extends Component
     deleteTask = (id) =>
     {
         this.props.onDeleteTask(id);
+    }
+
+    setColorFromPicket = (color) =>
+    {
+        this.props.setColorFromPicket(color, this.props.dataId);
     }
 }
 

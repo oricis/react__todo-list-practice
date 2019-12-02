@@ -1,0 +1,24 @@
+
+/***
+ * Component styles
+ *
+ */
+
+.picket {
+    border:  1px solid grey;
+    border-radius: 1rem;
+    float: right;
+
+    .color-box {
+        display: inline-block;
+        margin:  5px 9px;
+        opacity: 0.8;
+    }
+
+    .color-box.selected {
+        border: 2px solid #353030;
+    }
+    .color-box:hover {
+        opacity: 1;
+    }
+}

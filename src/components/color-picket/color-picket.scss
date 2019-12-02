@@ -1,3 +1,4 @@
+@import '../../assets/styles/sass_vars.scss';
 
 /***
  * Component styles
@@ -6,13 +7,16 @@
 
 .color-picket {
     clear:  both;
-    height: 1.25rem;
-    
-    div {
-        background: greenyellow;
+    height: 3rem;
+
+    .actualColor {
+        background: $green;
+        float:  right;
+    }
+    .color-circle {
         border-radius: 50%;
-        float: right;
-        height: 1rem;
-        width: 1rem;
+        cursor: pointer;
+        height: 2rem;
+        width:  2rem;
     }
 }

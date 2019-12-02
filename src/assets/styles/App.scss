@@ -1,3 +1,4 @@
+@import './sass_vars.scss';
 
 /***
  * Reset
@@ -35,7 +36,7 @@ input {
 section {
     margin:  0 auto;
     padding: 1rem;
-    width:   80%;
+    width:   95%;
 }
 
 .App-logo {
@@ -52,6 +53,15 @@ section {
   padding:          2rem 0;
 }
 
+.bg-green {
+    background: $green !important;
+}
+.bg-red {
+    background: $red !important;
+}
+.bg-yellow {
+    background: $yellow !important;
+}
 .btn {
     border:      1px solid grey;
     cursor:      pointer;
@@ -74,9 +84,31 @@ section {
     border:        1px solid gray;
     padding:       1rem;
 }
-.strikethrough-text {
-    text-decoration: line-through;
+.d-block {
+    display: block;
+}
+.d-flex {
+    display: flex;
+}
+.d-inline-block {
+    display: inline-block;
+}
+.d-none {
+    display: none;
 }
 .opacity50 {
     opacity: .5;
+}
+.strikethrough-text {
+    text-decoration: line-through;
+}
+.task {
+    max-width: 320px;
+    vertical-align: top;
+}
+
+@media (min-width:860px) {
+    section {
+        width: 80%;
+    }
 }

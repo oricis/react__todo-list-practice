@@ -2,9 +2,15 @@
 import './task.scss';
 import ColorPicket from '../color-picket/ColorPicket';
 import React, { Component } from 'react';
+import editIcon from '../../assets/images/edit-regular.svg';
+import TaskText from './task-text/TaskText.jsx';
 
 class Task extends Component
 {
+    state = {
+        editable: false
+    }
+
 
     constructor(props)
     {
@@ -24,20 +30,29 @@ class Task extends Component
 
         return (
             <div className="content-box task" data-id={this.props.dataId}>
-                <ColorPicket
-                    bgColor={this.props.bgColor}
-                    setColorFromPicket={this.setColorFromPicket}>
-                </ColorPicket>
-
-                <p className="task-title">
+                <div className="actions">
                     {
-                        (this.props.completed === true)
-                            ? <span className="strikethrough-text opacity50">
-                                {this.props.text}
-                            </span>
-                            : this.props.text
+                        (this.props.completed)
+                            ? ''
+                            : <div className="image-btn" onClick={this.editTask}>
+                                <img src={editIcon} alt="Editar" title="Editar" />
+                            </div>
                     }
-                </p>
+
+                    <ColorPicket
+                        bgColor={this.props.bgColor}
+                        completed={this.props.completed}
+                        setColorFromPicket={this.setColorFromPicket}>
+                    </ColorPicket>
+                </div>
+
+                <TaskText
+                    completed={this.props.completed}
+                    editable={this.state.editable}
+                    text={this.props.text}
+                    updateTask={this.updateTask}>
+                </TaskText>
+
                 <div className="task-buttons">
                     <button className={this.state.cssClassesForCompleteBtn}
                         disabled={this.props.completed}
@@ -69,9 +84,28 @@ class Task extends Component
         this.props.onDeleteTask(id);
     }
 
+    editTask = () =>
+    {
+        this.setState({
+            editable: true
+        })
+    }
+
     setColorFromPicket = (color) =>
     {
         this.props.setColorFromPicket(color, this.props.dataId);
+    }
+
+    updateTask = (text) =>
+    {
+        if (text !== this.props.text) {
+            const taskId = this.props.dataId;
+            this.props.updateTask(taskId, text);
+        }
+
+        this.setState({
+            editable: false
+        })
     }
 }
 

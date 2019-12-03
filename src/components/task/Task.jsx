@@ -49,7 +49,8 @@ class Task extends Component
                 <TaskText
                     completed={this.props.completed}
                     editable={this.state.editable}
-                    text={this.props.text}>
+                    text={this.props.text}
+                    updateTask={this.updateTask}>
                 </TaskText>
 
                 <div className="task-buttons">
@@ -96,6 +97,14 @@ class Task extends Component
     setColorFromPicket = (color) =>
     {
         this.props.setColorFromPicket(color, this.props.dataId);
+    }
+
+    updateTask = (text) =>
+    {
+        console.log('Task / updateTask() - text: ' + text);
+        this.setState({
+            editable: false
+        })
     }
 }
 

@@ -20,7 +20,10 @@ class TaskText extends Component
                         ? <span className="strikethrough-text opacity50">
                             {this.props.text}
                         </span>
-                        : this.props.text
+                        : (this.props.editable)
+                            ? <input type="text" value={this.props.text} autoFocus />
+                            : <span>{this.props.text}</span>
+
                 }
             </div>
         );

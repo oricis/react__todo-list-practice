@@ -7,6 +7,10 @@ import TaskText from './task-text/TaskText.jsx';
 
 class Task extends Component
 {
+    state = {
+        editable: false
+    }
+
 
     constructor(props)
     {
@@ -83,6 +87,10 @@ class Task extends Component
     {
         const id = this.props.dataId;
         console.log('Task / editTask() - ID: ' + id);
+
+        this.setState({
+            editable: true
+        })
     }
 
     setColorFromPicket = (color) =>

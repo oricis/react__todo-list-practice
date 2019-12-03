@@ -2,6 +2,7 @@
 import './task.scss';
 import ColorPicket from '../color-picket/ColorPicket';
 import React, { Component } from 'react';
+import editIcon from '../../assets/images/edit-regular.svg';
 
 class Task extends Component
 {
@@ -24,10 +25,16 @@ class Task extends Component
 
         return (
             <div className="content-box task" data-id={this.props.dataId}>
-                <ColorPicket
-                    bgColor={this.props.bgColor}
-                    setColorFromPicket={this.setColorFromPicket}>
-                </ColorPicket>
+                <div className="actions">
+                    <div className="image-btn" onClick={this.editTask}>
+                        <img src={editIcon} alt="Editar" title="Editar" />
+                    </div>
+
+                    <ColorPicket
+                        bgColor={this.props.bgColor}
+                        setColorFromPicket={this.setColorFromPicket}>
+                    </ColorPicket>
+                </div>
 
                 <p className="task-title">
                     {
@@ -67,6 +74,12 @@ class Task extends Component
     deleteTask = (id) =>
     {
         this.props.onDeleteTask(id);
+    }
+
+    editTask = () =>
+    {
+        const id = this.props.dataId;
+        console.log('Task / editTask() - ID: ' + id);
     }
 
     setColorFromPicket = (color) =>

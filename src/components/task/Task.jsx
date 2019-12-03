@@ -3,6 +3,7 @@ import './task.scss';
 import ColorPicket from '../color-picket/ColorPicket';
 import React, { Component } from 'react';
 import editIcon from '../../assets/images/edit-regular.svg';
+import TaskText from './task-text/TaskText.jsx';
 
 class Task extends Component
 {
@@ -36,15 +37,12 @@ class Task extends Component
                     </ColorPicket>
                 </div>
 
-                <p className="task-title">
-                    {
-                        (this.props.completed === true)
-                            ? <span className="strikethrough-text opacity50">
-                                {this.props.text}
-                            </span>
-                            : this.props.text
-                    }
-                </p>
+                <TaskText
+                    completed={this.props.completed}
+                    editable={this.state.editable}
+                    text={this.props.text}>
+                </TaskText>
+
                 <div className="task-buttons">
                     <button className={this.state.cssClassesForCompleteBtn}
                         disabled={this.props.completed}

@@ -86,9 +86,6 @@ class Task extends Component
 
     editTask = () =>
     {
-        const id = this.props.dataId;
-        console.log('Task / editTask() - ID: ' + id);
-
         this.setState({
             editable: true
         })
@@ -101,7 +98,11 @@ class Task extends Component
 
     updateTask = (text) =>
     {
-        console.log('Task / updateTask() - text: ' + text);
+        if (text !== this.props.text) {
+            const taskId = this.props.dataId;
+            this.props.updateTask(taskId, text);
+        }
+
         this.setState({
             editable: false
         })

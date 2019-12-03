@@ -32,7 +32,9 @@ class TaskList extends Component
                 taskList={this.state.tasks}
                 setColorFromPicket={this.setColorFromPicket}
                 onCompleteTask={(id) => { this.completeTask(id); }}
-                onDeleteTask={(id) => { this.deleteTask(id); }}></Tasks>
+                onDeleteTask={(id) => { this.deleteTask(id); }}
+                updateTask={this.updateTask}>
+            </Tasks>
             : '';
 
         return (
@@ -155,6 +157,11 @@ class TaskList extends Component
     updatedTasksStorage()
     {
         this.storage.set('stored-tasks', this.state.tasks);
+    }
+
+    updateTask = (id, text) =>
+    {
+        console.log('updating task ID: ' + id, text)
     }
 }
 

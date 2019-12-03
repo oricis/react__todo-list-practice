@@ -36,7 +36,7 @@ input {
 }
 section {
     margin:  0 auto;
-    padding: 1rem;
+    padding-top: 1rem;
     width:   95%;
 }
 
@@ -51,7 +51,7 @@ section {
   display:          flex;
   flex-direction:   column;
   justify-content:  center;
-  padding:          2rem 0;
+  padding:          1rem 0 .3rem;
 }
 
 .bg-green {

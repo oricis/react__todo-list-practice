@@ -1,5 +1,5 @@
 # TO-DO List App
-## **[Go to "TO-DO List App v.1.0.0" page][1]**
+## **[Go to "TO-DO List App v.1.1.1" page][1]**
 
 This is a personal use free web application to create a task list. The app use your navigator local data storage to store your tasks.
 
@@ -10,7 +10,7 @@ Neither data or use stadictics is sending to Internet, you only need open the pa
 
 ![alt text](https://user-images.githubusercontent.com/7187599/69980709-0fbf5680-1531-11ea-8596-b5bc2a10e253.png "App example capture")
 
-You can create a new task typing somethink in the form field and pushing the Enter key.
+You can create a new task typing something in the form field, then push the "Add button" or the Enter key.
 
 Use the "Clear button" to clear the typed text.
 

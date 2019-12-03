@@ -32,7 +32,9 @@ class Task extends Component
                 <p className="task-title">
                     {
                         (this.props.completed === true)
-                            ? <span className="strikethrough-text opacity50">this.props.text</span>
+                            ? <span className="strikethrough-text opacity50">
+                                {this.props.text}
+                            </span>
                             : this.props.text
                     }
                 </p>

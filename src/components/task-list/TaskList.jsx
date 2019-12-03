@@ -159,9 +159,18 @@ class TaskList extends Component
         this.storage.set('stored-tasks', this.state.tasks);
     }
 
-    updateTask = (id, text) =>
+    updateTask = (taskId, text) =>
     {
-        console.log('updating task ID: ' + id, text)
+        const arrTasks = this.state.tasks;
+        arrTasks.forEach(task => {
+            if (task.id === taskId) {
+                task.text = text;
+            }
+        });
+
+        this.setState({
+            tasks: arrTasks
+        });
     }
 }
 

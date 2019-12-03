@@ -27,9 +27,13 @@ class Task extends Component
         return (
             <div className="content-box task" data-id={this.props.dataId}>
                 <div className="actions">
-                    <div className="image-btn" onClick={this.editTask}>
-                        <img src={editIcon} alt="Editar" title="Editar" />
-                    </div>
+                    {
+                        (this.props.completed)
+                            ? ''
+                            : <div className="image-btn" onClick={this.editTask}>
+                                <img src={editIcon} alt="Editar" title="Editar" />
+                            </div>
+                    }
 
                     <ColorPicket
                         bgColor={this.props.bgColor}

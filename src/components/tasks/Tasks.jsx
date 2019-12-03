@@ -31,7 +31,8 @@ class Tasks extends Component
 
                         setColorFromPicket={this.setColorFromPicket}
                         onCompleteTask={(id) => { this.completeTask(id); }}
-                        onDeleteTask={(id) => { this.deleteTask(id); }}>
+                        onDeleteTask={(id) => { this.deleteTask(id); }}
+                        updateTask={this.props.updateTask}>
                     </Task>
                 );
             }

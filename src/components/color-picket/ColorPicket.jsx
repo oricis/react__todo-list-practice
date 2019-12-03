@@ -19,11 +19,18 @@ class ColorPicket extends Component
             ? ' d-none' : ' d-block';
         this.taskColorClassName += classToShowColor;
 
+        const taskColor = (this.props.completed)
+            ? <div className={this.taskColorClassName}
+                title="Cambiar color">
+            </div>
+            : <div className={this.taskColorClassName}
+                title="Cambiar color"
+                onClick={this.swapPicketVisibility}>
+            </div>;
+
         return (
             <div className="color-picket">
-                <div className={this.taskColorClassName}
-                    title="Cambiar color"
-                    onClick={this.swapPicketVisibility}></div>
+                {taskColor}
 
                 <Picket
                     isVisible={this.state.colorSelectorVisible}

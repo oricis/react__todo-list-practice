@@ -37,6 +37,7 @@ class Task extends Component
 
                     <ColorPicket
                         bgColor={this.props.bgColor}
+                        completed={this.props.completed}
                         setColorFromPicket={this.setColorFromPicket}>
                     </ColorPicket>
                 </div>

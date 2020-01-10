@@ -1,5 +1,6 @@
 import '../assets/styles/App.scss';
 import React from 'react';
+import Footer from "./footer/Footer";
 import TaskList from "./task-list/TaskList";
 import logo from '../assets/images/logo.svg';
 
@@ -13,6 +14,11 @@ function App() {
       </header>
 
       <TaskList></TaskList>
+
+      <Footer
+        author="Moisés Alcocer"
+        year="2019"
+        licence="MIT"></Footer>
     </div>
   );
 }

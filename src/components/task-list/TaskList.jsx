@@ -105,7 +105,7 @@ class TaskList extends Component
         });
     }
 
-    createTask = (text: PropTypes.string, color: PropTypes.string) =>
+    createTask = (text, color) =>
     {
         let tasksLength = this.state.tasks.length;
         const taskText = text || 'Task ' + ++tasksLength;
@@ -113,7 +113,7 @@ class TaskList extends Component
         return new Task(taskText, color);
     }
 
-    completeTask = (id: PropTypes.string) =>
+    completeTask = (id) =>
     {
         const arrTasks = this.markTaskAsCompleted(this.state.tasks, id);
         this.setState({
@@ -121,7 +121,7 @@ class TaskList extends Component
         });
     }
 
-    deleteTask = (id: PropTypes.string) =>
+    deleteTask = (id) =>
     {
         const arrTasks = this.state.tasks.filter(task => task.id !== id);
         this.setState({
@@ -129,7 +129,7 @@ class TaskList extends Component
         });
     }
 
-    markTaskAsCompleted(tasks: PropTypes.array, taskId: PropTypes.string)
+    markTaskAsCompleted(tasks, taskId)
     {
         tasks.forEach(task => {
             if (task.id === taskId) {
@@ -173,5 +173,14 @@ class TaskList extends Component
         });
     }
 }
+
+// Setting the proptypes of the component
+TaskList.propTypes = {
+    color:  PropTypes.string,
+    id:     PropTypes.string,
+    taskId: PropTypes.string,
+    tasks:  PropTypes.array,
+    text:   PropTypes.string
+};
 
 export default TaskList;

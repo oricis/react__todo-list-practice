@@ -1,6 +1,6 @@
 import './task-list.scss';
 import React, { Component } from 'react';
-import Tasks from '../tasks/Tasks';
+import Tasks from './tasks/Tasks';
 import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
 import Task from '../../classes/Task.js';

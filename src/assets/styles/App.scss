@@ -36,8 +36,14 @@ input {
 }
 section {
     margin:  0 auto;
-    padding-top: 1rem;
+    padding: 1rem .2rem;
     width:   95%;
+}
+
+.App {
+    display:    grid;
+    grid-template-rows: 25vh 1fr 10vh;
+    min-height: 100vh;
 }
 
 .App-logo {

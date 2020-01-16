@@ -71,6 +71,7 @@ class TaskList extends Component
 
     /**
      * Custom methods
+     * Create task form actions
      *
      */
 
@@ -114,6 +115,12 @@ class TaskList extends Component
         return new Task(taskText, color);
     }
 
+    /**
+     * Custom methods
+     * Task card actions
+     *
+     */
+
     completeTask = (id) =>
     {
         const arrTasks = this.markTaskAsCompleted(this.state.tasks, id);
@@ -154,6 +161,12 @@ class TaskList extends Component
             tasks: arrTasks
         });
     }
+
+    /**
+     * Custom methods
+     * Actions over store data
+     *
+     */
 
     updatedTasksStorage()
     {

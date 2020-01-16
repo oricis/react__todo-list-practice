@@ -1,5 +1,5 @@
 import './task-list.scss';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Tasks from './tasks/Tasks';
 import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
@@ -27,6 +27,24 @@ class TaskList extends Component
 
     render()
     {
+        const actionForm = <article className="content-box task-intro">
+            <input type="text"
+                id="create-task"
+                placeholder="Introduce una tarea..."
+                value={this.state.newTaskText}
+                onChange={event =>
+                    this.setState({ newTaskText: event.target.value })
+                }
+                onKeyUp={this.addTask} />
+
+            <button className="btn" onClick={this.addTaskFromInput}>
+                Añadir
+            </button>
+            <button className="btn" onClick={this.cleanTaskInput}>
+                Limpiar
+            </button>
+        </article>;
+
         const tasks = (this.state.tasks.length > 0)
             ? <Tasks
                 taskList={this.state.tasks}
@@ -38,27 +56,10 @@ class TaskList extends Component
             : '';
 
         return (
-            <section className="App-task-list">
-                <article className="content-box task-intro">
-                    <input type="text"
-                        id="create-task"
-                        placeholder="Introduce una tarea..."
-                        value={this.state.newTaskText}
-                        onChange={event =>
-                            this.setState({ newTaskText: event.target.value })
-                        }
-                        onKeyUp={this.addTask}/>
-
-                    <button className="btn" onClick={this.addTaskFromInput}>
-                        Añadir
-                    </button>
-                    <button className="btn" onClick={this.cleanTaskInput}>
-                        Limpiar
-                    </button>
-                </article>
-
+            <Fragment>
+                {actionForm}
                 {tasks}
-            </section>
+            </Fragment>
         );
     }
 

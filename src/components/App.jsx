@@ -5,21 +5,25 @@ import Header from "./header/Header";
 import TaskList from "./task-list/TaskList";
 import logo from '../assets/images/logo.svg';
 
-function App() {
-  return (
-    <div className="App">
-      <Header
-        logo={logo}
-        title="TODO List"></Header>
+function App()
+{
 
-      <TaskList></TaskList>
+    return (
+        <div className="App">
+            <Header
+                logo={logo}
+                title="TODO List"></Header>
 
-      <Footer
-        author="Moisés Alcocer"
-        year="2019"
-        licence="MIT"></Footer>
-    </div>
-  );
+            <section className="App-task-list">
+                <TaskList></TaskList>
+            </section >
+
+            <Footer
+                author="Moisés Alcocer"
+                year="2019"
+                licence="MIT"></Footer>
+        </div>
+    );
 }
 
 export default App;

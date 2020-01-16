@@ -4,7 +4,7 @@ import Tasks from './tasks/Tasks';
 import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
 import Task from '../../classes/Task.js';
-
+import TextButton from '../common/text-button';
 
 class TaskList extends Component
 {
@@ -37,12 +37,14 @@ class TaskList extends Component
                 }
                 onKeyUp={this.addTask} />
 
-            <button className="btn" onClick={this.addTaskFromInput}>
-                Añadir
-            </button>
-            <button className="btn" onClick={this.cleanTaskInput}>
-                Limpiar
-            </button>
+            <TextButton
+                className="btn"
+                text="Añadir"
+                onClick={this.addTaskFromInput}></TextButton>
+            <TextButton
+                className="btn"
+                text="Limpiar"
+                onClick={this.cleanTaskInput}></TextButton>
         </article>;
 
         const tasks = (this.state.tasks.length > 0)

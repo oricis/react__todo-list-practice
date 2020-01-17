@@ -11,8 +11,21 @@ function Footer(props)
     return (
         <footer>
             {longText}
-            <p>Created by <a href="https://www.ironwoods.es" target="_blank">© {props.author}</a> {props.year}. {props.licence} Licensed.</p>
-            <p class="small-font">SVG icons from <a href="https://fontawesome.com/license" target="_blank" rel="no-follow">© Font Awesome</a></p>
+            <p>Created by
+                <a href="https://www.ironwoods.es"
+                    target="_blank"
+                    rel="license author external">
+                    © {props.author}
+                </a>
+                {props.year}. {props.licence} Licensed.
+            </p>
+            <p className="small-font">SVG icons from
+                <a href="https://fontawesome.com/license"
+                    target="_blank"
+                    rel="nofollow noopener noreferrer license external">
+                    © Font Awesome
+                </a>
+            </p>
         </footer>
     );
 }

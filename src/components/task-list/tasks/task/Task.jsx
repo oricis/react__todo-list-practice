@@ -1,8 +1,8 @@
 
 import './task.scss';
-import ColorPicket from '../color-picket/ColorPicket';
+import ColorPicket from '../../../common/color-picket/ColorPicket';
 import React, { Component } from 'react';
-import editIcon from '../../assets/images/edit-regular.svg';
+import editIcon from '../../../../assets/images/edit-regular.svg';
 import TaskText from './task-text/TaskText.jsx';
 
 class Task extends Component

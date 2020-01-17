@@ -1,7 +1,7 @@
 
 import './tasks.scss';
 import React, { Component } from 'react';
-import Task from '../task/Task';
+import Task from './task/Task';
 
 class Tasks extends Component
 {

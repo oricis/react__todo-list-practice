@@ -1,10 +1,10 @@
 import './task-list.scss';
-import React, { Component } from 'react';
-import Tasks from '../tasks/Tasks';
+import React, { Component, Fragment } from 'react';
+import Tasks from './tasks/Tasks';
 import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
+import Form from './form/Form.jsx';
 import Task from '../../classes/Task.js';
-
 
 class TaskList extends Component
 {
@@ -38,27 +38,10 @@ class TaskList extends Component
             : '';
 
         return (
-            <section className="App-task-list">
-                <article className="content-box task-intro">
-                    <input type="text"
-                        id="create-task"
-                        placeholder="Introduce una tarea..."
-                        value={this.state.newTaskText}
-                        onChange={event =>
-                            this.setState({ newTaskText: event.target.value })
-                        }
-                        onKeyUp={this.addTask}/>
-
-                    <button className="btn" onClick={this.addTaskFromInput}>
-                        Añadir
-                    </button>
-                    <button className="btn" onClick={this.cleanTaskInput}>
-                        Limpiar
-                    </button>
-                </article>
-
+            <Fragment>
+                <Form addTask={this.addTask}></Form>
                 {tasks}
-            </section>
+            </Fragment>
         );
     }
 
@@ -70,25 +53,11 @@ class TaskList extends Component
 
     /**
      * Custom methods
+     * Create new tasks
      *
      */
 
-    addTask = (event) =>
-    {
-        if (event.key === 'Enter') {
-            const text     = event.target.value.trim();
-            this.addTaskToState(text);
-        }
-    }
-
-    addTaskFromInput = () =>
-    {
-        const text = document.getElementById('create-task').value.trim();
-        this.addTaskToState(text);
-    }
-
-    addTaskToState = (text) =>
-    {
+    addTask = (text) => {
         const newTask = this.createTask(text, this.defaultTaskColor);
         const arrTasks = [...this.state.tasks, newTask];
 
@@ -98,20 +67,19 @@ class TaskList extends Component
         });
     }
 
-    cleanTaskInput = () =>
-    {
-        this.setState({
-            newTaskText: ''
-        });
-    }
-
-    createTask = (text, color) =>
-    {
+    createTask = (text, color) => {
         let tasksLength = this.state.tasks.length;
         const taskText = text || 'Task ' + ++tasksLength;
 
         return new Task(taskText, color);
     }
+
+
+    /**
+     * Custom methods
+     * Task card actions
+     *
+     */
 
     completeTask = (id) =>
     {
@@ -153,6 +121,12 @@ class TaskList extends Component
             tasks: arrTasks
         });
     }
+
+    /**
+     * Custom methods
+     * Actions over store data
+     *
+     */
 
     updatedTasksStorage()
     {

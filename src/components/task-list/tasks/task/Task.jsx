@@ -3,6 +3,7 @@ import './task.scss';
 import ColorPicket from '../../../common/color-picket/ColorPicket';
 import React, { Component } from 'react';
 import editIcon from '../../../../assets/images/edit-regular.svg';
+import ImageButton from '../../../common/image-button';
 import TaskText from './task-text/TaskText.jsx';
 
 class Task extends Component
@@ -27,6 +28,12 @@ class Task extends Component
 
     render()
     {
+        const editButton = <ImageButton
+            className="image-btn"
+            image={editIcon}
+            attraAlt="Editar"
+            attrtTitle="Editar"
+            onClick={this.editTask}></ImageButton>;
 
         return (
             <div className="content-box task" data-id={this.props.dataId}>
@@ -34,9 +41,7 @@ class Task extends Component
                     {
                         (this.props.completed)
                             ? ''
-                            : <div className="image-btn" onClick={this.editTask}>
-                                <img src={editIcon} alt="Editar" title="Editar" />
-                            </div>
+                            : editButton
                     }
 
                     <ColorPicket

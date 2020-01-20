@@ -5,17 +5,24 @@
  */
 
 .task-intro {
-
-    input {
-        display:       inline-block;
-        margin-bottom: .5rem;
-        text-align:    left;
-        width:         100%;
+    .config-actions {
+        display         : flex;
+        justify-content : space-between;
+        margin-top      : -.5rem;
+        padding-bottom  : .5rem;
     }
+    .creation-form {
+        input {
+            display       : inline-block;
+            margin-bottom : .5rem;
+            text-align    : left;
+            width         : 100%;
+        }
 
-    .btn {
-        height: 3rem;
-        margin: .5rem
+        .btn {
+            height: 3rem;
+            margin: .5rem
+        }
     }
 }
 
@@ -23,9 +30,11 @@
 @media (min-width:720px) {
 
     .task-intro {
-        input {
-            margin-right: .5em;
-            width: 65%;
+        .creation-form {
+            input {
+                margin-right: .5em;
+                width       : 65%;
+            }
         }
     }
 }

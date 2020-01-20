@@ -9,7 +9,6 @@ import TextLabel from '../../common/text-label';
 
 class Form extends Component
 {
-    actualMode = 'tasks'; // tasks | lists
 
     constructor(props)
     {
@@ -42,9 +41,10 @@ class Form extends Component
                         image={swapIcon}
                         attrAlt={"Cambiar modo a " + this.actualMode}
                         attrTitle={"Cambiar modo a " + this.actualMode}
-                        onClick={this.clickedSwapButton}>
+                        onClick={this.props.onClickSwapButton}>
                     </ImageButton>
                 </div>
+
                 <div className="creation-form">
                     <input type="text"
                         id="create-task"
@@ -67,9 +67,8 @@ class Form extends Component
             </article>
         );
     }
-    clickedSwapButton = () => {
-        console.log('clickedSwapButton()')
-    }
+
+
     /**
      * Custom methods
      * Create task form actions

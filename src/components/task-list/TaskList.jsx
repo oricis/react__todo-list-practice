@@ -8,6 +8,9 @@ import Task from '../../classes/Task.js';
 
 class TaskList extends Component
 {
+    actualMode = 'tasks'; // tasks | lists
+
+
     constructor(props)
     {
         super(props);
@@ -39,7 +42,11 @@ class TaskList extends Component
 
         return (
             <Fragment>
-                <Form addTask={this.addTask}></Form>
+                <Form
+                    addTask={this.addTask}
+                    onClickSwapButton={this.clickedSwapButton}>
+                </Form>
+
                 {tasks}
             </Fragment>
         );
@@ -48,6 +55,20 @@ class TaskList extends Component
     componentDidUpdate()
     {
         this.updatedTasksStorage();
+    }
+
+
+    /**
+     * Custom methods
+     * Swap App mode - Tasks of the list / lists of tasks
+     *
+     */
+    clickedSwapButton = () => {
+        console.log('clickedSwapButton() - mode: ' + this.actualMode)
+
+        this.actualMode = (this.actualMode === 'tasks')
+            ? 'lists'
+            : 'tasks';
     }
 
 

@@ -1,15 +1,13 @@
 import './task-list.scss';
 import React, { Component, Fragment } from 'react';
-import Tasks from './tasks/Tasks';
 import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
 import Form from './form/Form.jsx';
 import Task from '../../classes/Task.js';
+import Tasks from './tasks/Tasks';
 
 class TaskList extends Component
 {
-    actualMode = 'tasks'; // tasks | lists
-
 
     constructor(props)
     {
@@ -19,10 +17,16 @@ class TaskList extends Component
         this.defaultTaskColor = 'green';
         this.storage = new Storage();
 
+        const storedMode = this.storage.get('todo-list-mode');
+        const appMode = (storedMode)
+            ? storedMode
+            : 'tasks'; // tasks | lists
         const data = this.storage.get('stored-tasks');
+
         const INITIAL = {
-            newTaskText: '',
-            tasks: data,
+            appMode  : appMode,
+            newTaskText : '',
+            tasks       : data,
         };
 
         this.state = INITIAL;
@@ -64,11 +68,15 @@ class TaskList extends Component
      *
      */
     clickedSwapButton = () => {
-        console.log('clickedSwapButton() - mode: ' + this.actualMode)
+        console.log('clickedSwapButton() - mode: ' + this.state.appMode)
 
-        this.actualMode = (this.actualMode === 'tasks')
+        const newAppMode = (this.state.appMode === 'tasks')
             ? 'lists'
             : 'tasks';
+
+        this.setState({
+            appMode: newAppMode
+        });
     }
 
 

@@ -21,7 +21,7 @@ class TaskList extends Component
         const appMode = (storedMode)
             ? storedMode
             : 'tasks'; // tasks | lists
-        const data = this.storage.get('stored-tasks');
+        const data = this.loadStoredData(appMode);
 
         const INITIAL = {
             appMode  : appMode,
@@ -58,7 +58,7 @@ class TaskList extends Component
 
     componentDidUpdate()
     {
-        this.updatedTasksStorage();
+        this.updatedStoredData();
     }
 
 
@@ -157,9 +157,21 @@ class TaskList extends Component
      *
      */
 
-    updatedTasksStorage()
+     loadStoredData(appMode)
+     {
+        return (appMode === 'tasks' // tasks | lists
+            || !this.storage.get('stored-lists'))
+
+            ? this.storage.get('stored-tasks')
+            : this.storage.get('stored-lists');
+    }
+
+    updatedStoredData()
     {
-        this.storage.set('stored-tasks', this.state.tasks);
+        const storageKey = (this.state.appMode === 'lists')
+            ? 'stored-lists'
+            : 'stored-tasks';
+        this.storage.set(storageKey, this.state.tasks);
     }
 
     updateTask = (taskId, text) =>

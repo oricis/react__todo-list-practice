@@ -14,14 +14,8 @@ class TaskForm extends Component
     {
         super(props);
 
-        // Set default values
-        this.defaultTaskColor = 'green';
-        this.storage = new Storage();
-
-        const data = this.storage.get('stored-tasks');
         const INITIAL = {
-            newTaskText: '',
-            tasks: data,
+            newText: '',
         };
 
         this.state = INITIAL;
@@ -49,9 +43,9 @@ class TaskForm extends Component
                     <input type="text"
                         id="create-task"
                         placeholder="Introduce una tarea..."
-                        value={this.state.newTaskText}
+                        value={this.state.newText}
                         onChange={event =>
-                            this.setState({ newTaskText: event.target.value })
+                            this.setState({ newText: event.target.value })
                         }
                         onKeyUp={this.addTask} />
 
@@ -89,16 +83,15 @@ class TaskForm extends Component
 
     cleanTaskInput = () => {
         this.setState({
-            newTaskText: ''
+            newText: ''
         });
     }
 }
 
 // Setting the proptypes of the component
 TaskForm.propTypes = {
-    id:     PropTypes.string,
-    tasks:  PropTypes.array,
-    text:   PropTypes.string
+    id:   PropTypes.string,
+    text: PropTypes.string
 };
 
 export default TaskForm;

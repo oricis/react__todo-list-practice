@@ -4,17 +4,7 @@
  *
  */
 
-.task-intro {
-    .config-actions {
-        display         : flex;
-        justify-content : space-between;
-        margin-top      : -.5rem;
-        padding-bottom  : .5rem;
-
-        .text-label {
-            margin-top: .5rem;
-        }
-    }
+.data-intro {
     .creation-form {
         input {
             display       : inline-block;
@@ -33,7 +23,7 @@
 
 @media (min-width:720px) {
 
-    .task-intro {
+    .data-intro {
         .creation-form {
             input {
                 margin-right: .5em;

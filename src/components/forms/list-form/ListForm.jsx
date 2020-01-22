@@ -1,11 +1,9 @@
 import './styles.scss';
 import React, { Component } from 'react';
-import Storage from '../../../services/Storage.js';
-import swapIcon from '../../../assets/images/buffer-brands.svg';
 import PropTypes from 'prop-types';
-import ImageButton from '../../common/image-button';
+import ConfigActions from '../../config-actions/ConfigAction';
+// import ImageButton from '../../common/image-button';
 import TextButton from '../../common/text-button';
-import TextLabel from '../../common/text-label';
 
 class ListForm extends Component
 {
@@ -24,20 +22,10 @@ class ListForm extends Component
     render()
     {
         return (
-            <article className="content-box task-intro">
-                <div className="config-actions">
-                    <TextLabel
-                        text="Lorem ipsum">
-                    </TextLabel>
-
-                    <ImageButton
-                        className="image-btn"
-                        image={swapIcon}
-                        attrAlt={"Cambiar modo a " + this.actualMode}
-                        attrTitle={"Cambiar modo a " + this.actualMode}
-                        onClick={this.props.onClickSwapButton}>
-                    </ImageButton>
-                </div>
+            <article className="content-box data-intro">
+                <ConfigActions
+                    onClickSwapButton={this.props.onClickSwapButton}>
+                </ConfigActions>
 
                 <div className="creation-form">
                     <input type="text"

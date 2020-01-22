@@ -13,7 +13,8 @@ class ListForm extends Component
         super(props);
 
         const INITIAL = {
-            newText: '',
+            title       : '',
+            description : '',
         };
 
         this.state = INITIAL;
@@ -24,27 +25,39 @@ class ListForm extends Component
         return (
             <article className="content-box data-intro">
                 <ConfigActions
+                    formLabel="Nueva lista"
                     onClickSwapButton={this.props.onClickSwapButton}>
                 </ConfigActions>
 
                 <div className="creation-form">
                     <input type="text"
-                        id="create-task"
-                        placeholder="Introduce una tarea..."
-                        value={this.state.newText}
+                        id="input-title"
+                        placeholder="¿Título de la lista?"
+                        value={this.state.title}
                         onChange={event =>
-                            this.setState({ newText: event.target.value })
+                            this.setState({ title: event.target.value.trim() })
                         }
-                        onKeyUp={this.addTask} />
-
+                        onKeyUp={event =>
+                            this.checkFormWhenPushEnterKey(event)
+                        } />
+                    <input type="text"
+                        id="input-description"
+                        placeholder="¿Descripción de la lista?"
+                        value={this.state.description}
+                        onChange={event =>
+                            this.setState({ description: event.target.value.trim() })
+                        }
+                        onKeyUp={event =>
+                            this.checkFormWhenPushEnterKey(event)
+                        } />
                     <TextButton
                         className="btn"
                         text="Añadir"
-                        onClick={this.addTaskFromInput}></TextButton>
+                        onClick={this.emitFormData}></TextButton>
                     <TextButton
                         className="btn"
                         text="Limpiar"
-                        onClick={this.cleanTaskInput}></TextButton>
+                        onClick={this.cleanForm}></TextButton>
                 </div>
             </article>
         );
@@ -53,33 +66,38 @@ class ListForm extends Component
 
     /**
      * Custom methods
-     * Create task form actions
+     * Create list form actions
      *
      */
 
-    addTask = (event) => {
+    checkFormWhenPushEnterKey = (event) =>
+    {
         if (event.key === 'Enter') {
-            const text = event.target.value.trim();
-            this.props.addTask(text);
+            this.emitFormData();
         }
     }
 
-    addTaskFromInput = () => {
-        const text = document.getElementById('create-task').value.trim();
-        this.props.addTask(text);
+    cleanForm = () =>
+    {
+        this.setState({
+            title      : '',
+            description: ''
+        });
     }
 
-    cleanTaskInput = () => {
-        this.setState({
-            newText: ''
-        });
+    emitFormData = () =>
+    {
+        const title       = this.state.title;
+        const description = this.state.description;
+        this.props.addList(title, description);
     }
 }
 
 // Setting the proptypes of the component
 ListForm.propTypes = {
-    id:   PropTypes.string,
-    text: PropTypes.string
+    id          : PropTypes.string,
+    title       : PropTypes.string,
+    description : PropTypes.string
 };
 
 export default ListForm;

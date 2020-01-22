@@ -42,9 +42,8 @@ class Todo extends Component
                 addTask={this.addTask}
                 onClickSwapButton={this.clickedSwapButton}>
             </TaskForm>
-            : // TODO: Create list form
-            <ListForm
-                addTask={this.addList}
+            : <ListForm
+                addList={this.addList}
                 onClickSwapButton={this.clickedSwapButton}>
             </ListForm>
 
@@ -99,6 +98,7 @@ class Todo extends Component
 
     addList = (text, description) =>
     {
+        console.log('Todo / addList() -> ' +text+' === '+description); // HACK:
         const newList  = this.createList(text, description);
         const arrLists = [...this.state.data, newList];
 

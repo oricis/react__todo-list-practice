@@ -1,13 +1,13 @@
-import './task-list.scss';
+import './styles.scss';
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
-import Form from './form/Form.jsx';
 import List from '../../classes/List.js';
 import Task from '../../classes/Task.js';
+import Form from './form/Form';
 import Tasks from './tasks/Tasks';
 
-class TaskList extends Component
+class Todo extends Component
 {
     // Default values
     defaultTaskColor = 'green';
@@ -229,7 +229,7 @@ class TaskList extends Component
 }
 
 // Setting the proptypes of the component
-TaskList.propTypes = {
+Todo.propTypes = {
     color:  PropTypes.string,
     id:     PropTypes.string,
     taskId: PropTypes.string,
@@ -237,4 +237,4 @@ TaskList.propTypes = {
     text:   PropTypes.string
 };
 
-export default TaskList;
+export default Todo;

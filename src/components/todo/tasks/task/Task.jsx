@@ -4,7 +4,7 @@ import ColorPicket from '../../../common/color-picket/ColorPicket';
 import React, { Component } from 'react';
 import editIcon from '../../../../assets/images/edit-regular.svg';
 import ImageButton from '../../../common/image-button';
-import TaskText from './task-text/TaskText.jsx';
+import TaskText from './task-text/TaskText';
 
 class Task extends Component
 {

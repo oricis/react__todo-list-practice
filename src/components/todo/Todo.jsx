@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
 import List from '../../classes/List.js';
 import Task from '../../classes/Task.js';
-import Form from './form/Form';
+import ListForm from '../forms/list-form/ListForm';
+import TaskForm from '../forms/task-form/TaskForm';
 import Tasks from './tasks/Tasks';
 
 class Todo extends Component
@@ -37,15 +38,14 @@ class Todo extends Component
     render()
     {
         const form = (this.state.appMode === 'tasks')
-            ? <Form
+            ? <TaskForm
                 addTask={this.addTask}
                 onClickSwapButton={this.clickedSwapButton}>
-            </Form>
-            : // TODO: Create list form
-            <Form
-                addTask={this.addList}
+            </TaskForm>
+            : <ListForm
+                addList={this.addList}
                 onClickSwapButton={this.clickedSwapButton}>
-            </Form>
+            </ListForm>
 
         const tasksOrLists = (this.state.data.length > 0)
             ? <Tasks
@@ -98,6 +98,7 @@ class Todo extends Component
 
     addList = (text, description) =>
     {
+        console.log('Todo / addList() -> ' +text+' === '+description); // HACK:
         const newList  = this.createList(text, description);
         const arrLists = [...this.state.data, newList];
 

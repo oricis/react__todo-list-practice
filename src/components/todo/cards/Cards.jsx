@@ -1,9 +1,9 @@
 
-import './tasks.scss';
+import './styles.scss';
 import React, { Component } from 'react';
 import Task from './task/Task';
 
-class Tasks extends Component
+class Cards extends Component
 {
 
     render()
@@ -56,4 +56,4 @@ class Tasks extends Component
     }
 }
 
-export default Tasks;
+export default Cards;

@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
 import List from '../../classes/List.js';
 import Task from '../../classes/Task.js';
+
+import Cards from './cards/Cards';
 import ListForm from '../forms/list-form/ListForm';
 import TaskForm from '../forms/task-form/TaskForm';
-import Tasks from './tasks/Tasks';
 
 class Todo extends Component
 {
@@ -48,13 +49,13 @@ class Todo extends Component
             </ListForm>
 
         const tasksOrLists = (this.state.data.length > 0)
-            ? <Tasks
+            ? <Cards
                 taskList={this.state.data}
                 setColorFromPicket={this.setColorFromPicket}
                 onCompleteTask={(id) => { this.completeTask(id); }}
                 onDeleteTask={(id) => { this.deleteTask(id); }}
                 updateTask={this.updateTask}>
-            </Tasks>
+            </Cards>
             : '';
 
         return (

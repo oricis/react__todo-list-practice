@@ -58,7 +58,7 @@ class TaskList extends Component
 
     componentDidUpdate()
     {
-        this.updatedStoredData();
+        this.updateStoredData();
     }
 
 
@@ -127,7 +127,7 @@ class TaskList extends Component
         });
     }
 
-    markTaskAsCompleted(tasks, taskId)
+    markTaskAsCompleted = (tasks, taskId) =>
     {
         tasks.forEach(task => {
             if (task.id === taskId) {
@@ -167,7 +167,7 @@ class TaskList extends Component
             : this.storage.get('stored-lists');
     }
 
-    updatedStoredData()
+    updateStoredData()
     {
         const storageKey = (this.state.appMode === 'lists')
             ? 'stored-lists'

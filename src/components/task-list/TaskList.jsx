@@ -3,30 +3,32 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
 import Form from './form/Form.jsx';
+import List from '../../classes/List.js';
 import Task from '../../classes/Task.js';
 import Tasks from './tasks/Tasks';
 
 class TaskList extends Component
 {
+    // Default values
+    defaultTaskColor = 'green';
+
 
     constructor(props)
     {
         super(props);
 
-        // Set default values
-        this.defaultTaskColor = 'green';
         this.storage = new Storage();
 
-        const storedMode = this.storage.get('todo-list-mode');
+        const storedMode = this.storage.get('stored-list');
         const appMode = (storedMode)
             ? storedMode
             : 'tasks'; // tasks | lists
         const data = this.loadStoredData(appMode);
 
         const INITIAL = {
-            appMode  : appMode,
-            newTaskText : '',
-            tasks       : data,
+            appMode   : appMode,
+            newText   : '',
+            data      : data,
         };
 
         this.state = INITIAL;
@@ -34,9 +36,20 @@ class TaskList extends Component
 
     render()
     {
-        const tasks = (this.state.tasks.length > 0)
+        const form = (this.state.appMode === 'tasks')
+            ? <Form
+                addTask={this.addTask}
+                onClickSwapButton={this.clickedSwapButton}>
+            </Form>
+            : // TODO: Create list form
+            <Form
+                addTask={this.addList}
+                onClickSwapButton={this.clickedSwapButton}>
+            </Form>
+
+        const tasksOrLists = (this.state.data.length > 0)
             ? <Tasks
-                taskList={this.state.tasks}
+                taskList={this.state.data}
                 setColorFromPicket={this.setColorFromPicket}
                 onCompleteTask={(id) => { this.completeTask(id); }}
                 onDeleteTask={(id) => { this.deleteTask(id); }}
@@ -46,12 +59,8 @@ class TaskList extends Component
 
         return (
             <Fragment>
-                <Form
-                    addTask={this.addTask}
-                    onClickSwapButton={this.clickedSwapButton}>
-                </Form>
-
-                {tasks}
+                {form}
+                {tasksOrLists}
             </Fragment>
         );
     }
@@ -83,25 +92,40 @@ class TaskList extends Component
 
     /**
      * Custom methods
-     * Create new tasks
+     * Create a new task / list
      *
      */
 
-    addTask = (text) => {
-        const newTask = this.createTask(text, this.defaultTaskColor);
-        const arrTasks = [...this.state.tasks, newTask];
+    addList = (text, description) =>
+    {
+        const newList  = this.createList(text, description);
+        const arrLists = [...this.state.data, newList];
 
-        this.setState({
-            newTaskText: '',
-            tasks: arrTasks
-        });
+        this.addDataToState(arrLists);
     }
 
-    createTask = (text, color) => {
-        let tasksLength = this.state.tasks.length;
-        const taskText = text || 'Task ' + ++tasksLength;
+    addTask = (text) =>
+    {
+        const newTask  = this.createTask(text, this.defaultTaskColor);
+        const arrTasks = [...this.state.data, newTask];
 
-        return new Task(taskText, color);
+        this.addDataToState(arrTasks);
+    }
+
+    createList = (title, description) =>
+    {
+        let dataLength = this.state.data.length;
+        const text = title || 'List ' + ++dataLength;
+
+        return new List(text, description);
+    }
+
+    createTask = (title, color) =>
+    {
+        let dataLength = this.state.data.length;
+        const text = title || 'Task ' + ++dataLength;
+
+        return new Task(text, color);
     }
 
 
@@ -113,17 +137,17 @@ class TaskList extends Component
 
     completeTask = (id) =>
     {
-        const arrTasks = this.markTaskAsCompleted(this.state.tasks, id);
+        const arrTasks = this.markTaskAsCompleted(this.state.data, id);
         this.setState({
-            tasks: arrTasks
+            data: arrTasks
         });
     }
 
     deleteTask = (id) =>
     {
-        const arrTasks = this.state.tasks.filter(task => task.id !== id);
+        const arrTasks = this.state.data.filter(task => task.id !== id);
         this.setState({
-            tasks: arrTasks
+            data: arrTasks
         });
     }
 
@@ -140,7 +164,7 @@ class TaskList extends Component
 
     setColorFromPicket = (color, taskId) =>
     {
-        const arrTasks = this.state.tasks;
+        const arrTasks = this.state.data;
         arrTasks.forEach(task => {
             if (task.id === taskId) {
                 task.color = color;
@@ -148,7 +172,7 @@ class TaskList extends Component
         });
 
         this.setState({
-            tasks: arrTasks
+            data: arrTasks
         });
     }
 
@@ -159,7 +183,7 @@ class TaskList extends Component
      */
 
     loadStoredData(appMode)
-     {
+    {
         return (appMode === 'tasks' // tasks | lists
             || !this.storage.get('stored-lists'))
 
@@ -172,7 +196,7 @@ class TaskList extends Component
         const storageKey = (this.state.appMode === 'lists')
             ? 'stored-lists'
             : 'stored-tasks';
-        this.storage.set(storageKey, this.state.tasks);
+        this.storage.set(storageKey, this.state.data);
     }
 
 
@@ -181,10 +205,17 @@ class TaskList extends Component
      * Generic
      *
      */
+    addDataToState = (data) =>
+    {
+        this.setState({
+            newText: '',
+            data: data
+        });
+    }
 
     updateTask = (taskId, text) =>
     {
-        const arrTasks = this.state.tasks;
+        const arrTasks = this.state.data;
         arrTasks.forEach(task => {
             if (task.id === taskId) {
                 task.text = text;
@@ -192,7 +223,7 @@ class TaskList extends Component
         });
 
         this.setState({
-            tasks: arrTasks
+            data: arrTasks
         });
     }
 }
@@ -202,7 +233,7 @@ TaskList.propTypes = {
     color:  PropTypes.string,
     id:     PropTypes.string,
     taskId: PropTypes.string,
-    tasks:  PropTypes.array,
+    data:   PropTypes.array,
     text:   PropTypes.string
 };
 

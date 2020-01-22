@@ -67,6 +67,7 @@ class TaskList extends Component
      * Swap App mode - Tasks of the list / lists of tasks
      *
      */
+
     clickedSwapButton = () => {
         console.log('clickedSwapButton() - mode: ' + this.state.appMode)
 
@@ -157,7 +158,7 @@ class TaskList extends Component
      *
      */
 
-     loadStoredData(appMode)
+    loadStoredData(appMode)
      {
         return (appMode === 'tasks' // tasks | lists
             || !this.storage.get('stored-lists'))
@@ -173,6 +174,13 @@ class TaskList extends Component
             : 'stored-tasks';
         this.storage.set(storageKey, this.state.tasks);
     }
+
+
+    /**
+     * Custom methods
+     * Generic
+     *
+     */
 
     updateTask = (taskId, text) =>
     {

@@ -10,52 +10,57 @@ class CardBody extends Component
         super(props);
 
         this.state = {
-            text: props.text,
+            title: props.title,
         }
     }
 
     render()
     {
+        const titleText = this.state.title;
+        const title = (this.props.completed)
+            ? <span className="strikethrough-text opacity50">
+                {titleText}
+            </span>
+            : (this.props.editable)
+                ? <input type="text"
+                    value={titleText}
+                    autoFocus
+                    onBlur={this.emitCardData}
+                    onChange={this.setTitleOnState}
+                    onKeyUp={this.checkPushedKey} />
+                : <span>{titleText}</span>;
 
         return (
             <Fragment>
                 <div className="card-title">
-                    {
-                        (this.props.completed)
-                            ? <span className="strikethrough-text opacity50">
-                                {this.props.text}
-                            </span>
-                            : (this.props.editable)
-                                ? <input type="text"
-                                    value={this.state.text}
-                                    autoFocus
-                                    onBlur={this.updateTask}
-                                    onChange={this.changeText}
-                                    onKeyUp={this.saveText} />
-                                : <span>{this.props.text}</span>
-                    }
+                    {title}
                 </div>
             </Fragment>
         );
     }
 
 
-    changeText = (event) =>
-    {
-        this.setState({ text: event.target.value })
-    }
-
-    saveText = (event) =>
+    checkPushedKey = (event) =>
     {
         if (event.key === 'Enter') {
-            this.updateTask(event);
+            this.emitCardData();
         }
     }
 
-    updateTask = (event) =>
+    emitCardData = () =>
     {
-        const text = event.target.value.trim();
-        this.props.updateTask(text);
+        // trim only before send to storage
+        const title = this.state.title.trim();
+
+        this.props.updateTask(title);
+    }
+
+    setTitleOnState = (event) =>
+    {
+        const title = event.target.value;
+        this.setState({
+            title: title
+        });
     }
 }
 

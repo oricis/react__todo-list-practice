@@ -4,7 +4,7 @@ import ColorPicket from '../../../common/color-picket/ColorPicket';
 import React, { Component } from 'react';
 import editIcon from '../../../../assets/images/edit-regular.svg';
 import ImageButton from '../../../common/image-button';
-import TaskText from './task-text/TaskText';
+import CardBody from './card-body/CardBody';
 
 class Task extends Component
 {
@@ -28,21 +28,20 @@ class Task extends Component
 
     render()
     {
-        const editButton = <ImageButton
-            className="image-btn"
-            image={editIcon}
-            attraAlt="Editar"
-            attrtTitle="Editar"
-            onClick={this.editTask}></ImageButton>;
+        const editButton = (this.props.completed)
+            ? ''
+            : <ImageButton
+                className="image-btn"
+                image={editIcon}
+                attraAlt="Editar"
+                attrtTitle="Editar"
+                onClick={this.editTask}>
+            </ImageButton>;
 
         return (
-            <div className="content-box task" data-id={this.props.dataId}>
-                <div className="actions">
-                    {
-                        (this.props.completed)
-                            ? ''
-                            : editButton
-                    }
+            <div className="content-box task-card" data-id={this.props.dataId}>
+                <div className="card-header">
+                    {editButton}
 
                     <ColorPicket
                         bgColor={this.props.bgColor}
@@ -51,14 +50,16 @@ class Task extends Component
                     </ColorPicket>
                 </div>
 
-                <TaskText
-                    completed={this.props.completed}
-                    editable={this.state.editable}
-                    text={this.props.title}
-                    updateTask={this.updateTask}>
-                </TaskText>
+                <div className="card-body">
+                    <CardBody
+                        completed={this.props.completed}
+                        editable={this.state.editable}
+                        title={this.props.title}
+                        updateTask={this.updateTask}>
+                    </CardBody>
+                </div>
 
-                <div className="task-buttons">
+                <div className="card-footer">
                     <button className={this.state.cssClassesForCompleteBtn}
                         disabled={this.props.completed}
                         onClick={() => { this.completeTask(this.props.dataId); }}>

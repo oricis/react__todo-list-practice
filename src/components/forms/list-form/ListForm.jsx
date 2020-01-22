@@ -1,4 +1,4 @@
-import './form.scss';
+import './styles.scss';
 import React, { Component } from 'react';
 import Storage from '../../../services/Storage.js';
 import swapIcon from '../../../assets/images/buffer-brands.svg';
@@ -7,7 +7,7 @@ import ImageButton from '../../common/image-button';
 import TextButton from '../../common/text-button';
 import TextLabel from '../../common/text-label';
 
-class Form extends Component
+class ListForm extends Component
 {
 
     constructor(props)
@@ -95,10 +95,10 @@ class Form extends Component
 }
 
 // Setting the proptypes of the component
-Form.propTypes = {
+ListForm.propTypes = {
     id:     PropTypes.string,
     tasks:  PropTypes.array,
     text:   PropTypes.string
 };
 
-export default Form;
+export default ListForm;

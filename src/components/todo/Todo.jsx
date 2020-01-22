@@ -50,7 +50,8 @@ class Todo extends Component
 
         const tasksOrLists = (this.state.data.length > 0)
             ? <Cards
-                taskList={this.state.data}
+                data={this.state.data}
+                mode={this.state.appMode}
                 setColorFromPicket={this.setColorFromPicket}
                 onCompleteTask={(id) => { this.completeTask(id); }}
                 onDeleteTask={(id) => { this.deleteTask(id); }}

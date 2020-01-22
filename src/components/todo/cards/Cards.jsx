@@ -8,25 +8,47 @@ class Cards extends Component
 
     render()
     {
-        const listOfTasks = this.composeTaskList(this.props.taskList);
+        const cards = (this.props.mode === 'tasks')
+            ? this.composeTasks(this.props.data)
+            : this.composeLists(this.props.data);
 
         return (
             <article className="task-list">
-                {listOfTasks}
+                {cards}
             </article>
         );
     }
 
 
-    composeTaskList(tasks)
+    composeLists(data)
     {
-        return tasks.map(
+        // TODO: create custom card
+        return data.map(
+            list => {
+                return (
+                    <Task key={list.id}
+                        selected={list.selected}
+                        title={list.text}
+                        description={list.description}
+                        dataId={list.id}
+
+                        onSelectedTask={(id) => { this.onSelectedTask(id); }}
+                        onDeleteTask={(id) => { this.deleteTask(id); }}
+                        updateTask={this.props.updateTask}>
+                    </Task>
+                );
+            }
+        );
+    }
+
+    composeTasks(data) {
+        return data.map(
             task => {
                 return (
                     <Task key={task.id}
                         bgColor={task.color}
                         completed={task.completed}
-                        text={task.text}
+                        title={task.text}
                         dataId={task.id}
 
                         setColorFromPicket={this.setColorFromPicket}

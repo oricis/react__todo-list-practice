@@ -54,7 +54,7 @@ class Task extends Component
                 <TaskText
                     completed={this.props.completed}
                     editable={this.state.editable}
-                    text={this.props.text}
+                    text={this.props.title}
                     updateTask={this.updateTask}>
                 </TaskText>
 

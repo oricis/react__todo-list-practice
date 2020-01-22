@@ -14,7 +14,7 @@ function App()
                 logo={logo}
                 title="TODO List"></Header>
 
-            <section className="App-task-list">
+            <section className="App-Todo">
                 <Todo></Todo>
             </section >
 

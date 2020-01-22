@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
 import List from '../../classes/List.js';
 import Task from '../../classes/Task.js';
-import Form from './form/Form';
+import Form from '../forms/form/Form';
 import Tasks from './tasks/Tasks';
 
 class Todo extends Component

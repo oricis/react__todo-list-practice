@@ -9,10 +9,14 @@ class ConfigActions extends Component
 
     render()
     {
+        const formLabel = (this.props.formLabel)
+            ? this.props.formLabel
+            : '';
+
         return (
             <div className="config-actions">
                 <TextLabel
-                    text="Lorem ipsum">
+                    text={formLabel}>
                 </TextLabel>
 
                 <ImageButton

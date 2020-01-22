@@ -24,13 +24,14 @@ class TaskForm extends Component
         return (
             <article className="content-box data-intro">
                 <ConfigActions
+                    formLabel="Nueva Tarea"
                     onClickSwapButton={this.props.onClickSwapButton}>
                 </ConfigActions>
 
                 <div className="creation-form">
                     <input type="text"
                         id="create-task"
-                        placeholder="Introduce una tarea..."
+                        placeholder="¿Cuál es la tarea?"
                         value={this.state.newText}
                         onChange={event =>
                             this.setState({ newText: event.target.value })

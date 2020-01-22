@@ -13,7 +13,7 @@ class TaskForm extends Component
         super(props);
 
         const INITIAL = {
-            newText: '',
+            title: '',
         };
 
         this.state = INITIAL;
@@ -29,23 +29,23 @@ class TaskForm extends Component
                 </ConfigActions>
 
                 <div className="creation-form">
-                    <input type="text"
+                    <input type="title"
                         id="create-task"
                         placeholder="¿Cuál es la tarea?"
-                        value={this.state.newText}
+                        value={this.state.title}
                         onChange={event =>
-                            this.setState({ newText: event.target.value })
+                            this.setState({ title: event.target.value.trim() })
                         }
-                        onKeyUp={this.addTask} />
+                        onKeyUp={this.checkFormWhenPushEnterKey} />
 
                     <TextButton
                         className="btn"
                         text="Añadir"
-                        onClick={this.addTaskFromInput}></TextButton>
+                        onClick={this.emitFormData}></TextButton>
                     <TextButton
                         className="btn"
                         text="Limpiar"
-                        onClick={this.cleanTaskInput}></TextButton>
+                        onClick={this.cleanForm}></TextButton>
                 </div>
             </article>
         );
@@ -58,29 +58,30 @@ class TaskForm extends Component
      *
      */
 
-    addTask = (event) => {
+    checkFormWhenPushEnterKey = (event) => {
         if (event.key === 'Enter') {
-            const text = event.target.value.trim();
-            this.props.addTask(text);
+            this.emitFormData();
         }
     }
 
-    addTaskFromInput = () => {
-        const text = document.getElementById('create-task').value.trim();
-        this.props.addTask(text);
+    cleanForm = () =>
+    {
+        this.setState({
+            title: ''
+        });
     }
 
-    cleanTaskInput = () => {
-        this.setState({
-            newText: ''
-        });
+    emitFormData = () =>
+    {
+        const title = this.state.title;
+        this.props.addTask(title);
     }
 }
 
 // Setting the proptypes of the component
 TaskForm.propTypes = {
-    id:   PropTypes.string,
-    text: PropTypes.string
+    id    : PropTypes.string,
+    title : PropTypes.string
 };
 
 export default TaskForm;

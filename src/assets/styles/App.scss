@@ -28,10 +28,12 @@ body {
     -webkit-font-smoothing:  antialiased;
 }
 
+
 /***
  * App styles
  *
  */
+
 button,
 input {
     border-radius: 5px;
@@ -50,7 +52,31 @@ section {
     display:    grid;
     grid-template-rows: 25vh 1fr 12vh;
     min-height: 100vh;
+
+    .card,
+    .content-box {
+        background:  #edf2f7;
+        border-radius: 9px;
+        border:        1px solid gray;
+        padding:       1rem;
+    }
+    .task {
+        max-width: 320px;
+        vertical-align: top;
+    }
 }
+
+@media (min-width:860px) {
+    section {
+        width: 80%;
+    }
+}
+
+
+/***
+ * Generic styles
+ *
+ */
 
 .bg-green {
     background: $green !important;
@@ -77,13 +103,6 @@ section {
 .btn-primary:active {
     background: #0c7ae0;
 }
-.card,
-.content-box {
-    background:  #edf2f7;
-    border-radius: 9px;
-    border:        1px solid gray;
-    padding:       1rem;
-}
 .d-block {
     display: block;
 }
@@ -96,19 +115,12 @@ section {
 .d-none {
     display: none;
 }
+.pull-right {
+    float: right !important;
+}
 .opacity50 {
     opacity: .5;
 }
 .strikethrough-text {
     text-decoration: line-through;
-}
-.task {
-    max-width: 320px;
-    vertical-align: top;
-}
-
-@media (min-width:860px) {
-    section {
-        width: 80%;
-    }
 }

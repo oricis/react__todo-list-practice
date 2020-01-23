@@ -1,10 +1,8 @@
 
 import './task.scss';
-import ColorPicket from '../../../common/color-picket/ColorPicket';
 import React, { Component } from 'react';
-import editIcon from '../../../../assets/images/edit-regular.svg';
-import ImageButton from '../../../common/image-button';
 import CardBody from './card-body/CardBody';
+import CardHeader from './card-header/CardHeader';
 
 class Task extends Component
 {
@@ -13,8 +11,7 @@ class Task extends Component
     }
 
 
-    constructor(props)
-    {
+    constructor(props) {
         super(props);
 
         const cssClassesForCompleteBtn = (props.completed === true)
@@ -25,29 +22,17 @@ class Task extends Component
             cssClassesForCompleteBtn: cssClassesForCompleteBtn
         }
     }
-
     render()
     {
-        const editButton = (this.props.completed)
-            ? ''
-            : <ImageButton
-                className="image-btn"
-                image={editIcon}
-                attraAlt="Editar"
-                attrtTitle="Editar"
-                onClick={this.editTask}>
-            </ImageButton>;
-
         return (
             <div className="content-box task-card" data-id={this.props.dataId}>
                 <div className="card-header">
-                    {editButton}
-
-                    <ColorPicket
+                    <CardHeader
                         bgColor={this.props.bgColor}
                         completed={this.props.completed}
-                        setColorFromPicket={this.setColorFromPicket}>
-                    </ColorPicket>
+                        setColorFromPicket={this.setColorFromPicket}
+                        onClickToEdit={this.editTask}>
+                    </CardHeader>
                 </div>
 
                 <div className="card-body">

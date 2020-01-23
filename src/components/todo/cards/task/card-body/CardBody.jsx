@@ -1,6 +1,6 @@
 
 import './styles.scss';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 class CardBody extends Component
 {
@@ -31,11 +31,11 @@ class CardBody extends Component
                 : <span>{titleText}</span>;
 
         return (
-            <Fragment>
+            <div className="card-body">
                 <div className="card-title">
                     {title}
                 </div>
-            </Fragment>
+            </div>
         );
     }
 

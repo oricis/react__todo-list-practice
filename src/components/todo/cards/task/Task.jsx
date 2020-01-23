@@ -15,31 +15,25 @@ class Task extends Component
     {
         return (
             <div className="content-box task-card" data-id={this.props.dataId}>
-                <div className="card-header">
-                    <CardHeader
-                        bgColor={this.props.bgColor}
-                        completed={this.props.completed}
-                        setColorFromPicket={this.setColorFromPicket}
-                        onClickToEdit={this.editTask}>
-                    </CardHeader>
-                </div>
+                <CardHeader
+                    bgColor={this.props.bgColor}
+                    completed={this.props.completed}
+                    setColorFromPicket={this.setColorFromPicket}
+                    onClickToEdit={this.editTask}>
+                </CardHeader>
 
-                <div className="card-body">
-                    <CardBody
-                        completed={this.props.completed}
-                        editable={this.state.editable}
-                        title={this.props.title}
-                        updateTask={this.updateTask}>
-                    </CardBody>
-                </div>
+                <CardBody
+                    completed={this.props.completed}
+                    editable={this.state.editable}
+                    title={this.props.title}
+                    updateTask={this.updateTask}>
+                </CardBody>
 
-                <div className="card-footer">
-                    <CardFooter
-                        completed={this.props.completed}
-                        onClickToDelete={this.deleteTask}
-                        onClickToComplete={this.completeTask}>
-                    </CardFooter>
-                </div>
+                <CardFooter
+                    completed={this.props.completed}
+                    onClickToDelete={this.deleteTask}
+                    onClickToComplete={this.completeTask}>
+                </CardFooter>
             </div>
         );
     }

@@ -1,6 +1,6 @@
 
 import './styles.scss';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import editIcon from '../../../../../assets/images/edit-regular.svg';
 import ColorPicket from '../../../../common/color-picket/ColorPicket';
 import ImageButton from '../../../../common/image-button';
@@ -21,7 +21,7 @@ class CardHeader extends Component
             </ImageButton>;
 
         return (
-            <Fragment>
+            <div className="card-header">
                 {editButton}
 
                 <ColorPicket
@@ -29,7 +29,7 @@ class CardHeader extends Component
                     completed={this.props.completed}
                     setColorFromPicket={this.props.setColorFromPicket}>
                 </ColorPicket>
-            </Fragment>
+            </div>
         );
     }
 }

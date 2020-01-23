@@ -1,6 +1,6 @@
 
 import './styles.scss';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 class CardFooter extends Component
 {
@@ -12,7 +12,7 @@ class CardFooter extends Component
             : 'btn btn-primary';
 
         return (
-            <Fragment>
+            <div className="card-footer">
                 <button className={classNameForCompleteBtn}
                     disabled={this.props.completed}
                     onClick={() => {this.props.onClickToComplete()}}>
@@ -22,7 +22,7 @@ class CardFooter extends Component
                     onClick={() => { this.props.onClickToDelete()}}>
                     Eliminar
                 </button>
-            </Fragment>
+            </div>
         );
     }
 }

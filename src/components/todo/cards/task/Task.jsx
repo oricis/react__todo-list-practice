@@ -1,5 +1,5 @@
 
-import './task.scss';
+import './styles.scss';
 import React, { Component } from 'react';
 import CardBody from './card-body/CardBody';
 import CardFooter from './card-footer/CardFooter';

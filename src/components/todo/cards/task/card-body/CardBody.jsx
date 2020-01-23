@@ -52,7 +52,7 @@ class CardBody extends Component
         // trim only before send to storage
         const title = this.state.title.trim();
 
-        this.props.updateTask(title);
+        this.props.updateCard(title);
     }
 
     setTitleOnState = (event) =>

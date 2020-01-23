@@ -22,7 +22,7 @@ class Cards extends Component
 
     composeLists(data)
     {
-        // TODO: create custom card
+        // TODO: create custom card to use with List
         return data.map(
             list => {
                 return (
@@ -32,9 +32,9 @@ class Cards extends Component
                         description={list.description}
                         dataId={list.id}
 
-                        onSelectedTask={(id) => { this.onSelectedTask(id); }}
-                        onDeleteTask={(id) => { this.deleteTask(id); }}
-                        updateTask={this.props.updateTask}>
+                        onClickToSelectList={(id) => { this.selectList(id); }}
+                        onClickToDeleteCard={(id) => { this.deleteCard(id); }}
+                        updateCard={this.props.updateCard}>
                     </Task>
                 );
             }
@@ -52,9 +52,9 @@ class Cards extends Component
                         dataId={task.id}
 
                         setColorFromPicket={this.setColorFromPicket}
-                        onCompleteTask={(id) => { this.completeTask(id); }}
-                        onDeleteTask={(id) => { this.deleteTask(id); }}
-                        updateTask={this.props.updateTask}>
+                        onClickToCompleteTask={(id) => { this.completeTask(id); }}
+                        onClickToDeleteCard={(id) => { this.deleteCard(id); }}
+                        updateCard={this.props.updateCard}>
                     </Task>
                 );
             }
@@ -65,11 +65,15 @@ class Cards extends Component
     // Actions
 
     completeTask = (id) => {
-        this.props.onCompleteTask(id);
+        this.props.onClickToCompleteTask(id);
     }
 
-    deleteTask = (id) => {
-        this.props.onDeleteTask(id);
+    deleteCard = (id) => {
+        this.props.onClickToDeleteCard(id);
+    }
+
+    selectList = (id) => {
+        this.props.onClickToSelectList(id);
     }
 
     setColorFromPicket = (color, taskId) =>

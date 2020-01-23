@@ -26,12 +26,12 @@ class Task extends Component
                     completed={this.props.completed}
                     editable={this.state.editable}
                     title={this.props.title}
-                    updateTask={this.updateTask}>
+                    updateCard={this.updateCard}>
                 </CardBody>
 
                 <CardFooter
                     completed={this.props.completed}
-                    onClickToDelete={this.deleteTask}
+                    onClickToDelete={this.deleteCard}
                     onClickToComplete={this.completeTask}>
                 </CardFooter>
             </div>
@@ -46,17 +46,14 @@ class Task extends Component
     {
         const id = this.props.dataId;
 
-        this.props.onCompleteTask(id);
-        this.setState({
-            classNameForCompleteBtn: 'btn btn-default'
-        });
+        this.props.onClickToCompleteTask(id);
     }
 
-    deleteTask = () =>
+    deleteCard = () =>
     {
         const id = this.props.dataId;
 
-        this.props.onDeleteTask(id);
+        this.props.onClickToDeleteCard(id);
     }
 
     editTask = () =>
@@ -68,14 +65,17 @@ class Task extends Component
 
     setColorFromPicket = (color) =>
     {
-        this.props.setColorFromPicket(color, this.props.dataId);
+        const id = this.props.dataId;
+
+        this.props.setColorFromPicket(color, id);
     }
 
-    updateTask = (text) =>
+    updateCard = (text) =>
     {
         if (text !== this.props.text) {
-            const taskId = this.props.dataId;
-            this.props.updateTask(taskId, text);
+            const id = this.props.dataId;
+
+            this.props.updateCard(id, text);
         }
 
         this.setState({

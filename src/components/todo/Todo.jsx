@@ -53,9 +53,10 @@ class Todo extends Component
                 data={this.state.data}
                 mode={this.state.appMode}
                 setColorFromPicket={this.setColorFromPicket}
-                onCompleteTask={(id) => { this.completeTask(id); }}
-                onDeleteTask={(id) => { this.deleteTask(id); }}
-                updateTask={this.updateTask}>
+                onClickToCompleteTask={(id) => { this.completeTask(id); }}
+                onClickToDeleteCard={(id) => { this.deleteCard(id); }}
+                onClickToSelectList={(id) => { this.selectList(id); }}
+                updateCard={this.updateCard}>
             </Cards>
             : '';
 
@@ -134,7 +135,7 @@ class Todo extends Component
 
     /**
      * Custom methods
-     * Task card actions
+     * Card actions
      *
      */
 
@@ -146,7 +147,7 @@ class Todo extends Component
         });
     }
 
-    deleteTask = (id) =>
+    deleteCard = (id) =>
     {
         const arrTasks = this.state.data.filter(task => task.id !== id);
         this.setState({
@@ -163,6 +164,11 @@ class Todo extends Component
         });
 
         return tasks;
+    }
+
+    selectList = (id) => {
+        console.log('Todo / selectList() - ID: ' + id + ' was clicked !!!');
+        // TODO:
     }
 
     setColorFromPicket = (color, taskId) =>
@@ -216,7 +222,7 @@ class Todo extends Component
         });
     }
 
-    updateTask = (taskId, text) =>
+    updateCard = (taskId, text) =>
     {
         const arrTasks = this.state.data;
         arrTasks.forEach(task => {

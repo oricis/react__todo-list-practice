@@ -14,7 +14,7 @@ class Task extends Component
     render()
     {
         return (
-            <div className="content-box task-card" data-id={this.props.dataId}>
+            <div className="card task-card" data-id={this.props.dataId}>
                 <CardHeader
                     bgColor={this.props.bgColor}
                     completed={this.props.completed}

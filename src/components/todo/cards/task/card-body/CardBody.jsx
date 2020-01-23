@@ -21,7 +21,7 @@ class CardBody extends Component
             ? <span className="strikethrough-text opacity50">
                 {titleText}
             </span>
-            : (this.props.editable)
+            : (this.props.editable) // is true when click the "edit button"
                 ? <input type="text"
                     value={titleText}
                     autoFocus

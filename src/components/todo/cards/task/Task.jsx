@@ -19,7 +19,7 @@ class Task extends Component
                     bgColor={this.props.bgColor}
                     completed={this.props.completed}
                     setColorFromPicket={this.setColorFromPicket}
-                    onClickToEdit={this.editTask}>
+                    onClickToEdit={this.editCard}>
                 </CardHeader>
 
                 <CardBody
@@ -56,7 +56,7 @@ class Task extends Component
         this.props.onClickToDeleteCard(id);
     }
 
-    editTask = () =>
+    editCard = () =>
     {
         this.setState({
             editable: true

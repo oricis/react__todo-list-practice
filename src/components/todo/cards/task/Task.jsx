@@ -2,6 +2,7 @@
 import './task.scss';
 import React, { Component } from 'react';
 import CardBody from './card-body/CardBody';
+import CardFooter from './card-footer/CardFooter';
 import CardHeader from './card-header/CardHeader';
 
 class Task extends Component
@@ -10,18 +11,6 @@ class Task extends Component
         editable: false
     }
 
-
-    constructor(props) {
-        super(props);
-
-        const cssClassesForCompleteBtn = (props.completed === true)
-            ? 'btn btn-dafault'
-            : 'btn btn-primary';
-
-        this.state = {
-            cssClassesForCompleteBtn: cssClassesForCompleteBtn
-        }
-    }
     render()
     {
         return (
@@ -45,33 +34,34 @@ class Task extends Component
                 </div>
 
                 <div className="card-footer">
-                    <button className={this.state.cssClassesForCompleteBtn}
-                        disabled={this.props.completed}
-                        onClick={() => { this.completeTask(this.props.dataId); }}>
-                        Completada
-                    </button>
-                    <button className="btn btn-primary"
-                        onClick={() => { this.deleteTask(this.props.dataId); }}>
-                        Eliminar
-                    </button>
+                    <CardFooter
+                        completed={this.props.completed}
+                        onClickToDelete={this.deleteTask}
+                        onClickToComplete={this.completeTask}>
+                    </CardFooter>
                 </div>
             </div>
         );
     }
 
+
     ////////////////////////////////////////////////////////////////////
     // Actions
 
-    completeTask = (id) =>
+    completeTask = () =>
     {
+        const id = this.props.dataId;
+
         this.props.onCompleteTask(id);
         this.setState({
-            cssClassesForCompleteBtn: 'btn btn-dafault'
+            classNameForCompleteBtn: 'btn btn-default'
         });
     }
 
-    deleteTask = (id) =>
+    deleteTask = () =>
     {
+        const id = this.props.dataId;
+
         this.props.onDeleteTask(id);
     }
 

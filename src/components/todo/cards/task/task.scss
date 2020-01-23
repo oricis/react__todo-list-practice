@@ -10,15 +10,4 @@
     margin-right  : .5rem;
     padding       : .3rem;
     padding-bottom: 0;
-
-    .card-footer .btn {
-        border-radius: 5px;
-    }
-    .card-footer .btn:first-child {
-        border-radius: 5px 0 0 5px;
-        border-right:  0;
-    }
-    .card-footer .btn:last-child {
-        border-radius: 0 5px 5px 0;
-    }
 }

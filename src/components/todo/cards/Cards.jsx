@@ -14,7 +14,7 @@ class Cards extends Component
             : this.composeLists(this.props.data);
 
         return (
-            <article className="task-list">
+            <article className="cards">
                 {cards}
             </article>
         );

@@ -27,15 +27,15 @@ class CardHeader extends Component
                 ? <ImageButton
                     className="image-btn pull-right"
                     image={minusCircleIcon}
-                    attraAlt="Ocultar detalles"
-                    attrtTitle="Ocultar detalles"
+                    attrAlt="Ocultar detalles"
+                    attrTitle="Ocultar detalles"
                     onClick={this.props.onClickToHideDetails}>
                 </ImageButton>
                 : <ImageButton
                     className="image-btn pull-right"
                     image={plusCircleIcon}
-                    attraAlt="Ver detalles"
-                    attrtTitle="Ver detalles"
+                    attrAlt="Ver detalles"
+                    attrTitle="Ver detalles"
                     onClick={this.props.onClickToShowDetails}>
                 </ImageButton>
             : '';

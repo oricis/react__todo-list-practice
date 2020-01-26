@@ -39,7 +39,6 @@ input {
     border-radius: 5px;
     font-size:     1em;
     height:        3rem;
-    margin-bottom: .3rem;
     padding:       0 .5rem;
 }
 section {
@@ -53,16 +52,11 @@ section {
     grid-template-rows: 25vh 1fr 12vh;
     min-height: 100vh;
 
-    .card,
     .content-box {
         background:  #edf2f7;
         border-radius: 9px;
         border:        1px solid gray;
         padding:       1rem;
-    }
-    .task {
-        max-width: 320px;
-        vertical-align: top;
     }
 }
 
@@ -96,12 +90,12 @@ section {
     padding:     1rem;
 }
 .btn-primary {
-    background:   #3e9bf2;
-    border-color: #0d365c;
+    background:   $light-blue2;
+    border-color: $dark-blue;
     color:        white;
 }
 .btn-primary:active {
-    background: #0c7ae0;
+    background: $medium-blue;
 }
 .d-block {
     display: block;

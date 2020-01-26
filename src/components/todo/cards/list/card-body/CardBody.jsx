@@ -16,6 +16,15 @@ class CardBody extends Component
 
     render()
     {
+        const descriptionClassName = (this.props.showDetails)
+            ? 'card-description d-block'
+            : 'card-description';
+        const description = (this.props.description)
+            ? <div className={descriptionClassName}>
+                {this.props.description}
+            </div>
+            : '';
+
         const titleText = this.state.title;
         const title = (this.props.completed)
             ? <span className="strikethrough-text opacity50">
@@ -35,6 +44,7 @@ class CardBody extends Component
                 <div className="card-title">
                     {title}
                 </div>
+                {description}
             </div>
         );
     }

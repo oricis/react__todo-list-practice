@@ -98,7 +98,7 @@ section {
     background: $medium-blue;
 }
 .d-block {
-    display: block;
+    display: block !important;
 }
 .d-flex {
     display: flex;

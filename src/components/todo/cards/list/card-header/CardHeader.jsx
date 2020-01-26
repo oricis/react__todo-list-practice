@@ -8,9 +8,6 @@ import ImageButton from '../../../../common/image-button';
 
 class CardHeader extends Component
 {
-    state = {
-        showDetails: false,
-    }
 
     render()
     {
@@ -24,21 +21,24 @@ class CardHeader extends Component
                 onClick={this.props.onClickToEdit}>
             </ImageButton>;
 
-        const showOrHideDetailsButton = (this.state.showDetails)
-            ? <ImageButton
-                className="image-btn pull-right"
-                image={minusCircleIcon}
-                attraAlt="Ocultar detalles"
-                attrtTitle="Ocultar detalles"
-                onClick={this.hideDetails}>
-            </ImageButton>
-            : <ImageButton
-                className="image-btn pull-right"
-                image={plusCircleIcon}
-                attraAlt="Ver detalles"
-                attrtTitle="Ver detalles"
-                onClick={this.showDetails}>
-            </ImageButton>;
+        const showOrHideDetailsButton = (this.props.description)
+
+            ? (this.props.showDetails)
+                ? <ImageButton
+                    className="image-btn pull-right"
+                    image={minusCircleIcon}
+                    attraAlt="Ocultar detalles"
+                    attrtTitle="Ocultar detalles"
+                    onClick={this.props.onClickToHideDetails}>
+                </ImageButton>
+                : <ImageButton
+                    className="image-btn pull-right"
+                    image={plusCircleIcon}
+                    attraAlt="Ver detalles"
+                    attrtTitle="Ver detalles"
+                    onClick={this.props.onClickToShowDetails}>
+                </ImageButton>
+            : '';
 
         return (
             <div className="card-header">
@@ -47,21 +47,6 @@ class CardHeader extends Component
                 {showOrHideDetailsButton}
             </div>
         );
-    }
-
-
-    hideDetails = () =>
-    {
-        this.setState({
-            showDetails: false
-        });
-    }
-
-    showDetails = () =>
-    {
-        this.setState({
-            showDetails: true
-        });
     }
 }
 

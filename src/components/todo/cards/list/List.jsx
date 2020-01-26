@@ -8,12 +8,13 @@ import CardHeader from './card-header/CardHeader';
 class List extends Component
 {
     state = {
-        editable: false
+        editable    : false,
+        showDetails : false,
     }
 
     render()
     {
-        console.log('List / render()');
+        console.log('List / render()'); // HACK:
         const classNameForListCard = (this.props.selected)
             ? 'card list-card card-selected'
             : 'card list-card';
@@ -21,13 +22,18 @@ class List extends Component
         return (
             <div className={classNameForListCard} data-id={this.props.dataId}>
                 <CardHeader
-                    onClickToEdit={this.editCard}>
+                    description={this.props.description}
+                    showDetails={this.state.showDetails}
+                    onClickToEdit={this.editCard}
+                    onClickToHideDetails={this.hideDetails}
+                    onClickToShowDetails={this.showDetails}>
                 </CardHeader>
 
                 <CardBody
                     editable={this.state.editable}
                     title={this.props.title}
                     description={this.props.description}
+                    showDetails={this.state.showDetails}
                     updateCard={this.updateCard}>
                 </CardBody>
 
@@ -43,6 +49,20 @@ class List extends Component
 
     ////////////////////////////////////////////////////////////////////
     // Actions
+
+    hideDetails = () =>
+    {
+        this.setState({
+            showDetails: false
+        })
+    }
+
+    showDetails = () =>
+    {
+        this.setState({
+            showDetails: true
+        })
+    }
 
     selectList = () =>
     {

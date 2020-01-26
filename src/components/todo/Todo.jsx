@@ -55,7 +55,7 @@ class Todo extends Component
                 setColorFromPicket={this.setColorFromPicket}
                 onClickToCompleteTask={(id) => { this.completeTask(id); }}
                 onClickToDeleteCard={(id) => { this.deleteCard(id); }}
-                onClickToSelectList={(id) => { this.selectList(id); }}
+                onClickToSelect={(id) => { this.selectList(id); }}
                 updateCard={this.updateCard}>
             </Cards>
             : '';
@@ -167,7 +167,7 @@ class Todo extends Component
     }
 
     selectList = (id) => {
-        console.log('Todo / selectList() - ID: ' + id + ' was clicked !!!');
+        console.log('Todo / selectList() - ID: ' + id);
         // TODO:
     }
 

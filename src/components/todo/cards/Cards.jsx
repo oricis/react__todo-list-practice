@@ -33,7 +33,7 @@ class Cards extends Component
                         description={list.description}
                         dataId={list.id}
 
-                        onClickToSelectList={(id) => { this.selectList(id); }}
+                        onClickToSelect={(id) => { this.selectList(id); }}
                         onClickToDeleteCard={(id) => { this.deleteCard(id); }}
                         updateCard={this.props.updateCard}>
                     </List>
@@ -74,7 +74,7 @@ class Cards extends Component
     }
 
     selectList = (id) => {
-        this.props.onClickToSelectList(id);
+        this.props.onClickToSelect(id);
     }
 
     setColorFromPicket = (color, taskId) =>

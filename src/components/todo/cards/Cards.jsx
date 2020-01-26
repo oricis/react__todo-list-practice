@@ -1,6 +1,7 @@
 
 import './styles.scss';
 import React, { Component } from 'react';
+import List from './list/List';
 import Task from './task/Task';
 
 class Cards extends Component
@@ -26,7 +27,7 @@ class Cards extends Component
         return data.map(
             list => {
                 return (
-                    <Task key={list.id}
+                    <List key={list.id}
                         selected={list.selected}
                         title={list.text}
                         description={list.description}
@@ -35,7 +36,7 @@ class Cards extends Component
                         onClickToSelectList={(id) => { this.selectList(id); }}
                         onClickToDeleteCard={(id) => { this.deleteCard(id); }}
                         updateCard={this.props.updateCard}>
-                    </Task>
+                    </List>
                 );
             }
         );

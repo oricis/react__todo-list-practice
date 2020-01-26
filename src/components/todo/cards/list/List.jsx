@@ -13,26 +13,28 @@ class List extends Component
 
     render()
     {
+        console.log('List / render()');
+        const classNameForListCard = (this.props.selected)
+            ? 'card list-card card-selected'
+            : 'card list-card';
+
         return (
-            <div className="card task-card" data-id={this.props.dataId}>
+            <div className={classNameForListCard} data-id={this.props.dataId}>
                 <CardHeader
-                    bgColor={this.props.bgColor}
-                    completed={this.props.completed}
-                    setColorFromPicket={this.setColorFromPicket}
                     onClickToEdit={this.editCard}>
                 </CardHeader>
 
                 <CardBody
-                    completed={this.props.completed}
                     editable={this.state.editable}
                     title={this.props.title}
+                    description={this.props.description}
                     updateCard={this.updateCard}>
                 </CardBody>
 
                 <CardFooter
-                    completed={this.props.completed}
+                    selected={this.props.selected}
                     onClickToDelete={this.deleteCard}
-                    onClickToComplete={this.completeTask}>
+                    onClickToSelect={this.selectList}>
                 </CardFooter>
             </div>
         );
@@ -42,11 +44,11 @@ class List extends Component
     ////////////////////////////////////////////////////////////////////
     // Actions
 
-    completeTask = () =>
+    selectList = () =>
     {
         const id = this.props.dataId;
 
-        this.props.onClickToCompleteTask(id);
+        this.props.onClickToSelect(id);
     }
 
     deleteCard = () =>
@@ -61,13 +63,6 @@ class List extends Component
         this.setState({
             editable: true
         })
-    }
-
-    setColorFromPicket = (color) =>
-    {
-        const id = this.props.dataId;
-
-        this.props.setColorFromPicket(color, id);
     }
 
     updateCard = (text) =>

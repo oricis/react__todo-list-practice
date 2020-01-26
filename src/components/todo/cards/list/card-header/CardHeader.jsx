@@ -2,7 +2,8 @@
 import './styles.scss';
 import React, { Component } from 'react';
 import editIcon from '../../../../../assets/images/edit-regular.svg';
-import ColorPicket from '../../../../common/color-picket/ColorPicket';
+import minusCircleIcon from '../../../../../assets/images/minus-circle-solid.svg';
+import plusCircleIcon from '../../../../../assets/images/plus-circle-solid.svg';
 import ImageButton from '../../../../common/image-button';
 
 class CardHeader extends Component
@@ -20,15 +21,27 @@ class CardHeader extends Component
                 onClick={this.props.onClickToEdit}>
             </ImageButton>;
 
+        const showOrHideDetailsButton = (this.props.showDetails)
+            ? <ImageButton
+                className="image-btn pull-right"
+                image={minusCircleIcon}
+                attraAlt="Ocultar detalles"
+                attrtTitle="Ocultar detalles"
+                onClick={this.props.onClickToHideDetails}>
+            </ImageButton>
+            : <ImageButton
+                className="image-btn pull-right"
+                image={plusCircleIcon}
+                attraAlt="Ver detalles"
+                attrtTitle="Ver detalles"
+                onClick={this.props.onClickToShowDetails}>
+            </ImageButton>;
+
         return (
             <div className="card-header">
                 {editButton}
 
-                <ColorPicket
-                    bgColor={this.props.bgColor}
-                    completed={this.props.completed}
-                    setColorFromPicket={this.props.setColorFromPicket}>
-                </ColorPicket>
+                {showOrHideDetailsButton}
             </div>
         );
     }

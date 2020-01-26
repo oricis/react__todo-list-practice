@@ -7,16 +7,15 @@ class CardFooter extends Component
 
     render()
     {
-        const classNameForCompleteBtn = (this.props.completed)
+        const classNameForSelectBtn = (this.props.selected)
             ? 'btn btn-default'
             : 'btn btn-primary';
 
         return (
             <div className="card-footer">
-                <button className={classNameForCompleteBtn}
-                    disabled={this.props.completed}
-                    onClick={() => {this.props.onClickToComplete()}}>
-                    Completada
+                <button className={classNameForSelectBtn}
+                    onClick={() => { this.props.onClickToSelect()}}>
+                    Seleccionar
                 </button>
                 <button className="btn btn-primary"
                     onClick={() => { this.props.onClickToDelete()}}>

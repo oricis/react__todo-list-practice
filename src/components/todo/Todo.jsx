@@ -2,11 +2,17 @@ import './styles.scss';
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
+import {
+    getSelected,
+    isSomeSelected,
+    selectFirst
+} from '../../helpers/todo.js';
 import List from '../../classes/List.js';
 import Task from '../../classes/Task.js';
+
+import Cards from './cards/Cards';
 import ListForm from '../forms/list-form/ListForm';
 import TaskForm from '../forms/task-form/TaskForm';
-import Tasks from './tasks/Tasks';
 
 class Todo extends Component
 {
@@ -27,9 +33,10 @@ class Todo extends Component
         const data = this.loadStoredData(appMode);
 
         const INITIAL = {
-            appMode   : appMode,
-            newText   : '',
-            data      : data,
+            appMode       : appMode,
+            data          : data,
+            newText       : '',
+            selectedListId: '',
         };
 
         this.state = INITIAL;
@@ -37,6 +44,15 @@ class Todo extends Component
 
     render()
     {
+        let data = this.state.data;
+
+        // NOTE: always one list is selected - the first by default
+        if (this.state.appMode === 'lists'
+            && data.length
+            && !isSomeSelected(data)) {
+            data = selectFirst(data);
+        }
+
         const form = (this.state.appMode === 'tasks')
             ? <TaskForm
                 addTask={this.addTask}
@@ -47,14 +63,16 @@ class Todo extends Component
                 onClickSwapButton={this.clickedSwapButton}>
             </ListForm>
 
-        const tasksOrLists = (this.state.data.length > 0)
-            ? <Tasks
-                taskList={this.state.data}
+        const tasksOrLists = (data.length > 0)
+            ? <Cards
+                data={data}
+                mode={this.state.appMode}
                 setColorFromPicket={this.setColorFromPicket}
-                onCompleteTask={(id) => { this.completeTask(id); }}
-                onDeleteTask={(id) => { this.deleteTask(id); }}
-                updateTask={this.updateTask}>
-            </Tasks>
+                onClickToCompleteTask={(id) => { this.completeTask(id); }}
+                onClickToDeleteCard={(id) => { this.deleteCard(id); }}
+                onClickToSelect={(id) => { this.selectList(id); }}
+                updateCard={this.updateCard}>
+            </Cards>
             : '';
 
         return (
@@ -77,7 +95,8 @@ class Todo extends Component
      *
      */
 
-    clickedSwapButton = () => {
+    clickedSwapButton = () =>
+    {
         console.log('clickedSwapButton() - mode: ' + this.state.appMode)
 
         const newAppMode = (this.state.appMode === 'tasks')
@@ -98,7 +117,6 @@ class Todo extends Component
 
     addList = (text, description) =>
     {
-        console.log('Todo / addList() -> ' +text+' === '+description); // HACK:
         const newList  = this.createList(text, description);
         const arrLists = [...this.state.data, newList];
 
@@ -132,7 +150,7 @@ class Todo extends Component
 
     /**
      * Custom methods
-     * Task card actions
+     * Card actions
      *
      */
 
@@ -144,7 +162,7 @@ class Todo extends Component
         });
     }
 
-    deleteTask = (id) =>
+    deleteCard = (id) =>
     {
         const arrTasks = this.state.data.filter(task => task.id !== id);
         this.setState({
@@ -161,6 +179,22 @@ class Todo extends Component
         });
 
         return tasks;
+    }
+
+    selectList = (id) =>
+    {
+        const tempData = this.state.data;
+        tempData.forEach(list => {
+            list.selected = false;
+            if (list.id === id) {
+                list.selected = true;
+            }
+        });
+
+        this.setState({
+            data          : tempData,
+            selectedListId: id,
+        })
     }
 
     setColorFromPicket = (color, taskId) =>
@@ -214,7 +248,7 @@ class Todo extends Component
         });
     }
 
-    updateTask = (taskId, text) =>
+    updateCard = (taskId, text) =>
     {
         const arrTasks = this.state.data;
         arrTasks.forEach(task => {

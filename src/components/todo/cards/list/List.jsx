@@ -14,7 +14,6 @@ class List extends Component
 
     render()
     {
-        console.log('List / render()'); // HACK:
         const classNameForListCard = (this.props.selected)
             ? 'card list-card card-selected'
             : 'card list-card';

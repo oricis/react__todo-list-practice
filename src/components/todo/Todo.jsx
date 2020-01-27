@@ -2,6 +2,11 @@ import './styles.scss';
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Storage from '../../services/Storage.js';
+import {
+    getSelected,
+    isSomeSelected,
+    selectFirst
+} from '../../helpers/todo.js';
 import List from '../../classes/List.js';
 import Task from '../../classes/Task.js';
 
@@ -28,9 +33,10 @@ class Todo extends Component
         const data = this.loadStoredData(appMode);
 
         const INITIAL = {
-            appMode   : appMode,
-            newText   : '',
-            data      : data,
+            appMode       : appMode,
+            data          : data,
+            newText       : '',
+            selectedListId: '',
         };
 
         this.state = INITIAL;
@@ -38,6 +44,15 @@ class Todo extends Component
 
     render()
     {
+        let data = this.state.data;
+
+        // NOTE: always one list is selected - the first by default
+        if (this.state.appMode === 'lists'
+            && data.length
+            && !isSomeSelected(data)) {
+            data = selectFirst(data);
+        }
+
         const form = (this.state.appMode === 'tasks')
             ? <TaskForm
                 addTask={this.addTask}
@@ -48,9 +63,9 @@ class Todo extends Component
                 onClickSwapButton={this.clickedSwapButton}>
             </ListForm>
 
-        const tasksOrLists = (this.state.data.length > 0)
+        const tasksOrLists = (data.length > 0)
             ? <Cards
-                data={this.state.data}
+                data={data}
                 mode={this.state.appMode}
                 setColorFromPicket={this.setColorFromPicket}
                 onClickToCompleteTask={(id) => { this.completeTask(id); }}
@@ -80,7 +95,8 @@ class Todo extends Component
      *
      */
 
-    clickedSwapButton = () => {
+    clickedSwapButton = () =>
+    {
         console.log('clickedSwapButton() - mode: ' + this.state.appMode)
 
         const newAppMode = (this.state.appMode === 'tasks')
@@ -101,7 +117,6 @@ class Todo extends Component
 
     addList = (text, description) =>
     {
-        console.log('Todo / addList() -> ' +text+' === '+description); // HACK:
         const newList  = this.createList(text, description);
         const arrLists = [...this.state.data, newList];
 
@@ -166,9 +181,20 @@ class Todo extends Component
         return tasks;
     }
 
-    selectList = (id) => {
-        console.log('Todo / selectList() - ID: ' + id);
-        // TODO:
+    selectList = (id) =>
+    {
+        const tempData = this.state.data;
+        tempData.forEach(list => {
+            list.selected = false;
+            if (list.id === id) {
+                list.selected = true;
+            }
+        });
+
+        this.setState({
+            data          : tempData,
+            selectedListId: id,
+        })
     }
 
     setColorFromPicket = (color, taskId) =>

@@ -22,7 +22,6 @@ class CardHeader extends Component
             </ImageButton>;
 
         const showOrHideDetailsButton = (this.props.description)
-
             ? (this.props.showDetails)
                 ? <ImageButton
                     className="image-btn pull-right"

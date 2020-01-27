@@ -3,9 +3,9 @@ import generateID from '../helpers/generateID.js';
 class List
 {
 
-    constructor(text, description)
+    constructor(text, description, id)
     {
-        this.id          = generateID();
+        this.id          = (id) ? id : generateID();
         this.text        = text;
         this.description = description;
     }

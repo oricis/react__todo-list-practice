@@ -89,6 +89,9 @@ section {
     height:      inherit;
     padding:     1rem;
 }
+.btn-disabled {
+    cursor: auto;
+}
 .btn-primary {
     background:   $light-blue2;
     border-color: $dark-blue;

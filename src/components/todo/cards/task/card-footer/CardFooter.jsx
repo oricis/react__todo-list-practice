@@ -8,7 +8,7 @@ class CardFooter extends Component
     render()
     {
         const classNameForCompleteBtn = (this.props.completed)
-            ? 'btn btn-default'
+            ? 'btn btn-default btn-disabled'
             : 'btn btn-primary';
 
         return (

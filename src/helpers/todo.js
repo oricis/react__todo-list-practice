@@ -1,6 +1,10 @@
 
 const getSelected = (elements) =>
 {
+    if (!elements) {
+        return null;
+    }
+
     if (isSomeSelected(elements)) {
         selectFirst(elements);
 

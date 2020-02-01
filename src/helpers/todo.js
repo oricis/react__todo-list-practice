@@ -1,4 +1,17 @@
 
+const filterListTasks = (tasks, listId) =>
+{
+    function checkId(listId)
+    {
+        return function (element)
+        {
+            return element.listId === listId;
+        }
+    }
+
+    return tasks.filter(checkId(listId));
+}
+
 const getSelected = (elements) =>
 {
     if (!elements) {
@@ -43,6 +56,7 @@ const selectFirst = (elements) =>
 
 
 export {
+    filterListTasks,
     getSelected,
     isSomeSelected,
     selectFirst

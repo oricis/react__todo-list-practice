@@ -1,9 +1,9 @@
 import './styles.scss';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ConfigActions from '../../config-actions/ConfigAction';
+import ConfigActions from '../config-actions/ConfigAction';
 // import ImageButton from '../../common/image-button';
-import TextButton from '../../common/text-button';
+import TextButton from '../common/text-button';
 
 class TaskForm extends Component
 {
@@ -22,7 +22,7 @@ class TaskForm extends Component
     render()
     {
         return (
-            <article className="content-box data-intro">
+            <section className="content-box data-intro">
                 <ConfigActions
                     formLabel="Nueva Tarea"
                     onClickSwapButton={this.props.onClickSwapButton}>
@@ -38,16 +38,18 @@ class TaskForm extends Component
                         }
                         onKeyUp={this.checkFormWhenPushEnterKey} />
 
-                    <TextButton
-                        className="btn"
-                        text="Añadir"
-                        onClick={this.emitFormData}></TextButton>
-                    <TextButton
-                        className="btn"
-                        text="Limpiar"
-                        onClick={this.cleanForm}></TextButton>
+                    <div className="button-group">
+                        <TextButton
+                            className="btn"
+                            text="Añadir"
+                            onClick={this.emitFormData}></TextButton>
+                        <TextButton
+                            className="btn"
+                            text="Limpiar"
+                            onClick={this.cleanForm}></TextButton>
+                    </div>
                 </div>
-            </article>
+            </section>
         );
     }
 

@@ -1,0 +1,33 @@
+
+/***
+ * Component styles
+ *
+ */
+
+.data-intro {
+    .creation-form {
+        align-items     : center;
+        display         : flex;
+        justify-content : space-evenly;
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+
+            .btn {
+                height: 3rem;
+                margin: .5rem
+            }
+        }
+    }
+}
+
+
+@media (min-width:720px) {
+
+    .data-intro {
+        .creation-form {
+
+        }
+    }
+}

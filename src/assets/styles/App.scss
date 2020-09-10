@@ -1,4 +1,4 @@
-@import './sass_vars.scss';
+@import './vars.scss';
 
 /***
  * Reset
@@ -34,23 +34,28 @@ body {
  *
  */
 
-button,
-input {
-    border-radius: 5px;
-    font-size:     1em;
-    height:        3rem;
-    padding:       0 .5rem;
-}
-section {
-    margin:  0 auto;
-    padding: 1rem .2rem;
-    width:   95%;
-}
+
 
 .App {
     display:    grid;
     grid-template-rows: 25vh 1fr 12vh;
     min-height: 100vh;
+
+    button,
+    input {
+        border-radius: 5px;
+        font-size:     1em;
+        height:        3rem;
+        padding:       0 .5rem;
+    }
+    input {
+        text-align: left;
+    }
+    main {
+        margin:  0 auto;
+        padding: 1rem .2rem;
+        width:   95%;
+    }
 
     .content-box {
         background:  #edf2f7;
@@ -61,7 +66,7 @@ section {
 }
 
 @media (min-width:860px) {
-    section {
+    main {
         width: 80%;
     }
 }

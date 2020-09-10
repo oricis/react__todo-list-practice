@@ -1,9 +1,9 @@
 
 import './styles.scss';
 import React, { Component } from 'react';
-import editIcon from '../../../../../assets/images/edit-regular.svg';
-import ColorPicket from '../../../../common/color-picket/ColorPicket';
-import ImageButton from '../../../../common/image-button';
+import ColorPicket from '../../../../../common/color-picket/ColorPicket';
+import ImageButton from '../../../../../common/image-button';
+import editIcon from '../../../../../../assets/images/edit-regular.svg';
 
 class CardHeader extends Component
 {

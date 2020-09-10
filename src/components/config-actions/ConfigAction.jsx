@@ -13,19 +13,26 @@ class ConfigActions extends Component
             ? this.props.formLabel
             : '';
 
+        let swapButton = <ImageButton
+            className="image-btn"
+            image={swapIcon}
+            attrAlt={"Cambiar modo a " + this.actualMode}
+            attrTitle={"Cambiar modo a " + this.actualMode}
+            onClick={this.props.onClickSwapButton}>
+        </ImageButton>;
+
+        if (this.props.form === 'lists'
+            && this.props.listNumber === 0) {
+            swapButton = '';
+        }
+
         return (
             <div className="config-actions">
                 <TextLabel
                     text={formLabel}>
                 </TextLabel>
 
-                <ImageButton
-                    className="image-btn"
-                    image={swapIcon}
-                    attrAlt={"Cambiar modo a " + this.actualMode}
-                    attrTitle={"Cambiar modo a " + this.actualMode}
-                    onClick={this.props.onClickSwapButton}>
-                </ImageButton>
+                {swapButton}
             </div>
         );
     }

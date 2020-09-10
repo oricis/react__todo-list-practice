@@ -1,23 +1,25 @@
-import './styles.scss';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Storage from '../../services/Storage.js';
+import Storage from '../../../services/Storage.js';
 import {
+    filterListTasks,
     getSelected,
     isSomeSelected,
-    selectFirst
-} from '../../helpers/todo.js';
-import List from '../../classes/List.js';
-import Task from '../../classes/Task.js';
+    selectFirst,
+    updateTasks
+} from '../../../helpers/todo.js';
+import List from '../../../classes/List.js';
+import Task from '../../../classes/Task.js';
 
 import Cards from './cards/Cards';
-import ListForm from '../forms/list-form/ListForm';
-import TaskForm from '../forms/task-form/TaskForm';
+import ListForm from '../../forms/ListForm';
+import TaskForm from '../../forms/TaskForm';
 
-class Todo extends Component
+class Main extends Component
 {
     // Default values
     defaultTaskColor = 'green';
+    storedTasks = [];
 
 
     constructor(props)
@@ -25,32 +27,17 @@ class Todo extends Component
         super(props);
 
         this.storage = new Storage();
-
-        const storedMode = this.storage.get('stored-list');
-        const appMode = (storedMode)
-            ? storedMode
-            : 'tasks'; // tasks | lists
-        const data = this.loadStoredData(appMode);
-
-        const INITIAL = {
-            appMode       : appMode,
-            data          : data,
-            newText       : '',
-            selectedListId: '',
-        };
-
-        this.state = INITIAL;
+        this.state   = this.init();
     }
 
     render()
     {
+        console.log('render()', this.state) //HACK:
         let data = this.state.data;
 
         // NOTE: always one list is selected - the first by default
-        if (this.state.appMode === 'lists'
-            && data.length
-            && !isSomeSelected(data)) {
-            data = selectFirst(data);
+        if (this.state.appMode === 'lists') {
+            data = this.checkToSelectFirstList(data);
         }
 
         const form = (this.state.appMode === 'tasks')
@@ -59,11 +46,12 @@ class Todo extends Component
                 onClickSwapButton={this.clickedSwapButton}>
             </TaskForm>
             : <ListForm
+                listNumber={data.length}
                 addList={this.addList}
                 onClickSwapButton={this.clickedSwapButton}>
-            </ListForm>
+            </ListForm>;
 
-        const tasksOrLists = (data.length > 0)
+        const tasksOrLists = (data.length)
             ? <Cards
                 data={data}
                 mode={this.state.appMode}
@@ -76,16 +64,67 @@ class Todo extends Component
             : '';
 
         return (
-            <Fragment>
+            <main className="App-Todo">
                 {form}
                 {tasksOrLists}
-            </Fragment>
+            </main>
         );
     }
 
     componentDidUpdate()
     {
         this.updateStoredData();
+    }
+
+
+    checkToSelectFirstList = (data) =>
+    {
+        return (data.length && !isSomeSelected(data))
+            ? selectFirst(data)
+            : data;
+    }
+
+    getSelectedListId = (appMode, data) =>
+    {
+        let result = '';
+
+        if (appMode === 'tasks') {
+            data = this.loadStoredData('lists');
+            if (data.length) {
+                result = getSelected(data).id;
+            }
+
+        } else {
+            if (data.length) {
+                result = (data.length > 1)
+                    ? getSelected(data).id
+                    : data[0].id;
+            }
+        }
+
+        return result;
+    }
+
+    init = () => {
+        let appMode = 'tasks'; // tasks | lists (two app's modes -> views)
+        let selectedListId = '';
+
+        let data = this.loadStoredData(appMode);
+        if (data.length) {
+            selectedListId = this.getSelectedListId(appMode, data);
+
+        } else {
+            appMode = 'lists';
+            data = this.loadStoredData(appMode);
+            selectedListId = this.getSelectedListId(appMode, data);
+        }
+
+        return {
+            appMode: appMode,
+            data: data,
+            newText: '',
+            selectedListId: selectedListId,
+        };
     }
 
 
@@ -97,14 +136,16 @@ class Todo extends Component
 
     clickedSwapButton = () =>
     {
-        console.log('clickedSwapButton() - mode: ' + this.state.appMode)
+        console.log('clickedSwapButton() - OLD mode: ' + this.state.appMode)
 
         const newAppMode = (this.state.appMode === 'tasks')
             ? 'lists'
             : 'tasks';
-
+        const data = this.loadStoredData(newAppMode);
+        console.log('clickedSwapButton() - NEW mode: ' + newAppMode)
         this.setState({
-            appMode: newAppMode
+            appMode : newAppMode,
+            data    : data,
         });
     }
 
@@ -143,10 +184,10 @@ class Todo extends Component
     {
         let dataLength = this.state.data.length;
         const text = title || 'Task ' + ++dataLength;
+        const listId = this.state.selectedListId
 
-        return new Task(text, color);
+        return new Task(text, color, listId);
     }
-
 
     /**
      * Custom methods
@@ -219,19 +260,39 @@ class Todo extends Component
 
     loadStoredData(appMode)
     {
-        return (appMode === 'tasks' // tasks | lists
-            || !this.storage.get('stored-lists'))
+        console.log('loadStoredData() - appMode: ' + appMode+' || state:', this.state)
+        const storageKey = (appMode === 'lists')
+            ? 'stored-lists'
+            : 'stored-tasks';
 
-            ? this.storage.get('stored-tasks')
-            : this.storage.get('stored-lists');
+        if (storageKey === 'stored-lists') {
+            return this.storage.get(storageKey);
+        }
+
+        const tasks = this.storage.get(storageKey);
+        console.log('loadStoredData () - tareas:', tasks); // HACK
+
+        this.storedTasks = tasks;
+        return (tasks.length && this.state)
+            ? filterListTasks(tasks, this.state.selectedListId)
+            : tasks; // []
     }
 
     updateStoredData()
     {
-        const storageKey = (this.state.appMode === 'lists')
-            ? 'stored-lists'
-            : 'stored-tasks';
-        this.storage.set(storageKey, this.state.data);
+        if (this.state.data) {
+            const appMode    = this.state.appMode;
+            const storageKey = (appMode === 'lists')
+                ? 'stored-lists'
+                : 'stored-tasks';
+
+            let dataToStore = this.state.data;
+            if (appMode === 'tasks') {
+                dataToStore = updateTasks(dataToStore, this.storedTasks);
+            }
+
+            this.storage.set(storageKey, dataToStore);
+        }
     }
 
 
@@ -243,8 +304,11 @@ class Todo extends Component
     addDataToState = (data) =>
     {
         this.setState({
-            newText: '',
-            data: data
+            data          : data,
+            newText       : '',
+            selectedListId: (this.state.selectedListId === '')
+                ? this.getSelectedListId(this.state.appMode, data)
+                : this.state.selectedListId
         });
     }
 
@@ -264,12 +328,14 @@ class Todo extends Component
 }
 
 // Setting the proptypes of the component
-Todo.propTypes = {
+Main.propTypes = {
     color:  PropTypes.string,
     id:     PropTypes.string,
     taskId: PropTypes.string,
     data:   PropTypes.array,
-    text:   PropTypes.string
+    text:   PropTypes.string,
+    title:  PropTypes.string,
+    description: PropTypes.string
 };
 
-export default Todo;
+export default Main;

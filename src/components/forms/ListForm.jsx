@@ -1,9 +1,9 @@
 import './styles.scss';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ConfigActions from '../../config-actions/ConfigAction';
+import ConfigActions from '../config-actions/ConfigAction';
 // import ImageButton from '../../common/image-button';
-import TextButton from '../../common/text-button';
+import TextButton from '../common/text-button';
 
 class ListForm extends Component
 {
@@ -23,13 +23,15 @@ class ListForm extends Component
     render()
     {
         return (
-            <article className="content-box data-intro">
+            <section className="content-box data-intro">
                 <ConfigActions
+                    form="lists"
+                    listNumber={this.props.listNumber}
                     formLabel="Nueva lista"
                     onClickSwapButton={this.props.onClickSwapButton}>
                 </ConfigActions>
 
-                <div className="creation-form">
+                <div className="form">
                     <input type="text"
                         id="input-title"
                         placeholder="¿Título de la lista?"
@@ -50,16 +52,19 @@ class ListForm extends Component
                         onKeyUp={event =>
                             this.checkFormWhenPushEnterKey(event)
                         } />
-                    <TextButton
-                        className="btn"
-                        text="Añadir"
-                        onClick={this.emitFormData}></TextButton>
-                    <TextButton
-                        className="btn"
-                        text="Limpiar"
-                        onClick={this.cleanForm}></TextButton>
+
+                    <div className="button-group">
+                        <TextButton
+                            className="btn"
+                            text="Añadir"
+                            onClick={this.emitFormData}></TextButton>
+                        <TextButton
+                            className="btn"
+                            text="Limpiar"
+                            onClick={this.cleanForm}></TextButton>
+                    </div>
                 </div>
-            </article>
+            </section>
         );
     }
 

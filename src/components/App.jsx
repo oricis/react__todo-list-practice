@@ -1,8 +1,8 @@
 import '../assets/styles/App.scss';
 import React from 'react';
-import Footer from "./footer/Footer";
-import Header from "./header/Header";
-import Todo from "./todo/Todo";
+import Footer from "./layout/footer/Footer";
+import Header from "./layout/header/Header";
+import Main from "./layout/main/Main";
 import logo from '../assets/images/logo.svg';
 
 function App()
@@ -14,9 +14,7 @@ function App()
                 logo={logo}
                 title="TODO List"></Header>
 
-            <section className="App-Todo">
-                <Todo></Todo>
-            </section >
+            <Main />
 
             <Footer
                 author="Moisés Alcocer"

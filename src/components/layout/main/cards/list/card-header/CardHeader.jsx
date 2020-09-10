@@ -1,10 +1,10 @@
 
 import './styles.scss';
 import React, { Component } from 'react';
-import editIcon from '../../../../../assets/images/edit-regular.svg';
-import minusCircleIcon from '../../../../../assets/images/minus-circle-solid.svg';
-import plusCircleIcon from '../../../../../assets/images/plus-circle-solid.svg';
-import ImageButton from '../../../../common/image-button';
+import editIcon from '../../../../../../assets/images/edit-regular.svg';
+import minusCircleIcon from '../../../../../../assets/images/minus-circle-solid.svg';
+import plusCircleIcon from '../../../../../../assets/images/plus-circle-solid.svg';
+import ImageButton from '../../../../../common/image-button';
 
 class CardHeader extends Component
 {

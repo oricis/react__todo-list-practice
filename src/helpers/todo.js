@@ -53,11 +53,34 @@ const selectFirst = (elements) =>
     return elements;
 }
 
+const updateTasks = (activeTasks, storedTasks) =>
+{
+    const data = storedTasks.map(
+        (storedTask, i) => {
+            for (let index = 0; index < activeTasks.length; index++) {
+                const activeTask = activeTasks[index];
+
+                if (storedTask.id === activeTask.id) {
+                    const updatedTask = activeTask;
+
+                    return updatedTask;
+                }
+            }
+
+            // the task was deleted!
+            return {};
+        }
+    );
+    console.log(data);
+
+    return data;
+}
 
 
 export {
     filterListTasks,
     getSelected,
     isSomeSelected,
-    selectFirst
+    selectFirst,
+    updateTasks
 }

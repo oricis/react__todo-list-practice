@@ -35,20 +35,20 @@ const getTasksOfList = (allTasks, listId) =>
     return allTasks.filter(checkId(listId));
 }
 
-const getSelected = (elements) =>
+const getSelected = (arrElements) =>
 {
-    if (!elements) {
+    if (!arrElements) {
         return null;
     }
 
-    if (isSomeSelected(elements)) {
-        selectFirst(elements);
+    if (isSomeSelected(arrElements)) {
+        selectFirst(arrElements);
 
-        return elements[0];
+        return arrElements[0];
     }
 
     let selected = null;
-    elements.forEach(element => {
+    arrElements.forEach(element => {
         if (element.selected) {
             selected = element;
         }
@@ -57,10 +57,10 @@ const getSelected = (elements) =>
     return selected;
 }
 
-const isSomeSelected = (elements) =>
+const isSomeSelected = (arrElements) =>
 {
     let selectedFlag = false;
-    elements.forEach(element => {
+    arrElements.forEach(element => {
         if (element.selected) {
             selectedFlag = true;
         }
@@ -69,11 +69,11 @@ const isSomeSelected = (elements) =>
     return selectedFlag
 }
 
-const selectFirst = (elements) =>
+const selectFirst = (arrElements) =>
 {
-    elements[0].selected = true;
+    arrElements[0].selected = true;
 
-    return elements;
+    return arrElements;
 }
 
 const updateTasks = (activeTasks, storedTasks) =>

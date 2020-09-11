@@ -22,7 +22,7 @@
     <script>
         function testGetIds()
         {
-            console.log('testGetIds()');
+            console.warn('testGetIds()');
 
             const testData = getIds(storedTasks);
             let dataLength = testData.length;
@@ -42,6 +42,48 @@
             boolResult = checkString(testData[2]);
             runAndShowTestResults(assertTrue, [boolResult], 1);
         }
+        function testGetListIdsFromTasks()
+        {
+            console.warn('testGetListIdsFromTasks()');
+
+            const listIds = getListIdsFromTasks(storedTasks);
+            console.log(assertArray(listIds));
+            console.log(assertArraySize(listIds, 2));
+            console.log(assertNumber(listIds[0]));
+            console.log('\n========================================\n');
+        }
+        function testGetTasksOfList()
+        {
+            console.warn('testGetTasksOfList()');
+
+            let listId = 1;
+            let testData = getTasksOfList(storedTasks, listId);
+            let dataLength = 2;
+
+            console.log('dataLength: ' + dataLength);
+            console.log('listId: ' + listId);
+            console.log('List IDs: ', getListIdsFromTasks(storedTasks));
+
+            runAndShowTestResults(assertArray, [testData], 1);
+            runAndShowTestResults(assertArraySize, [testData, dataLength], 1);
+            runAndShowTestResults(assertArraySize, [testData, storedTasks], 0);
+            runAndShowTestResults(assertEquals, [testData, storedTasks], 0);
+
+            listId = 2;
+            testData = getTasksOfList(storedTasks, listId);
+            dataLength = 1;
+            runAndShowTestResults(assertArraySize, [testData, dataLength], 1);
+
+            listId = 99;
+            testData = getTasksOfList(storedTasks, listId);
+            dataLength = 0;
+            runAndShowTestResults(assertArraySize, [testData, dataLength], 1);
+        }
+
+        function testX()
+        {
+            console.warn('testX()');
+        }
 
 
         /***************************************************************
@@ -52,6 +94,15 @@
         if (confirm('Run the test: "testGetIds"?')) {
             testGetIds();
         }
+        if (confirm('Run the test: "testGetListIdsFromTasks"?')) {
+            testGetListIdsFromTasks();
+        }
+        if (confirm('Run the test: "testGetTasksOfList"?')) {
+            testGetTasksOfList();
+        }
+        // if (confirm('Run the test: "testX"?')) {
+        //     testX();
+        // }
 
         /**/
     </script>

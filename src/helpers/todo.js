@@ -1,8 +1,21 @@
-const getIds = (data) => {
+const getIds = (data) =>
+{
     const result = [];
     data.map(item => {
         if (item.id) {
             result.push(item.id)
+        }
+    });
+
+    return result;
+}
+
+const getListIdsFromTasks = (data) =>
+{
+    const result = [];
+    data.map(item => {
+        if (item.listId && !result.includes(item.listId)) {
+            result.push(item.listId)
         }
     });
 

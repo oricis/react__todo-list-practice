@@ -1,17 +1,3 @@
-
-const filterListTasks = (tasks, listId) =>
-{
-    function checkId(listId)
-    {
-        return function (element)
-        {
-            return element.listId === listId;
-        }
-    }
-
-    return tasks.filter(checkId(listId));
-}
-
 const getIds = (data) => {
     const result = [];
     data.map(item => {
@@ -21,6 +7,19 @@ const getIds = (data) => {
     });
 
     return result;
+}
+
+const getTasksOfList = (allTasks, listId) =>
+{
+    function checkId(listId)
+    {
+        return function (element)
+        {
+            return element.listId === listId;
+        }
+    }
+
+    return allTasks.filter(checkId(listId));
 }
 
 const getSelected = (elements) =>
@@ -89,7 +88,8 @@ const updateTasks = (activeTasks, storedTasks) =>
 
 
 export {
-    filterListTasks,
+    getIds,
+    getTasksOfList,
     getSelected,
     isSomeSelected,
     selectFirst,

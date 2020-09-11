@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Storage from '../../../services/Storage.js';
 import {
-    filterListTasks,
+    getTasksOfList,
     getSelected,
     isSomeSelected,
     selectFirst,
@@ -258,6 +258,12 @@ class Main extends Component
      *
      */
 
+    /**
+     * Load the stored app data
+     *
+     * @param string appMode -> lists | tasks
+     * @return array         -> stored-lists | stored-tasks
+     */
     loadStoredData(appMode)
     {
         console.log('loadStoredData() - appMode: ' + appMode+' || state:', this.state)
@@ -274,7 +280,11 @@ class Main extends Component
 
         this.storedTasks = tasks;
         return (tasks.length && this.state)
-            ? filterListTasks(tasks, this.state.selectedListId)
+
+            // return only tasks with the selected list ID
+            ? getTasksOfList(tasks, this.state.selectedListId)
+
+            // return all the task
             : tasks; // []
     }
 

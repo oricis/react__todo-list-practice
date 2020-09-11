@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tests - todo.js</title>
+
+    <!--
+    * MIT License - Copyright (c) 2020 Moisés Alcocer
+    *
+    * contacto@ironwoods.es
+    * https://www.ironwoods.es
+    -->
+
+    <script src='../vendor/JS-Assertions/src/js/framework.js'></script>
+    <script src='../vendor/JS-Assertions/src/js/datatype-checks.js'></script>
+    <script src='../vendor/JS-Assertions/src/js/asserts.js'></script>
+
+    <script src='./todo_test.functions.js'></script>
+    <script src='./todo_test.data.js'></script>
+    <script>
+        function testGetIds()
+        {
+            console.log('testGetIds()');
+
+            const testData = getIds(storedTasks);
+            let dataLength = testData.length;
+            let boolResult = false;
+
+            console.log(storedTasks, testData);
+            console.log(assertEquals(dataLength, 3));
+            console.log(assertArraySize(testData, 3));
+
+            runAndShowTestResults(assertArray, [testData], 1);
+            runAndShowTestResults(assertArraySize, [testData, 3], 1);
+            runAndShowTestResults(assertEquals, [testData], 0);
+            boolResult = checkString(testData[0]);
+            runAndShowTestResults(assertTrue, [boolResult], 1);
+            boolResult = checkString(testData[1]);
+            runAndShowTestResults(assertTrue, [boolResult], 1);
+            boolResult = checkString(testData[2]);
+            runAndShowTestResults(assertTrue, [boolResult], 1);
+        }
+
+
+        /***************************************************************
+         * Run tests
+         *
+         */
+
+        if (confirm('Run the test: "testGetIds"?')) {
+            testGetIds();
+        }
+
+        /**/
+    </script>
+</head>
+
+<body>
+
+    <p><strong>Notice:</strong>
+        open the terminal to check the rest results</p>
+</body>
+
+</html>

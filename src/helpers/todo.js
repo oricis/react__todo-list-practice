@@ -12,6 +12,17 @@ const filterListTasks = (tasks, listId) =>
     return tasks.filter(checkId(listId));
 }
 
+const getIds = (data) => {
+    const result = [];
+    data.map(item => {
+        if (item.id) {
+            result.push(item.id)
+        }
+    });
+
+    return result;
+}
+
 const getSelected = (elements) =>
 {
     if (!elements) {

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tests - todo.js</title>
+
+    <!--
+    * MIT License - Copyright (c) 2020 Moisés Alcocer
+    *
+    * contacto@ironwoods.es
+    * https://www.ironwoods.es
+    -->
+
+    <script src='../vendor/JS-Assertions/src/js/framework.js'></script>
+    <script src='../vendor/JS-Assertions/src/js/datatype-checks.js'></script>
+    <script src='../vendor/JS-Assertions/src/js/asserts.js'></script>
+
+    <script src='./generateID_test.functions.js'></script>
+    <script>
+        function testUUIDGeneratorBrowser() {
+            console.log('testUUIDGeneratorBrowser() -> ' + UUIDGeneratorBrowser());
+
+            const testData = [
+                UUIDGeneratorBrowser(),
+                UUIDGeneratorBrowser(),
+                UUIDGeneratorBrowser(),
+                [1]
+            ];
+
+            runAndShowTestResults(assertArray, testData, 1);
+            runAndShowTestResults(assertEquals, testData, 0);
+            runAndShowTestResults(assertTrue, testData, 0);
+            runAndShowTestResults(checkObject, testData, 0);
+            runAndShowTestResults(checkString, testData, 3);
+        }
+
+
+        /***************************************************************
+         * Run tests
+         *
+         */
+
+        testUUIDGeneratorBrowser();
+    </script>
+</head>
+
+<body>
+
+    <p><strong>Notice:</strong>
+        open the terminal to check the rest results</p>
+</body>
+
+</html>

@@ -44,3 +44,8 @@ let activeTasks = [
     task3b, // NOTE: different task than in "storedTask"
     task4b
 ];
+
+let commonTasks = [
+    task1a,
+    task2a,
+];

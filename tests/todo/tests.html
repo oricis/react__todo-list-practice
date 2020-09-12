@@ -130,9 +130,20 @@
             console.log(assertTrue(isSomeSelected(myTasks)));
         }
 
-        function testX()
+        function testGetUpdatedTasksToStore()
         {
-            console.warn('testX()');
+            console.warn('testGetUpdatedTasksToStore()');
+
+            let result = getUpdatedTasksToStore(activeTasks, storedTasks);
+            console.log('getUpdatedTasksToStore() result:', result);
+
+            console.log(assertArray(result));
+            console.log(assertArraySize(result, 2));
+            console.log(checkObject(result[0]));
+            console.log(checkObject(result[1]));
+            console.log(assertEquals(result, commonTasks));
+            console.log(assertEquals(result[0], commonTasks[0]));
+            console.log(assertEquals(result[1], commonTasks[1]));
         }
 
 
@@ -149,13 +160,13 @@
         }
         if (confirm('Run the test: "testGetTasksOfList"?')) {
             testGetTasksOfList();
-        }*/
+        }
         if (confirm('Run the test: "testGetSelected"?')) {
             testGetSelected();
+        }*/
+        if (confirm('Run the test: "testGetUpdatedTasksToStore"?')) {
+            testGetUpdatedTasksToStore();
         }
-        // if (confirm('Run the test: "testX"?')) {
-        //     testX();
-        // }
 
         /**/
     </script>

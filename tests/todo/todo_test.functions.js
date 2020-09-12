@@ -73,14 +73,57 @@ const selectFirst = (arrElements) => {
     return arrElements;
 }
 
+/**
+ *
+ * @param array activeTasksToStore
+ * @param array tasksFromStorages
+ * @param array -> the task stored in both arrays
+ */
+const getUpdatedTasksToStore = (activeTasksToStore, tasksFromStorages) =>
+{
+    const data = tasksFromStorages.map(
+        (taskFromStorage, i) => {
+            const numberOfTasksToStore = activeTasksToStore.length;
+
+            for (let index = 0; index < numberOfTasksToStore; index++) {
+                const activeTask = activeTasksToStore[index];
+
+                if (taskFromStorage.id === activeTask.id) {
+                    const updatedTask = activeTask;
+
+                    return updatedTask;
+                }
+            }
+
+            // the task was deleted!
+        }
+    );
+
+    return clearUndefinedArrayPositions(data);
+}
+
 /*
 Functions on "helpers / todo.js":
 
     getIds
     getListIdsFromTasks
-    getTasksOfList
     getSelected
+    getTasksOfList
+    getUpdatedTasksToStore
     isSomeSelected
     selectFirst
-    updateTasks
 */
+
+////////////////////////////////////////////////////////////////////////
+// From src/helpers/arrays.js
+
+const clearUndefinedArrayPositions = (arr) => {
+    const result = [];
+    arr.forEach(element => {
+        if (typeof element !== 'undefined') {
+            result.push(element);
+        }
+    });
+
+    return result;
+}

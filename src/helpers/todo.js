@@ -1,3 +1,5 @@
+import { clearUndefinedArrayPositions } from './arrays.js';
+
 const getIds = (data) =>
 {
     const result = [];
@@ -78,14 +80,22 @@ const selectFirst = (arrElements) =>
     return arrElements;
 }
 
-const updateTasks = (activeTasks, storedTasks) =>
+/**
+ *
+ * @param array activeTasksToStore
+ * @param array tasksFromStorages
+ * @param array -> the task stored in both arrays
+ */
+const getUpdatedTasksToStore = (activeTasksToStore, tasksFromStorages) =>
 {
-    const data = storedTasks.map(
-        (storedTask, i) => {
-            for (let index = 0; index < activeTasks.length; index++) {
-                const activeTask = activeTasks[index];
+    const data = tasksFromStorages.map(
+        (taskFromStorage, i) => {
+            const numberOfTasksToStore = activeTasksToStore.length;
 
-                if (storedTask.id === activeTask.id) {
+            for (let index = 0; index < numberOfTasksToStore; index++) {
+                const activeTask = activeTasksToStore[index];
+
+                if (taskFromStorage.id === activeTask.id) {
                     const updatedTask = activeTask;
 
                     return updatedTask;
@@ -93,20 +103,18 @@ const updateTasks = (activeTasks, storedTasks) =>
             }
 
             // the task was deleted!
-            return {};
         }
     );
-    console.log(data);
 
-    return data;
+    return clearUndefinedArrayPositions(data);
 }
 
 
 export {
     getIds,
-    getTasksOfList,
     getSelected,
+    getTasksOfList,
+    getUpdatedTasksToStore,
     isSomeSelected,
-    selectFirst,
-    updateTasks
+    selectFirst
 }

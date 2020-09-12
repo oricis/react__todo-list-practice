@@ -6,7 +6,7 @@ import {
     getSelected,
     isSomeSelected,
     selectFirst,
-    updateTasks
+    getUpdatedTasksToStore
 } from '../../../helpers/todo.js';
 import List from '../../../classes/List.js';
 import Task from '../../../classes/Task.js';
@@ -296,12 +296,12 @@ class Main extends Component
                 ? 'stored-lists'
                 : 'stored-tasks';
 
-            let dataToStore = this.state.data;
+            let livedDataToStore = this.state.data; // lists || tasks
             if (appMode === 'tasks') {
-                dataToStore = updateTasks(dataToStore, this.storedTasks);
+                livedDataToStore = getUpdatedTasksToStore(livedDataToStore, this.storedTasks);
             }
 
-            this.storage.set(storageKey, dataToStore);
+            this.storage.set(storageKey, livedDataToStore);
         }
     }
 

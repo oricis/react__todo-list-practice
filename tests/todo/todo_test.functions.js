@@ -1,5 +1,19 @@
 // Functions from "src/helpers/todo.js"
 
+const find = (data, id) =>
+{
+    let result = {};
+    data.map(item => {
+        if (item.id === id) {
+            result = item;
+        }
+
+        return null;
+    });
+
+    return result;
+}
+
 const getIds = (data) =>
 {
     const result = [];
@@ -109,7 +123,7 @@ const getUpdatedTasksToStore = (activeTasksToStore, tasksFromStorages) =>
 
 /*
 Functions on "helpers / todo.js":
-
+    find
     getIds
     getListIdsFromTasks
     getSelected

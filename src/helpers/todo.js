@@ -1,5 +1,19 @@
 import { clearUndefinedArrayPositions } from './arrays.js';
 
+const find = (data, id) =>
+{
+    let result = {};
+    data.map(item => {
+        if (item.id === id) {
+            result = item;
+        }
+
+        return null;
+    });
+
+    return result;
+}
+
 const getIds = (data) =>
 {
     const result = [];
@@ -116,6 +130,7 @@ const getUpdatedTasksToStore = (activeTasksToStore, tasksFromStorages) =>
 
 
 export {
+    find,
     getIds,
     getListIdsFromTasks,
     getSelected,

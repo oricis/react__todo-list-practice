@@ -20,6 +20,16 @@
     <script src='./todo_test.functions.js'></script>
     <script src='./todo_test.data.js'></script>
     <script>
+        function testFind()
+        {
+            console.warn('testFind()');
+
+            let id = storedTasks[0].id;
+            let testData = find(storedTasks, id);
+
+            runAndShowTestResults(assertEquals, [testData, storedTasks[0]], 1);
+        }
+
         function testGetIds()
         {
             console.warn('testGetIds()');
@@ -152,6 +162,9 @@
          *
          */
 
+        if (confirm('Run the test: "testFind"?')) {
+            testFind();
+        }
         if (confirm('Run the test: "testGetIds"?')) {
             testGetIds();
         }

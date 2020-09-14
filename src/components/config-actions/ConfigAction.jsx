@@ -2,7 +2,6 @@ import './styles.scss';
 import React, { Component } from 'react';
 import swapIcon from '../../assets/images/buffer-brands.svg';
 import ImageButton from '../common/image-button';
-import TextLabel from '../common/text-label';
 
 class ConfigActions extends Component
 {
@@ -28,9 +27,7 @@ class ConfigActions extends Component
 
         return (
             <div className="config-actions">
-                <TextLabel
-                    text={formLabel}>
-                </TextLabel>
+                <h2>{formLabel}</h2>
 
                 {swapButton}
             </div>

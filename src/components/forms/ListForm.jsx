@@ -32,6 +32,8 @@ class ListForm extends Component
                 </ConfigActions>
 
                 <div className="form">
+                    <label htmlFor="input-title" className="d-none">
+                        Escribe un título para la tarea</label>
                     <input type="text"
                         id="input-title"
                         placeholder="¿Título de la lista?"
@@ -42,6 +44,8 @@ class ListForm extends Component
                         onKeyUp={event =>
                             this.checkFormWhenPushEnterKey(event)
                         } />
+                    <label htmlFor="input-description" className="d-none">
+                        Escribe una descripción para la tarea</label>
                     <input type="text"
                         id="input-description"
                         placeholder="¿Descripción de la lista?"

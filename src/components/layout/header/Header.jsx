@@ -9,7 +9,7 @@ function Header(props)
         <header className="App-header">
             <img src={props.logo} className="App-logo" alt="logo" />
 
-            <h3>{props.title}</h3>
+            <h1>{props.title}</h1>
         </header>
     );
 }

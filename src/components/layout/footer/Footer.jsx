@@ -15,7 +15,7 @@ function Footer(props)
                 <span> </span>
                 <a href="https://www.ironwoods.es"
                     target="_blank"
-                    rel="license author external">
+                    rel="license author external noopener noreferrer">
                     © {props.author}
                 </a>
                 <span> </span>

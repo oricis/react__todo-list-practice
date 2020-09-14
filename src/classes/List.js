@@ -8,6 +8,7 @@ class List
         this.id          = (id) ? id : generateID();
         this.text        = text;
         this.description = description;
+        this.selected    = false;
     }
 }
 

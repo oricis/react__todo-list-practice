@@ -7,6 +7,8 @@ const getIds = (data) =>
         if (item.id) {
             result.push(item.id)
         }
+
+        return null;
     });
 
     return result;
@@ -19,6 +21,8 @@ const getListIdsFromTasks = (data) =>
         if (item.listId && !result.includes(item.listId)) {
             result.push(item.listId)
         }
+
+        return null;
     });
 
     return result;
@@ -103,6 +107,7 @@ const getUpdatedTasksToStore = (activeTasksToStore, tasksFromStorages) =>
             }
 
             // the task was deleted!
+            return null;
         }
     );
 
@@ -112,6 +117,7 @@ const getUpdatedTasksToStore = (activeTasksToStore, tasksFromStorages) =>
 
 export {
     getIds,
+    getListIdsFromTasks,
     getSelected,
     getTasksOfList,
     getUpdatedTasksToStore,

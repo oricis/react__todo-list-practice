@@ -1,3 +1,5 @@
+// Functions from "src/helpers/arrays.js"
+
 const clearUndefinedArrayPositions = (arr) =>
 {
     const result = [];
@@ -13,9 +15,4 @@ const clearUndefinedArrayPositions = (arr) =>
 const isEmptyArray = (arr) =>
 {
     return Array.isArray(arr) && arr.length === 0
-}
-
-export {
-    clearUndefinedArrayPositions,
-    isEmptyArray
 }

@@ -37,8 +37,11 @@ class Main extends Component
         let cards = this.state.data;
 
         // NOTE: always one list is selected - the first by default
-        if (this.state.appMode === 'lists') {
-            cards = this.checkToSelectFirstList(cards);
+        if (this.state.appMode === 'lists'
+            && cards.length && typeof (cards) === 'object') {
+            if (!isSomeSelected(cards)) {
+                cards = selectFirst(cards);
+            }
         }
 
         const form = (this.state.appMode === 'tasks')
@@ -79,13 +82,6 @@ class Main extends Component
         this.updateStoredData();
     }
 
-
-    checkToSelectFirstList = (data) =>
-    {
-        return (data.length && !isSomeSelected(data))
-            ? selectFirst(data)
-            : data;
-    }
 
     getSelectedListId = (appMode, data) =>
     {

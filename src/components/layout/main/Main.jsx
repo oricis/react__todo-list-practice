@@ -192,7 +192,7 @@ class Main extends Component
     createList = (title, description) =>
     {
         let dataLength = this.state.data.length;
-        const text = title || 'List ' + ++dataLength;
+        const text     = title || 'List ' + ++dataLength;
 
         return new List(text, description);
     }
@@ -200,8 +200,8 @@ class Main extends Component
     createTask = (title, color) =>
     {
         let dataLength = this.state.data.length;
-        const text = title || 'Task ' + ++dataLength;
-        const listId = this.state.selectedListId
+        const text     = title || 'Task ' + ++dataLength;
+        const listId   = this.state.selectedListId
 
         return new Task(text, color, listId);
     }
@@ -311,8 +311,10 @@ class Main extends Component
             let storageKey = 'stored-lists';
             if (this.state.appMode === 'tasks') {
                 storageKey  = 'stored-tasks';
-                dataToStore = getUpdatedTasksToStore(
-                    this.state.selectedListId, dataToStore, this.storedTasks);
+
+                const listId = this.state.selectedListId;
+                dataToStore  = getUpdatedTasksToStore(
+                    listId, dataToStore, this.storedTasks);
             }
 
             this.storage.set(storageKey, dataToStore);

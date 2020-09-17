@@ -21,10 +21,12 @@ class TaskForm extends Component
 
     render()
     {
+        const label = this.props.selectedListText;
+
         return (
             <section className="content-box data-intro">
                 <ConfigActions
-                    formLabel="Nueva Tarea"
+                    formLabel={label}
                     onClickSwapButton={this.props.onClickSwapButton}>
                 </ConfigActions>
 

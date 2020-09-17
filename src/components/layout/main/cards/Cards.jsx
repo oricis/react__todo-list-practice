@@ -42,7 +42,8 @@ class Cards extends Component
         );
     }
 
-    composeTasks(data) {
+    composeTasks(data)
+    {
         return data.map(
             task => {
                 return (

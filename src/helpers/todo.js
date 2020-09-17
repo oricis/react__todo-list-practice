@@ -100,7 +100,6 @@ const getSelected = (arrElements) =>
     return selected;
 }
 
-// Aux. of getSelected()
 const isSomeSelected = (arrElements) =>
 {
     let selectedFlag = false;
@@ -113,7 +112,6 @@ const isSomeSelected = (arrElements) =>
     return selectedFlag
 }
 
-// Aux. of getSelected()
 const selectFirst = (arrElements) =>
 {
     arrElements[0].selected = true;

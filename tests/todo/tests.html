@@ -24,8 +24,7 @@
         {
             console.warn('testFind()');
 
-            let id = storedTasks[0].id;
-            let testData = find(storedTasks, id);
+            let testData = find(storedTasks, firstCommonTaskId);
 
             runAndShowTestResults(assertEquals, [testData, storedTasks[0]], 1);
         }

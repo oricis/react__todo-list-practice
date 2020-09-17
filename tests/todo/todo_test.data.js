@@ -49,3 +49,5 @@ let commonTasks = [
     task1a,
     task2a,
 ];
+
+const firstCommonTaskId = task1a.id;

@@ -241,17 +241,20 @@ class Main extends Component
 
     selectList = (id) =>
     {
+        let selectedListText = '';
         const tempData = this.state.data;
         tempData.forEach(list => {
             list.selected = false;
             if (list.id === id) {
                 list.selected = true;
+                selectedListText = list.text;
             }
         });
 
         this.setState({
             data          : tempData,
             selectedListId: id,
+            selectedListText: selectedListText,
         })
     }
 
@@ -359,4 +362,4 @@ Main.propTypes = {
     description: PropTypes.string
 };
 
-export default Main;
+export default Main; // 362

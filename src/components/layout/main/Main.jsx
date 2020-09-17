@@ -218,9 +218,20 @@ class Main extends Component
 
     deleteCard = (id) =>
     {
-        const arrCards = this.state.data.filter(card => card.id !== id);
+        let arrCards = this.state.data.filter(card => card.id !== id);
+        let selectedListId   = this.state.selectedListId;
+        let selectedListText = this.state.selectedListText;
+
+        if (this.state.appMode === 'lists' && id === selectedListId) {
+            arrCards = selectFirst(arrCards);
+            selectedListId   = arrCards[0].id;
+            selectedListText = arrCards[0].text;
+        }
+
         this.setState({
-            data: arrCards
+            data: arrCards,
+            selectedListId,
+            selectedListText
         });
     }
 

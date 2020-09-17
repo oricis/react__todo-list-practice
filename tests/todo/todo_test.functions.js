@@ -1,5 +1,29 @@
 // Functions from "src/helpers/todo.js"
 
+/**
+ * Return the tasks of different lists
+ *
+ * @param string listId
+ * @param array  arrAllTasks
+ * @param array
+ */
+const cleanTasksOfList = (listId, arrAllTasks) =>
+{
+    if (!arrAllTasks ||
+        (typeof (arrAllTasks) !== 'object' || !Array.isArray(arrAllTasks))) {
+        return [];
+    }
+
+    const arrCleanedTasks = [];
+    arrAllTasks.forEach(task => {
+        if (task.listId !== listId) {
+            arrCleanedTasks.push(task);
+        }
+    });
+
+    return arrCleanedTasks;
+}
+
 const find = (data, id) =>
 {
     let result = {};
@@ -92,37 +116,35 @@ const selectFirst = (arrElements) => {
 }
 
 /**
+ * Return updated tasks
+ *
+ * activeTasksToStore contents "alive tasks" (state's tasks of the selected list)
+ * originally loaded, added and modified tasks
+ *
+ * tasksFromStorage has the stored tasks for all the lists:
+ * this data will be updated (only the tasks of the selected list)
+ *
+ * All the tasks into tasksFromStorage of no selected list will be returned
+ * All the tasks into activeTasksToStore will be returned
  *
  * @param array activeTasksToStore
- * @param array tasksFromStorages
- * @param array -> the task stored in both arrays
+ * @param array tasksFromStorage
+ * @param array
  */
-const getUpdatedTasksToStore = (activeTasksToStore, tasksFromStorages) =>
-{
-    const data = tasksFromStorages.map(
-        (taskFromStorage, i) => {
-            const numberOfTasksToStore = activeTasksToStore.length;
+const getUpdatedTasksToStore = (listId, activeTasksToStore, tasksFromStorage) => {
+    if (!tasksFromStorage) {
+        return activeTasksToStore;
+    }
 
-            for (let index = 0; index < numberOfTasksToStore; index++) {
-                const activeTask = activeTasksToStore[index];
+    const noSelectedListTasks = cleanTasksOfList(listId, tasksFromStorage);
 
-                if (taskFromStorage.id === activeTask.id) {
-                    const updatedTask = activeTask;
 
-                    return updatedTask;
-                }
-            }
-
-            // the task was deleted!
-            return null;
-        }
-    );
-
-    return clearUndefinedArrayPositions(data);
+    return activeTasksToStore.concat(noSelectedListTasks);
 }
 
 /*
 Functions on "helpers / todo.js":
+    cleanTasksOfList
     find
     getIds
     getListIdsFromTasks

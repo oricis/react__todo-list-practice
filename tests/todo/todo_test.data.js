@@ -33,16 +33,18 @@ const task3b = new Task('Lorem ipsum', 'green', 2);
 const task4b = new Task('Lorem ipsum', 'green', 3);
 
 let storedTasks = [
-    task1a,
-    task2a,
-    task3a,
+    task1a, // listId === 1
+    task2a, // listId === 1
+    task3a, // listId === 2
 ];
 
+// simulate tasks in the app's state, only can be of one list
+const activeListId = 2;
+task3a.text = 'Modified text label !!!';
 let activeTasks = [
-    task1a,
-    task2a,
-    task3b, // NOTE: different task than in "storedTask"
-    task4b
+    task3a, // listId === 2
+    task4a, // listId === 2
+    task3b, // listId === 2
 ];
 
 let commonTasks = [

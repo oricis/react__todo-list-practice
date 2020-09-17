@@ -35,6 +35,19 @@
             runAndShowTestResults(assertEquals, [testData.length, 3], 1);
         }
 
+        function testCleanTasksWithoutList()
+        {
+            console.warn('testCleanTasksWithoutList()');
+
+            let testData = cleanTasksWithoutList(storedLists, storedTasks);
+            runAndShowTestResults(assertEquals, [testData.length, storedTasks.length], 1);
+            runAndShowTestResults(assertEquals, [testData, storedTasks], 1);
+
+            testData = cleanTasksWithoutList(storedLists, activeTasks);
+            runAndShowTestResults(assertEquals, [testData.length, activeTasks.length], 1);
+            runAndShowTestResults(assertEquals, [testData, activeTasks], 1);
+        }
+
         function testFind()
         {
             console.warn('testFind()');
@@ -176,6 +189,9 @@
 
         if (confirm('Run the test: "testCleanTasksOfList"?')) {
             testCleanTasksOfList();
+        }
+        if (confirm('Run the test: "testCleanTasksWithoutList"?')) {
+            testCleanTasksWithoutList();
         }
         if (confirm('Run the test: "testFind"?')) {
             testFind();

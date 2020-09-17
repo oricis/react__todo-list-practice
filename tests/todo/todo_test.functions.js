@@ -24,6 +24,27 @@ const cleanTasksOfList = (listId, arrAllTasks) =>
     return arrCleanedTasks;
 }
 
+/**
+ * Return the tasks belong to some list
+ *
+ * @param array  arrAllList
+ * @param array  arrAllTasks
+ * @param array
+ */
+const cleanTasksWithoutList = (arrAllList, arrAllTasks) =>
+{
+    const storedListIds = getIds(arrAllList);
+
+    const arrCleanedTasks = [];
+    arrAllTasks.forEach(task => {
+        if (storedListIds.includes(task.listId)) {
+            arrCleanedTasks.push(task);
+        }
+    });
+
+    return arrCleanedTasks;
+}
+
 const find = (data, id) =>
 {
     let result = {};
@@ -41,13 +62,16 @@ const find = (data, id) =>
 const getIds = (data) =>
 {
     const result = [];
-    data.map(item => {
-        if (item.id) {
-            result.push(item.id)
-        }
 
-        return null;
-    });
+    if (data && typeof (data) === 'object' && Array.isArray(data)) {
+        data.map(item => {
+            if (item.id) {
+                result.push(item.id)
+            }
+
+            return null;
+        });
+    }
 
     return result;
 }
@@ -145,6 +169,7 @@ const getUpdatedTasksToStore = (listId, activeTasksToStore, tasksFromStorage) =>
 /*
 Functions on "helpers / todo.js":
     cleanTasksOfList
+    cleanTasksWithoutList
     find
     getIds
     getListIdsFromTasks

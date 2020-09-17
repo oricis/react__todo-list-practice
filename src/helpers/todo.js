@@ -23,6 +23,27 @@ const cleanTasksOfList = (listId, arrAllTasks) =>
     return arrCleanedTasks;
 }
 
+/**
+ * Return the tasks belong to some list
+ *
+ * @param array  arrAllList
+ * @param array  arrAllTasks
+ * @param array
+ */
+const cleanTasksWithoutList = (arrAllList, arrAllTasks) =>
+{
+    const storedListIds = getIds(arrAllList);
+
+    const arrCleanedTasks = [];
+    arrAllTasks.forEach(task => {
+        if (storedListIds.includes(task.listId)) {
+            arrCleanedTasks.push(task);
+        }
+    });
+
+    return arrCleanedTasks;
+}
+
 const find = (data, id) =>
 {
     let result = {};
@@ -149,6 +170,7 @@ const getUpdatedTasksToStore = (listId, activeTasksToStore, tasksFromStorage) =>
 
 
 export {
+    cleanTasksWithoutList,
     find,
     getIds,
     getListIdsFromTasks,

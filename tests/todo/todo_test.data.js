@@ -8,13 +8,22 @@ const UUIDGeneratorBrowser = () => (
     ).toString(16)
 );
 
+class List
+{
+    constructor(id, text, description, color)
+    {
+        this.id   = id;
+        this.text = text;
+        this.description = description;
+        this.color = color;
+    }
+}
 class Task
 {
-    constructor(text, color, listId)
-    {
+    constructor(text, color, listId) {
         this.id = UUIDGeneratorBrowser();
-        this.text   = text;
-        this.color  = color;
+        this.text = text;
+        this.color = color;
         this.listId = listId;
     }
 }
@@ -32,6 +41,12 @@ const task4a = new Task('Some text', 'red', 2);
 const task3b = new Task('Lorem ipsum', 'green', 2);
 const task4b = new Task('Lorem ipsum', 'green', 3);
 
+const list1 = new List(1, 'List One', 'Lorem ipsum', 'green');
+const list2 = new List(2, 'List Two', '', 'yellow');
+let storedLists = [
+    list1,
+    list2,
+];
 let storedTasks = [
     task1a, // listId === 1
     task2a, // listId === 1

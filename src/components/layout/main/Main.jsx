@@ -222,9 +222,9 @@ class Main extends Component
 
     deleteCard = (id) =>
     {
-        const arrTasks = this.state.data.filter(task => task.id !== id);
+        const arrCards = this.state.data.filter(card => card.id !== id);
         this.setState({
-            data: arrTasks
+            data: arrCards
         });
     }
 

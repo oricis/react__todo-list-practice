@@ -370,9 +370,13 @@ class Main extends Component
                 task.text = text;
             }
         });
+        const selectedListText = this.appMode !== 'tasks'
+            ? text
+            : this.state.selectedListText;
 
         this.setState({
-            data: arrTasks
+            data: arrTasks,
+            selectedListText
         });
     }
 }

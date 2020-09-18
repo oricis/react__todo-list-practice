@@ -27,7 +27,7 @@ describe('Create 2 lists & swap the selected', () => {
 
   it('Selecting the second list card...', () => {
 
-    cy.contains('.cards .card', 'Mysecondlist')
+    cy.contains('.cards .card', 'My second list')
       .contains('.btn', 'Seleccionar')
       .click()
   })

@@ -1,3 +1,4 @@
+import { isEmptyArray } from './arrays.js';
 
 /**
  * Return the tasks of different lists
@@ -32,6 +33,11 @@ const cleanTasksOfList = (listId, arrAllTasks) =>
  */
 const cleanTasksWithoutList = (arrAllList, arrAllTasks) =>
 {
+    if (isEmptyArray(arrAllList) || isEmptyArray(arrAllTasks)) {
+        console.error('cleanTasksWithoutList() - EMPTY', arrAllList, arrAllTasks); // BUG: check swap button
+        return [];
+    }
+
     const storedListIds = getIds(arrAllList);
 
     const arrCleanedTasks = [];
@@ -61,13 +67,16 @@ const find = (data, id) =>
 const getIds = (data) =>
 {
     const result = [];
-    data.map(item => {
-        if (item.id) {
-            result.push(item.id)
-        }
 
-        return null;
-    });
+    if (data && typeof (data) === 'object' && Array.isArray(data)) {
+        data.map(item => {
+            if (item.id) {
+                result.push(item.id)
+            }
+
+            return null;
+        });
+    }
 
     return result;
 }

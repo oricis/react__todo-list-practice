@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Storage from '../../../services/Storage.js';
 import {
+    cleanTasksWithoutList,
     find,
     getTasksOfList,
     getSelected,
@@ -114,6 +115,7 @@ class Main extends Component
             : '';
     }
 
+    // TODO: refactor - selectedListId to const with selectedListText
     init = () =>
     {
         let appMode = 'tasks'; // tasks | lists (two app's modes -> views)
@@ -223,9 +225,11 @@ class Main extends Component
         let selectedListText = this.state.selectedListText;
 
         if (this.state.appMode === 'lists' && id === selectedListId) {
-            arrCards = selectFirst(arrCards);
-            selectedListId   = arrCards[0].id;
-            selectedListText = arrCards[0].text;
+            if (typeof arrCards === 'object' && arrCards.length) {
+                arrCards = selectFirst(arrCards);
+                selectedListId   = arrCards[0].id;
+                selectedListText = arrCards[0].text;
+            }
         }
 
         this.setState({
@@ -285,6 +289,16 @@ class Main extends Component
      *
      */
 
+    getTasksOnLists = (allTasks) =>
+    {
+        console.warn('getTasksOnLists()')
+
+        const storedList   = this.loadStoredData('lists');
+        const tasksOnLists = cleanTasksWithoutList(storedList, allTasks);
+
+        return tasksOnLists;
+    }
+
     /**
      * Load the stored app data
      *
@@ -301,8 +315,11 @@ class Main extends Component
             return this.storage.get(storageKey);
         }
 
-        let allTasks = this.storage.get(storageKey);
-        this.storedTasks = allTasks;
+        const allTasks = this.storage.get(storageKey);
+        const tasksOnLists = this.getTasksOnLists(allTasks)
+
+        this.storedTasks = tasksOnLists;
+        this.storage.set(storageKey, tasksOnLists);
 
         // return the tasks with the selected list ID
         return (allTasks.length && this.state)

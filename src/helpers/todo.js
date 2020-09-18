@@ -33,7 +33,8 @@ const cleanTasksOfList = (listId, arrAllTasks) =>
  */
 const cleanTasksWithoutList = (arrAllList, arrAllTasks) =>
 {
-    if (isEmptyArray(arrAllList) || isEmptyArray(arrAllTasks)) {
+    if ((!arrAllList || typeof (arrAllList) !== 'object' || !Array.isArray(arrAllList)) ||
+        (!arrAllTasks || typeof (arrAllTasks) !== 'object' || !Array.isArray(arrAllTasks))) {
         console.error('cleanTasksWithoutList() - EMPTY', arrAllList, arrAllTasks); // BUG: check swap button
         return [];
     }

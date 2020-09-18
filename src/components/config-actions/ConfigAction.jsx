@@ -20,7 +20,7 @@ class ConfigActions extends Component
             onClick={this.props.onClickSwapButton}>
         </ImageButton>;
 
-        if (this.props.form === 'lists'
+        if (this.props.actualMode === 'lists'
             && this.props.listNumber === 0) {
             swapButton = '';
         }

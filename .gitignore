@@ -7,6 +7,10 @@
 
 # testing
 /coverage
+cypress/*
+cypress/integration/examples/*
+!cypress/integration
+
 
 # production
 /build

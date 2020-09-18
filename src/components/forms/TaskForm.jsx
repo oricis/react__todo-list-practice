@@ -26,6 +26,7 @@ class TaskForm extends Component
         return (
             <section className="content-box data-intro">
                 <ConfigActions
+                    actualMode="tasks"
                     formLabel={label}
                     onClickSwapButton={this.props.onClickSwapButton}>
                 </ConfigActions>

@@ -25,7 +25,7 @@ class ListForm extends Component
         return (
             <section className="content-box data-intro">
                 <ConfigActions
-                    form="lists"
+                    actualMode="lists"
                     listNumber={this.props.listNumber}
                     formLabel="Nueva lista"
                     onClickSwapButton={this.props.onClickSwapButton}>

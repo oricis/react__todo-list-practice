@@ -15,8 +15,8 @@ class ConfigActions extends Component
         let swapButton = <ImageButton
             className="image-btn"
             image={swapIcon}
-            attrAlt={"Cambiar modo a " + this.actualMode}
-            attrTitle={"Cambiar modo a " + this.actualMode}
+            attrAlt={"Cambiar vista a " + this.props.actualMode}
+            attrTitle={"Cambiar vista a " + this.props.actualMode}
             onClick={this.props.onClickSwapButton}>
         </ImageButton>;
 

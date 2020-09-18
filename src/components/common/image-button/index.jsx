@@ -16,7 +16,9 @@ class ImageButton extends Component
                 title={this.props.attrTitle}></i>
 
         return (
-            <div className={this.props.className} onClick={this.emitOnClick}>
+            <div className={this.props.className}
+                role="button"
+                onClick={this.emitOnClick}>
                 {btnContent}
             </div>
         );

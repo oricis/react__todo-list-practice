@@ -115,22 +115,17 @@ class Main extends Component
             : '';
     }
 
-    // TODO: refactor - selectedListId to const with selectedListText
     init = () =>
     {
         let appMode = 'tasks'; // tasks | lists (two app's modes -> views)
-        let selectedListId = '';
-
         let data = this.loadStoredData(appMode);
-        if (data.length) {
-            selectedListId = this.getSelectedListId(appMode, data);
 
-        } else {
+        if (!data.length) {
             appMode = 'lists';
             data    = this.loadStoredData(appMode);
-            selectedListId = this.getSelectedListId(appMode, data);
         }
 
+        const selectedListId   = this.getSelectedListId(appMode, data);
         const selectedListText = (selectedListId)
             ? this.getSelectedListText(selectedListId)
             : '';
@@ -392,4 +387,4 @@ Main.propTypes = {
     description: PropTypes.string
 };
 
-export default Main; // 362
+export default Main;

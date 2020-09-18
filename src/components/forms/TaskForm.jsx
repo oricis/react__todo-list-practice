@@ -32,8 +32,8 @@ class TaskForm extends Component
                 </ConfigActions>
 
                 <div className="creation-form">
-                    <input type="title"
-                        id="create-task"
+                    <input type="text"
+                        id="input-title"
                         placeholder="¿Cuál es la tarea?"
                         value={this.state.title}
                         onChange={event =>

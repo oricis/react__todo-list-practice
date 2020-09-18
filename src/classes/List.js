@@ -5,8 +5,8 @@ class List
 
     constructor(text, description, id)
     {
-        this.id          = (id) ? id : generateID();
-        this.text        = text;
+        this.id          = id || generateID().substr(1, 16);
+        this.text        = text || this.id.substr(1, 6)
         this.description = description;
         this.selected    = false;
     }

@@ -7,8 +7,8 @@ class Task
 
     constructor(text, color, listId)
     {
-        this.id     = generateID();
-        this.text   = text;
+        this.id     = listId || generateID().substr(1, 16)
+        this.text   = text || this.id.substr(1, 6)
         this.color  = color;
         this.listId = listId;
     }

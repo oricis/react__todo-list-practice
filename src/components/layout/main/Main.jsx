@@ -185,7 +185,7 @@ class Main extends Component
     createList = (title, description) =>
     {
         let dataLength = this.state.data.length;
-        const text     = title || 'List ' + ++dataLength;
+        const text     = title || '';
 
         return new List(text, description);
     }
@@ -193,7 +193,7 @@ class Main extends Component
     createTask = (title, color) =>
     {
         let dataLength = this.state.data.length;
-        const text     = title || 'Task ' + ++dataLength;
+        const text     = title || '';
         const listId   = this.state.selectedListId
 
         return new Task(text, color, listId);

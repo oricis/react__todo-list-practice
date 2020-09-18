@@ -1,0 +1,19 @@
+
+/***
+ * Component styles
+ *
+ */
+
+.App-header {
+    align-items:      center;
+    background-color: #282c34;
+    color:            white;
+    display:          flex;
+    flex-direction:   column;
+    justify-content:  center;
+    padding:          1rem 0 .3rem;
+
+    .App-logo {
+        width: 5rem;
+    }
+}

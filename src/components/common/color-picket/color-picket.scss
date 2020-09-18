@@ -1,0 +1,19 @@
+@import '../../../assets/styles/vars.scss';
+
+/***
+ * Component styles
+ *
+ */
+
+.color-picket {
+    .actualColor {
+        background: $green;
+        float:  right;
+    }
+    .color-circle {
+        border-radius: 50%;
+        cursor: pointer;
+        height: 2rem;
+        width:  2rem;
+    }
+}

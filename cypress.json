@@ -1,0 +1,7 @@
+{
+    "appName": "TODO-List",
+    "baseUrl": "http://localhost:3000",
+    "defaultCommandTimeout": 3000,
+    "fileServerFolder": "cypress/integration/app/",
+    "video": true
+}

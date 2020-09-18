@@ -2,6 +2,7 @@
 
 describe('Create 2 lists', () => {
   it('Opening the TODO-List...', () => {
+
     cy.visit('http://localhost:3000')
   })
 
@@ -30,5 +31,16 @@ describe('Create 2 lists', () => {
 
     cy.get('#input-title')
       .clear()
+  })
+
+  it('Checking if some card was added...', () => {
+
+    cy.get('.cards .card')
+  })
+
+  it('Checking if two cards were added...', () => {
+
+    cy.get('.cards .card')
+      .should('have.length', 2)
   })
 })

@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 
 describe('Create 2 lists', () => {
-  it('Opening the TODO-List...', () => {
+  it('Opening the ' + Cypress.config().appName + '...', () => {
 
-    cy.visit('http://localhost:3000')
+    cy.visit(Cypress.config().baseUrl)
   })
 
   it('Add list one', () => {

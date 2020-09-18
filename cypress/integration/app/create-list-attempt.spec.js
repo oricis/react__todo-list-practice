@@ -1,9 +1,9 @@
 /// <reference types="cypress" />
 
 describe('Attemps to create a list then clear form fields...', () => {
-  it('Opening the TODO-List...', () => {
+  it('Opening the ' + Cypress.config().appName + '...', () => {
 
-    cy.visit('http://localhost:3000')
+    cy.visit(Cypress.config().baseUrl)
   })
 
   it('Write text for list three and clear inputs', () => {

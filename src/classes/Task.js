@@ -1,16 +1,15 @@
 import generateID from '../helpers/generateID.js';
 
-class Task
+class Task 
 {
     completed = false;
+    
 
-
-    constructor(text, color, listId)
+    constructor(text, color)
     {
-        this.id     = generateID();
-        this.text   = text;
-        this.color  = color;
-        this.listId = listId;
+        this.id    = generateID();
+        this.text  = text;
+        this.color = color;
     }
 }
 

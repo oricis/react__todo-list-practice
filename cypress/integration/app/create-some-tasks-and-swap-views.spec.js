@@ -6,7 +6,7 @@ describe('Swap between the app\'s modes: lists and tasks views', () => {
     cy.visit(Cypress.config().baseUrl)
   })
 
-  it('Add lists', () => {
+  it('Add one list', () => {
 
     cy.get('#input-title')
       .type('fake list')

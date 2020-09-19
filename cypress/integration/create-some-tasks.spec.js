@@ -12,10 +12,11 @@ describe('Swap between the app\'s modes: lists and tasks views', () => {
     cy.visit(Cypress.config().baseUrl)
   })
 
+  const lists = require('../fixtures/lists')
   it('Add one list', () => {
 
     cy.get('#input-title')
-      .type('fake list')
+      .type(lists.one.text)
     cy.contains('.btn', 'Añadir')
       .click()
     cy.get('#input-title')

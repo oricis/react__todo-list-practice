@@ -20,10 +20,11 @@ describe('Create lists & tasks and swap between cards', () => {
     cy.visit(Cypress.config().baseUrl)
   })
 
+  const lists = require('../fixtures/lists')
   it('Add one list', () => {
 
     cy.get('#input-title')
-      .type('fake list')
+      .type(lists.one.text)
     cy.contains('.btn', 'Añadir')
       .click()
     cy.get('#input-title')
@@ -69,13 +70,13 @@ describe('Create lists & tasks and swap between cards', () => {
   it('Add other list and select', () => {
 
     cy.get('#input-title')
-      .type('My second list')
+      .type(lists.two.text)
     cy.contains('.btn', 'Añadir')
       .click()
     cy.get('#input-title')
       .clear()
 
-    cy.contains('.cards .card', 'My second list')
+    cy.contains('.cards .card', lists.two.text)
       .contains('.btn', 'Seleccionar')
       .click()
   })
@@ -101,7 +102,7 @@ describe('Create lists & tasks and swap between cards', () => {
   })
 
   it('Change selected list card', () => {
-    cy.contains('.cards .card', 'fake list')
+    cy.contains('.cards .card', lists.one.text)
       .contains('.btn', 'Seleccionar')
       .click()
   })

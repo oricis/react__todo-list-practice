@@ -20,10 +20,11 @@ describe('Swap between the app\'s modes: lists and tasks views', () => {
         cy.visit(Cypress.config().baseUrl)
     })
 
+    const lists = require('../fixtures/lists')
     it('Add one list', () => {
 
         cy.get('#input-title')
-            .type('fake list')
+            .type(lists.one.text)
         cy.contains('.btn', 'Añadir')
             .click()
         cy.get('#input-title')
@@ -59,7 +60,7 @@ describe('Swap between the app\'s modes: lists and tasks views', () => {
         //     .type('The Number One{enter}')
 
         // select list card by text
-        cy.contains('.cards .card', 'fake list')
+        cy.contains('.cards .card', lists.one.text)
             .get('.image-btn > [alt="Editar"]')
             .click()
             .get('.card-body .card-title > [type="text"]')

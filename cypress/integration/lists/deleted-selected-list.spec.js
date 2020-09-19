@@ -1,5 +1,11 @@
 /// <reference types="cypress" />
 
+// Clear local storage after all specs:
+
+beforeEach(() => {
+    cy.clearLocalStorageCache();
+});
+
 describe('Create 2 lists & deleted the selected', () => {
   it('Opening the ' + Cypress.config().appName + '...', () => {
 

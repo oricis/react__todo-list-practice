@@ -1,5 +1,11 @@
 /// <reference types="cypress" />
 
+// Clear local storage after all specs:
+
+beforeEach(() => {
+    cy.clearLocalStorageCache();
+});
+
 describe('Attemps to create a list then clear form fields...', () => {
   it('Opening the ' + Cypress.config().appName + '...', () => {
 

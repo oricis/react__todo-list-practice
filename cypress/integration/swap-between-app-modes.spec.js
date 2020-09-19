@@ -1,5 +1,11 @@
 /// <reference types="cypress" />
 
+// Clear local storage after all specs:
+
+beforeEach(() => {
+    cy.clearLocalStorageCache();
+});
+
 describe('Swap between the app\'s modes: lists and tasks views', () => {
   it('Opening the ' + Cypress.config().appName + '...', () => {
 

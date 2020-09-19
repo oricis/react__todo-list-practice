@@ -12,10 +12,11 @@ describe('Create 2 lists', () => {
     cy.visit(Cypress.config().baseUrl)
   })
 
+  const lists = require('../../fixtures/lists')
   it('Add list one', () => {
 
     cy.get('#input-title')
-      .type('fake list')
+      .type(lists.one.text)
 
     cy.contains('.btn','Añadir')
       .click()
@@ -27,10 +28,10 @@ describe('Create 2 lists', () => {
   it('Add list two', () => {
 
     cy.get('#input-title')
-      .type('My second list')
+      .type(lists.two.text)
 
     cy.get('#input-description')
-      .type('Description text')
+      .type(lists.two.description)
 
     cy.contains('.btn', 'Añadir')
       .click()

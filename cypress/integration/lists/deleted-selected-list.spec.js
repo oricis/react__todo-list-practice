@@ -12,19 +12,20 @@ describe('Create 2 lists & deleted the selected', () => {
     cy.visit(Cypress.config().baseUrl)
   })
 
+  const lists = require('../../fixtures/lists')
   it('Add lists', () => {
 
     cy.get('#input-title')
-      .type('fake list')
+      .type(lists.one.text)
     cy.contains('.btn','Añadir')
       .click()
     cy.get('#input-title')
       .clear()
 
     cy.get('#input-title')
-      .type('My second list')
+      .type(lists.two.text)
     cy.get('#input-description')
-      .type('Description text')
+      .type(lists.two.description)
     cy.contains('.btn', 'Añadir')
       .click()
     cy.get('#input-title')

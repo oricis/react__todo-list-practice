@@ -12,13 +12,14 @@ describe('Attemps to create a list then clear form fields...', () => {
     cy.visit(Cypress.config().baseUrl)
   })
 
+  const lists = require('../../fixtures/lists')
   it('Write text for list three and clear inputs', () => {
 
     cy.get('#input-title')
-      .type('My other list')
+      .type(lists.one.text)
 
     cy.get('#input-description')
-      .type('Some description text')
+      .type(lists.one.description)
 
     cy.contains('.btn', 'Limpiar')
       .click()

@@ -233,11 +233,17 @@ class Main extends Component
         let selectedListId   = this.state.selectedListId;
         let selectedListText = this.state.selectedListText;
 
-        if (this.state.appMode === 'lists' && id === selectedListId) {
-            if (typeof arrCards === 'object' && arrCards.length) {
-                arrCards = selectFirst(arrCards);
-                selectedListId   = arrCards[0].id;
-                selectedListText = arrCards[0].text;
+        if (this.state.appMode === 'lists') {
+            selectedListId   = '';
+            selectedListText = '';
+            if (arrCards.length > 0) {
+                if (!isSomeSelected(arrCards)) {
+                    arrCards = selectFirst(arrCards);
+                }
+
+                const selectedList = getSelected(arrCards);
+                selectedListId   = selectedList.id;
+                selectedListText = selectedList.text;
             }
         }
 

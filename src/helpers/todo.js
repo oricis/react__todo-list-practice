@@ -35,7 +35,7 @@ const cleanTasksWithoutList = (arrAllList, arrAllTasks) =>
 {
     if ((!arrAllList || typeof (arrAllList) !== 'object' || !Array.isArray(arrAllList)) ||
         (!arrAllTasks || typeof (arrAllTasks) !== 'object' || !Array.isArray(arrAllTasks))) {
-        console.error('cleanTasksWithoutList() - EMPTY', arrAllList, arrAllTasks); // BUG: check swap button
+
         return [];
     }
 
@@ -109,16 +109,16 @@ const getTasksOfList = (allTasks, listId) =>
     return allTasks.filter(checkId(listId));
 }
 
+/**
+ * Get the object with selected === true
+ *
+ * @param array  arrElements
+ * @param object elements
+ */
 const getSelected = (arrElements) =>
 {
     if (!arrElements) {
         return null;
-    }
-
-    if (isSomeSelected(arrElements)) {
-        selectFirst(arrElements);
-
-        return arrElements[0];
     }
 
     let selected = null;

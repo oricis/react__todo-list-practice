@@ -168,10 +168,21 @@ class Main extends Component
 
     addList = (text, description) =>
     {
-        const newList  = this.createList(text, description);
+        const newList = this.createList(text, description);
+        const selectedListId = (this.state.selectedListId)
+            ? this.state.selectedListId
+            : newList.id;
+        const selectedListText = (this.state.selectedListText)
+            ? this.state.selectedListText
+            : newList.text;
         const arrLists = [...this.state.data, newList];
 
-        this.addDataToState(arrLists);
+        this.setState({
+            data: arrLists,
+            newText: '',
+            selectedListId,
+            selectedListText
+        });
     }
 
     addTask = (text) =>
@@ -179,7 +190,10 @@ class Main extends Component
         const newTask  = this.createTask(text, this.defaultTaskColor);
         const arrTasks = [...this.state.data, newTask];
 
-        this.addDataToState(arrTasks);
+        this.setState({
+            data    : arrTasks,
+            newText : ''
+        });
     }
 
     createList = (title, description) =>
@@ -346,16 +360,6 @@ class Main extends Component
      * Generic
      *
      */
-    addDataToState = (data) =>
-    {
-        this.setState({
-            data          : data,
-            newText       : '',
-            selectedListId: (this.state.selectedListId === '')
-                ? this.getSelectedListId(this.state.appMode, data)
-                : this.state.selectedListId
-        });
-    }
 
     updateCard = (taskId, text) =>
     {

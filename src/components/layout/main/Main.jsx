@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Storage from '../../../services/Storage.js';
 import {
-    getSelectedListText,
-} from '../../../helpers/lists.js';
-import {
     cleanTasksWithoutList,
     getSelected,
     getTasksOfList,

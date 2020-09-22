@@ -1,4 +1,4 @@
-import { isEmptyArray } from './arrays.js';
+// import { isEmptyArray } from './arrays.js';
 
 /**
  * Return the tasks of different lists
@@ -35,7 +35,7 @@ const cleanTasksWithoutList = (arrAllList, arrAllTasks) =>
 {
     if ((!arrAllList || typeof (arrAllList) !== 'object' || !Array.isArray(arrAllList)) ||
         (!arrAllTasks || typeof (arrAllTasks) !== 'object' || !Array.isArray(arrAllTasks))) {
-        console.error('cleanTasksWithoutList() - EMPTY', arrAllList, arrAllTasks); // BUG: check swap button
+
         return [];
     }
 
@@ -106,19 +106,21 @@ const getTasksOfList = (allTasks, listId) =>
         }
     }
 
-    return allTasks.filter(checkId(listId));
+    return allTasks.length
+        ? allTasks.filter(checkId(listId))
+        : [];
 }
 
+/**
+ * Get the object with selected === true
+ *
+ * @param array  arrElements
+ * @param object elements
+ */
 const getSelected = (arrElements) =>
 {
     if (!arrElements) {
         return null;
-    }
-
-    if (isSomeSelected(arrElements)) {
-        selectFirst(arrElements);
-
-        return arrElements[0];
     }
 
     let selected = null;
@@ -141,6 +143,39 @@ const isSomeSelected = (arrElements) =>
     });
 
     return selectedFlag
+}
+
+const markCardAsCompleted = (cards, cardId) =>
+{
+    cards.forEach(card => {
+        if (card.id === cardId) {
+            card.completed = true;
+        }
+    });
+
+    return cards;
+}
+
+const setCardText = (cards, cardId, text) =>
+{
+    cards.forEach(card => {
+        if (card.id === cardId) {
+            card.text = text;
+        }
+    });
+
+    return cards;
+}
+
+const selectCardColor = (cards, cardId, color) =>
+{
+    cards.forEach(card => {
+        if (card.id === cardId) {
+            card.color = color;
+        }
+    });
+
+    return cards;
 }
 
 const selectFirst = (arrElements) =>
@@ -166,7 +201,7 @@ const selectFirst = (arrElements) =>
  * @param array tasksFromStorage
  * @param array
  */
-const getUpdatedTasksToStore = (listId, activeTasksToStore, tasksFromStorage) =>
+const updateSelectedListTasks = (listId, activeTasksToStore, tasksFromStorage) =>
 {
     if (!tasksFromStorage) {
         return activeTasksToStore;
@@ -186,7 +221,10 @@ export {
     getListIdsFromTasks,
     getSelected,
     getTasksOfList,
-    getUpdatedTasksToStore,
+    updateSelectedListTasks,
     isSomeSelected,
-    selectFirst
+    markCardAsCompleted,
+    selectCardColor,
+    selectFirst,
+    setCardText
 }

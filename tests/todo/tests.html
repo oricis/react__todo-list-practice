@@ -167,13 +167,13 @@
             console.log(assertTrue(isSomeSelected(myTasks)));
         }
 
-        function testGetUpdatedTasksToStore()
+        function testUpdateSelectedListTasks()
         {
-            console.warn('testGetUpdatedTasksToStore()');
+            console.warn('testUpdateSelectedListTasks()');
 
-            let result = getUpdatedTasksToStore(
+            let result = updateSelectedListTasks(
                 activeListId, activeTasks, storedTasks);
-            console.log('getUpdatedTasksToStore() result:', result);
+            console.log('updateSelectedListTasks() result:', result);
 
             console.log(assertArray(result));
             console.log(assertArraySize(result, 5));
@@ -208,8 +208,8 @@
         if (confirm('Run the test: "testGetSelected"?')) {
             testGetSelected();
         }
-        if (confirm('Run the test: "testGetUpdatedTasksToStore"?')) {
-            testGetUpdatedTasksToStore();
+        if (confirm('Run the test: "testUpdateSelectedListTasks"?')) {
+            testUpdateSelectedListTasks();
         }
 
         /**/

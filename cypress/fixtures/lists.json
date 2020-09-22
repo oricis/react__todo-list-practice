@@ -1,0 +1,14 @@
+{
+    "one": {
+        "text": "fake list",
+        "description": "Lorem ipsum"
+    },
+    "two": {
+        "text": "My second list",
+        "description": "Description text"
+    },
+    "three": {
+        "text": "Third list",
+        "description": "Details about..."
+    }
+}

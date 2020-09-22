@@ -26,17 +26,18 @@ class TaskForm extends Component
         return (
             <section className="content-box data-intro">
                 <ConfigActions
+                    actualMode="tasks"
                     formLabel={label}
                     onClickSwapButton={this.props.onClickSwapButton}>
                 </ConfigActions>
 
                 <div className="creation-form">
-                    <input type="title"
-                        id="create-task"
+                    <input type="text"
+                        id="input-title"
                         placeholder="¿Cuál es la tarea?"
                         value={this.state.title}
                         onChange={event =>
-                            this.setState({ title: event.target.value.trim() })
+                            this.setState({ title: event.target.value })
                         }
                         onKeyUp={this.checkFormWhenPushEnterKey} />
 
@@ -77,7 +78,7 @@ class TaskForm extends Component
 
     emitFormData = () =>
     {
-        const title = this.state.title;
+        const title = this.state.title.trim();
         this.props.addTask(title);
     }
 }

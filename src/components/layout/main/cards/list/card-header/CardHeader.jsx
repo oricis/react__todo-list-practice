@@ -16,8 +16,8 @@ class CardHeader extends Component
             : <ImageButton
                 className="image-btn"
                 image={editIcon}
-                attraAlt="Editar"
-                attrtTitle="Editar"
+                attrAlt="Editar"
+                attrTitle="Editar"
                 onClick={this.props.onClickToEdit}>
             </ImageButton>;
 

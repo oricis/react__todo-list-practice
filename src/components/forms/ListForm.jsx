@@ -25,7 +25,7 @@ class ListForm extends Component
         return (
             <section className="content-box data-intro">
                 <ConfigActions
-                    form="lists"
+                    actualMode="lists"
                     listNumber={this.props.listNumber}
                     formLabel="Nueva lista"
                     onClickSwapButton={this.props.onClickSwapButton}>
@@ -39,7 +39,7 @@ class ListForm extends Component
                         placeholder="¿Título de la lista?"
                         value={this.state.title}
                         onChange={event =>
-                            this.setState({ title: event.target.value.trim() })
+                            this.setState({ title: event.target.value })
                         }
                         onKeyUp={event =>
                             this.checkFormWhenPushEnterKey(event)
@@ -51,7 +51,7 @@ class ListForm extends Component
                         placeholder="¿Descripción de la lista?"
                         value={this.state.description}
                         onChange={event =>
-                            this.setState({ description: event.target.value.trim() })
+                            this.setState({ description: event.target.value })
                         }
                         onKeyUp={event =>
                             this.checkFormWhenPushEnterKey(event)
@@ -96,8 +96,8 @@ class ListForm extends Component
 
     emitFormData = () =>
     {
-        const title       = this.state.title;
-        const description = this.state.description;
+        const title       = this.state.title.trim();
+        const description = this.state.description.trim();
         this.props.addList(title, description);
     }
 }

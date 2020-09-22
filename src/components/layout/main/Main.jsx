@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Storage from '../../../services/Storage.js';
 import {
+    getSelectedListText,
+} from '../../../helpers/lists.js';
+import {
     cleanTasksWithoutList,
-    find,
     getSelected,
     getTasksOfList,
     getUpdatedTasksToStore,
@@ -102,16 +104,6 @@ class Main extends Component
         return result;
     }
 
-    getSelectedListText = (listId) =>
-    {
-        const lists = this.loadStoredLists();
-        const list  = find(lists, listId);
-
-        return (list)
-            ? list.text
-            : '';
-    }
-
     init = () =>
     {
         const listsFromStorage = this.loadStoredLists();
@@ -128,7 +120,7 @@ class Main extends Component
             if (tasksFromStorage.length) {
                 console.log(222);
                 selectedListId = this.getSelectedListId(listsFromStorage);
-                selectedListText = this.getSelectedListText(selectedListId);
+                selectedListText = getSelectedListText(listsFromStorage, selectedListId);
 
                 const selectedListTasks = getTasksOfList(tasksFromStorage, selectedListId);
                 if (selectedListTasks.length) {
@@ -158,15 +150,14 @@ class Main extends Component
             appMode = 'lists'
         }
 
-        const stateData = {
+
+        return {
             appMode : appMode, // tasks || lists
             data    : data,    // tasks || lists
             newText : '',
-            selectedListId: selectedListId,
-            selectedListText: selectedListText,
-        };
-
-        return stateData;
+            selectedListId : selectedListId,
+            selectedListText : selectedListText,
+        };;
     }
 
 

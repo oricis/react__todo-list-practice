@@ -369,14 +369,18 @@ class Main extends Component
 
 // Setting the propTypes of the component
 Main.propTypes = {
-    color:  PropTypes.string,
-    id:     PropTypes.string,
-    listId: PropTypes.string,
-    taskId: PropTypes.string,
-    data:   PropTypes.array,
-    text:   PropTypes.string,
-    title:  PropTypes.string,
-    description: PropTypes.string
+    color           : PropTypes.string,
+    data            : PropTypes.array,
+    description     : PropTypes.string,
+    id              : PropTypes.string,
+    listId          : PropTypes.string,
+    selectedListId  : PropTypes.string,
+    selectedListText: PropTypes.string,
+    storedLists     : PropTypes.array,
+    storedTasks     : PropTypes.array,
+    taskId          : PropTypes.string,
+    text            : PropTypes.string,
+    title           : PropTypes.string,
 };
 
 export default Main;

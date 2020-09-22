@@ -40,7 +40,7 @@ class Main extends Component
         console.log('HACK: render()', this.state);
         let cards = this.state.data;
 
-        // NOTE: always one list is selected - the first by default
+        // NOTE: always one list is selected - the first one by default
         if (this.state.appMode === 'lists'
             && cards.length && typeof (cards) === 'object') {
             if (!isSomeSelected(cards)) {
@@ -87,22 +87,16 @@ class Main extends Component
     }
 
 
-    getSelectedListId = (appMode, data) =>
+    getSelectedListId = (arrLists) =>
     {
-        let result = '';
+        let result = this.state
+            ? this.state.selectedListId
+            : '';
 
-        if (appMode === 'tasks') {
-            data = this.loadStoredData('lists');
-            if (data.length) {
-                result = getSelected(data).id;
-            }
-
-        } else {
-            if (data.length) {
-                result = (data.length > 1)
-                    ? getSelected(data).id
-                    : data[0].id;
-            }
+        if (arrLists.length) {
+            result = (arrLists.length > 1)
+                ? getSelected(arrLists).id
+                : arrLists[0].id;
         }
 
         return result;
@@ -110,7 +104,7 @@ class Main extends Component
 
     getSelectedListText = (listId) =>
     {
-        const lists = this.loadStoredData('lists');
+        const lists = this.loadStoredLists();
         const list  = find(lists, listId);
 
         return (list)
@@ -120,26 +114,59 @@ class Main extends Component
 
     init = () =>
     {
-        let appMode = 'tasks'; // tasks | lists (two app's modes -> views)
-        let data = this.loadStoredData(appMode);
+        const listsFromStorage = this.loadStoredLists();
+        const tasksFromStorage = this.loadStoredTasks();
 
-        if (!data.length) {
-            appMode = 'lists';
-            data    = this.loadStoredData(appMode);
+        let appMode = 'tasks'; // tasks | lists (two app's modes -> views)
+        let data    = [];
+        let selectedListId = '';
+        let selectedListText = '';
+
+        // There are stored tasks or lists or both
+        if (listsFromStorage.length || tasksFromStorage.length) {
+            console.log(111, listsFromStorage.length, tasksFromStorage.length);
+            if (tasksFromStorage.length) {
+                console.log(222);
+                selectedListId = this.getSelectedListId(listsFromStorage);
+                selectedListText = this.getSelectedListText(selectedListId);
+
+                const selectedListTasks = getTasksOfList(tasksFromStorage, selectedListId);
+                if (selectedListTasks.length) {
+                    console.log(2221);
+                    data = selectedListTasks;
+                }
+
+            } else {
+
+                console.log(333);
+                if (listsFromStorage.length) {
+                    console.log(3331);
+                    const selectedList = getSelected(listsFromStorage);
+                    selectedListId = selectedList.id;
+                    selectedListText = selectedList.text;
+
+                } else {
+                    console.log(3332);
+                    appMode = 'lists'
+                }
+            }
+
+
+        // There aren't stored any tasks or lists
+        } else {
+            console.log(666);
+            appMode = 'lists'
         }
 
-        const selectedListId   = this.getSelectedListId(appMode, data);
-        const selectedListText = (selectedListId)
-            ? this.getSelectedListText(selectedListId)
-            : '';
-
-        return {
+        const stateData = {
             appMode : appMode, // tasks || lists
             data    : data,    // tasks || lists
             newText : '',
             selectedListId: selectedListId,
             selectedListText: selectedListText,
         };
+
+        return stateData;
     }
 
 
@@ -151,21 +178,31 @@ class Main extends Component
 
     clickedSwapButton = () =>
     {
-        const newAppMode = (this.state.appMode === 'tasks')
-            ? 'lists'
-            : 'tasks';
-        const data = this.loadStoredData(newAppMode);
+        let appMode    = 'lists';
+        let loadedData = [];
+
+        if (this.state.appMode === 'lists') {
+            appMode = 'tasks';
+
+            loadedData = this.loadStoredTasks(); // all tasks
+            loadedData = getTasksOfList(loadedData, this.state.selectedListId);
+
+        } else {
+            loadedData = this.loadStoredLists();
+        }
+
+        const data = loadedData;
 
         this.setState({
-            appMode : newAppMode,
-            data    : data,
+            appMode,
+            data,
         });
     }
 
 
     /**
      * Custom methods
-     * Create a new task / list
+     * Create cards
      *
      */
 
@@ -259,8 +296,8 @@ class Main extends Component
     selectList = (id) =>
     {
         let selectedListText = '';
-        const tempData = this.state.data;
-        tempData.forEach(list => {
+        const lists = this.state.data;
+        lists.forEach(list => {
             list.selected = false;
             if (list.id === id) {
                 list.selected = true;
@@ -269,7 +306,7 @@ class Main extends Component
         });
 
         this.setState({
-            data          : tempData,
+            data          : lists,
             selectedListId: id,
             selectedListText: selectedListText,
         })
@@ -292,38 +329,23 @@ class Main extends Component
     {
         console.warn('getTasksOnLists()')
 
-        const storedList   = this.loadStoredData('lists');
+        const storedList   = this.loadStoredLists();
         const tasksOnLists = cleanTasksWithoutList(storedList, allTasks);
 
         return tasksOnLists;
     }
 
-    /**
-     * Load the stored app data
-     *
-     * @param string appMode -> lists | tasks
-     * @return array         -> stored-lists | stored-tasks
-     */
-    loadStoredData = (appMode) =>
+    loadStoredLists = () =>
     {
-        const storageKey = (appMode === 'lists')
-            ? 'stored-lists'
-            : 'stored-tasks';
+        const storageKey = 'stored-lists';
 
-        if (storageKey === 'stored-lists') {
-            return this.storage.get(storageKey);
-        }
+        return this.storage.get(storageKey);
+    }
 
-        const allTasks = this.storage.get(storageKey);
-        const tasksOnLists = this.getTasksOnLists(allTasks)
+    loadStoredTasks = () => {
+        const storageKey = 'stored-tasks';
 
-        this.storedTasks = tasksOnLists;
-        this.storage.set(storageKey, tasksOnLists);
-
-        // return the tasks with the selected list ID
-        return (allTasks.length && this.state)
-            ? getTasksOfList(allTasks, this.state.selectedListId)
-            : [];
+        return this.storage.get(storageKey);
     }
 
     updateStoredData()
@@ -343,7 +365,6 @@ class Main extends Component
             this.storage.set(storageKey, dataToStore);
         }
     }
-
 
     /**
      * Custom methods

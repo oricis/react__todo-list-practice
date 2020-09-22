@@ -26,7 +26,6 @@ class Main extends Component
 {
     // Default values
     defaultTaskColor = 'green';
-    storedTasks = [];
 
 
     constructor(props)
@@ -336,7 +335,7 @@ class Main extends Component
 
                 const listId = this.state.selectedListId;
                 dataToStore  = getUpdatedTasksToStore(
-                    listId, dataToStore, this.storedTasks);
+                    listId, dataToStore, this.loadStoredTasks());
             }
 
             this.storage.set(storageKey, dataToStore);

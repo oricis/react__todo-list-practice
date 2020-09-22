@@ -82,63 +82,42 @@ class Main extends Component
 
     getSelectedListId = (arrLists) =>
     {
-        let result = this.state
-            ? this.state.selectedListId
-            : '';
+        let selectedListId = this.state ? this.state.selectedListId : '';
 
-        if (arrLists.length) {
-            result = (arrLists.length > 1)
-                ? getSelected(arrLists).id
-                : arrLists[0].id;
+        if (selectedListId === '') {
+            const lists = (arrLists && arrLists.length)
+                ? arrLists
+                : this.loadStoredLists();
+
+            if (lists.length) {
+                selectedListId = getSelected(lists).id;
+            }
         }
-
-        return result;
     }
 
     init = () =>
     {
-        const listsFromStorage = this.loadStoredLists();
-        const tasksFromStorage = this.loadStoredTasks();
+        this.deleteStoredOrphanTasks(); // NOTE: put this first on init()
+
+        const storedLists = this.loadStoredLists();
+        const storedTasks = this.loadStoredTasks();
+        console.log('Stored lists: ' + storedLists.length); // HACK:
+        console.log('Stored tasks: ' + storedTasks.length); // HACK:
 
         let appMode = 'tasks'; // tasks | lists (two app's modes -> views)
         let data    = [];
         let selectedListId = '';
         let selectedListText = '';
 
-        // There are stored tasks or lists or both
-        if (listsFromStorage.length || tasksFromStorage.length) {
-            console.log(111, listsFromStorage.length, tasksFromStorage.length);
-            if (tasksFromStorage.length) {
-                console.log(222);
-                selectedListId = this.getSelectedListId(listsFromStorage);
-                selectedListText = getSelectedListText(listsFromStorage, selectedListId);
+        if (storedLists.length) {
+            const selectedList = getSelected(storedLists);
+            selectedListId     = selectedList.id;
+            selectedListText   = selectedList.text;
 
-                const selectedListTasks = getTasksOfList(tasksFromStorage, selectedListId);
-                if (selectedListTasks.length) {
-                    console.log(2221);
-                    data = selectedListTasks;
-                }
+            data = getTasksOfList(storedTasks, selectedListId); // [] | [...]
 
-            } else {
-
-                console.log(333);
-                if (listsFromStorage.length) {
-                    console.log(3331);
-                    const selectedList = getSelected(listsFromStorage);
-                    selectedListId = selectedList.id;
-                    selectedListText = selectedList.text;
-
-                } else {
-                    console.log(3332);
-                    appMode = 'lists'
-                }
-            }
-
-
-        // There aren't stored any tasks or lists
         } else {
-            console.log(666);
-            appMode = 'lists'
+            appMode = 'lists'; // There aren't any stored lists
         }
 
 
@@ -311,6 +290,23 @@ class Main extends Component
      *
      */
 
+    deleteStoredTasks = () =>
+    {
+        this.storeTasks([]);
+    }
+
+    deleteStoredOrphanTasks = () => {
+        const tasks = this.loadStoredTasks();
+        if (tasks.length) {
+            const lists = this.loadStoredLists();
+            if (lists.length) {
+                this.storeTasks(cleanTasksWithoutList(lists, tasks));
+            } else {
+                this.deleteStoredTasks();
+            }
+        }
+    }
+
     loadStoredLists = () =>
     {
         return this.storage.get('stored-lists');
@@ -319,6 +315,11 @@ class Main extends Component
     loadStoredTasks = () =>
     {
         return this.storage.get('stored-tasks');
+    }
+
+    storeTasks(tasks)
+    {
+        this.storage.set('stored-tasks', tasks);
     }
 
     updateStoredData()

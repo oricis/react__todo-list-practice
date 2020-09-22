@@ -42,14 +42,6 @@ class Main extends Component
         console.log('HACK: render()', this.state);
         let cards = this.state.data;
 
-        // NOTE: always one list is selected - the first one by default
-        if (this.state.appMode === 'lists'
-            && cards.length && typeof (cards) === 'object') {
-            if (!isSomeSelected(cards)) {
-                cards = selectFirst(cards);
-            }
-        }
-
         const form = (this.state.appMode === 'tasks')
             ? <TaskForm
                 selectedListText={this.state.selectedListText}
@@ -206,10 +198,14 @@ class Main extends Component
         const selectedListText = (this.state.selectedListText)
             ? this.state.selectedListText
             : newList.text;
-        const arrLists = [...this.state.data, newList];
+
+        // NOTE: always one list is selected - the first one by default
+        if (this.state.selectedListId === '') {
+            newList.selected = true;
+        }
 
         this.setState({
-            data: arrLists,
+            data: [...this.state.data, newList],
             newText: '',
             selectedListId,
             selectedListText
@@ -374,7 +370,7 @@ class Main extends Component
     }
 }
 
-// Setting the proptypes of the component
+// Setting the propTypes of the component
 Main.propTypes = {
     color:  PropTypes.string,
     id:     PropTypes.string,

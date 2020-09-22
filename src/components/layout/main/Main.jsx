@@ -4,11 +4,14 @@ import Storage from '../../../services/Storage.js';
 import {
     cleanTasksWithoutList,
     find,
-    getTasksOfList,
     getSelected,
+    getTasksOfList,
+    getUpdatedTasksToStore,
     isSomeSelected,
+    markCardAsCompleted,
+    selectCardColor,
     selectFirst,
-    getUpdatedTasksToStore
+    setCardText,
 } from '../../../helpers/todo.js';
 import List from '../../../classes/List.js';
 import Task from '../../../classes/Task.js';
@@ -221,9 +224,8 @@ class Main extends Component
 
     completeTask = (id) =>
     {
-        const arrTasks = this.markTaskAsCompleted(this.state.data, id);
         this.setState({
-            data: arrTasks
+            data: markCardAsCompleted(this.state.data, id)
         });
     }
 
@@ -254,17 +256,6 @@ class Main extends Component
         });
     }
 
-    markTaskAsCompleted = (tasks, taskId) =>
-    {
-        tasks.forEach(task => {
-            if (task.id === taskId) {
-                task.completed = true;
-            }
-        });
-
-        return tasks;
-    }
-
     selectList = (id) =>
     {
         let selectedListText = '';
@@ -286,15 +277,8 @@ class Main extends Component
 
     setColorFromPicket = (color, taskId) =>
     {
-        const arrTasks = this.state.data;
-        arrTasks.forEach(task => {
-            if (task.id === taskId) {
-                task.color = color;
-            }
-        });
-
         this.setState({
-            data: arrTasks
+            data: selectCardColor(this.state.data, taskId, color)
         });
     }
 
@@ -369,18 +353,12 @@ class Main extends Component
 
     updateCard = (taskId, text) =>
     {
-        const arrTasks = this.state.data;
-        arrTasks.forEach(task => {
-            if (task.id === taskId) {
-                task.text = text;
-            }
-        });
-        const selectedListText = this.appMode !== 'tasks'
-            ? text
-            : this.state.selectedListText;
+        const selectedListText = this.appMode === 'tasks'
+            ? this.state.selectedListText
+            : text;
 
         this.setState({
-            data: arrTasks,
+            data: setCardText(this.state.data, taskId, text),
             selectedListText
         });
     }
@@ -390,6 +368,7 @@ class Main extends Component
 Main.propTypes = {
     color:  PropTypes.string,
     id:     PropTypes.string,
+    listId: PropTypes.string,
     taskId: PropTypes.string,
     data:   PropTypes.array,
     text:   PropTypes.string,

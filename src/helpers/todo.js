@@ -143,6 +143,39 @@ const isSomeSelected = (arrElements) =>
     return selectedFlag
 }
 
+const markCardAsCompleted = (cards, cardId) =>
+{
+    cards.forEach(card => {
+        if (card.id === cardId) {
+            card.completed = true;
+        }
+    });
+
+    return cards;
+}
+
+const setCardText = (cards, cardId, text) =>
+{
+    cards.forEach(card => {
+        if (card.id === cardId) {
+            card.text = text;
+        }
+    });
+
+    return cards;
+}
+
+const selectCardColor = (cards, cardId, color) =>
+{
+    cards.forEach(card => {
+        if (card.id === cardId) {
+            card.color = color;
+        }
+    });
+
+    return cards;
+}
+
 const selectFirst = (arrElements) =>
 {
     arrElements[0].selected = true;
@@ -188,5 +221,8 @@ export {
     getTasksOfList,
     getUpdatedTasksToStore,
     isSomeSelected,
-    selectFirst
+    markCardAsCompleted,
+    selectCardColor,
+    selectFirst,
+    setCardText
 }

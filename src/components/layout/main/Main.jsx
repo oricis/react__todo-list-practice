@@ -313,15 +313,12 @@ class Main extends Component
 
     loadStoredLists = () =>
     {
-        const storageKey = 'stored-lists';
-
-        return this.storage.get(storageKey);
+        return this.storage.get('stored-lists');
     }
 
-    loadStoredTasks = () => {
-        const storageKey = 'stored-tasks';
-
-        return this.storage.get(storageKey);
+    loadStoredTasks = () =>
+    {
+        return this.storage.get('stored-tasks');
     }
 
     updateStoredData()

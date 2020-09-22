@@ -325,16 +325,6 @@ class Main extends Component
      *
      */
 
-    getTasksOnLists = (allTasks) =>
-    {
-        console.warn('getTasksOnLists()')
-
-        const storedList   = this.loadStoredLists();
-        const tasksOnLists = cleanTasksWithoutList(storedList, allTasks);
-
-        return tasksOnLists;
-    }
-
     loadStoredLists = () =>
     {
         const storageKey = 'stored-lists';
@@ -371,6 +361,14 @@ class Main extends Component
      * Generic
      *
      */
+
+    getTasksOnLists = (allTasks) =>
+    {
+        const storedList   = this.loadStoredLists();
+        const tasksOnLists = cleanTasksWithoutList(storedList, allTasks);
+
+        return tasksOnLists;
+    }
 
     updateCard = (taskId, text) =>
     {

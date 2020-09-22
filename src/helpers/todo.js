@@ -106,7 +106,9 @@ const getTasksOfList = (allTasks, listId) =>
         }
     }
 
-    return allTasks.filter(checkId(listId));
+    return allTasks.length
+        ? allTasks.filter(checkId(listId))
+        : [];
 }
 
 /**

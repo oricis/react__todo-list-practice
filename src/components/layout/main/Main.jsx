@@ -8,7 +8,7 @@ import {
     cleanTasksWithoutList,
     getSelected,
     getTasksOfList,
-    getUpdatedTasksToStore,
+    updateSelectedListTasks,
     isSomeSelected,
     markCardAsCompleted,
     selectCardColor,
@@ -334,7 +334,7 @@ class Main extends Component
                 storageKey  = 'stored-tasks';
 
                 const listId = this.state.selectedListId;
-                dataToStore  = getUpdatedTasksToStore(
+                dataToStore  = updateSelectedListTasks(
                     listId, dataToStore, this.loadStoredTasks());
             }
 

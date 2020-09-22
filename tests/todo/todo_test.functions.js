@@ -155,7 +155,7 @@ const selectFirst = (arrElements) => {
  * @param array tasksFromStorage
  * @param array
  */
-const getUpdatedTasksToStore = (listId, activeTasksToStore, tasksFromStorage) => {
+const updateSelectedListTasks = (listId, activeTasksToStore, tasksFromStorage) => {
     if (!tasksFromStorage) {
         return activeTasksToStore;
     }
@@ -175,7 +175,7 @@ Functions on "helpers / todo.js":
     getListIdsFromTasks
     getSelected
     getTasksOfList
-    getUpdatedTasksToStore
+    updateSelectedListTasks
     isSomeSelected
     selectFirst
 */

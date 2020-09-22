@@ -201,7 +201,7 @@ const selectFirst = (arrElements) =>
  * @param array tasksFromStorage
  * @param array
  */
-const getUpdatedTasksToStore = (listId, activeTasksToStore, tasksFromStorage) =>
+const updateSelectedListTasks = (listId, activeTasksToStore, tasksFromStorage) =>
 {
     if (!tasksFromStorage) {
         return activeTasksToStore;
@@ -221,7 +221,7 @@ export {
     getListIdsFromTasks,
     getSelected,
     getTasksOfList,
-    getUpdatedTasksToStore,
+    updateSelectedListTasks,
     isSomeSelected,
     markCardAsCompleted,
     selectCardColor,

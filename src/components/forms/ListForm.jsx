@@ -61,10 +61,12 @@ class ListForm extends Component
                         <TextButton
                             className="btn"
                             text="Añadir"
+                            title="Añadir la lista"
                             onClick={this.emitFormData}></TextButton>
                         <TextButton
                             className="btn"
                             text="Limpiar"
+                            title="Limpiar campos de entrada de nueva lista"
                             onClick={this.cleanForm}></TextButton>
                     </div>
                 </form>

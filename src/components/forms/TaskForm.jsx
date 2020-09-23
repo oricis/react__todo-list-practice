@@ -45,10 +45,12 @@ class TaskForm extends Component
                         <TextButton
                             className="btn"
                             text="Añadir"
+                            title="Añadir la tarea"
                             onClick={this.emitFormData}></TextButton>
                         <TextButton
                             className="btn"
                             text="Limpiar"
+                            title="Limpiar texto de entrada de nueva tarea"
                             onClick={this.cleanForm}></TextButton>
                     </div>
                 </form>

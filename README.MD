@@ -1,27 +1,48 @@
 # TO-DO List App
 ## **[Go to "TO-DO List App v.1.2.1" page][1]**
 
-This is a personal use free web application to create a task list. The app use your navigator local data storage to store your tasks.
+This is a personal use free web application to create a task list.
+The app use your navigator local data storage to store your tasks.
 
-Neither data or use stadictics is sending to Internet, you only need open the page to use the app. An Internet connection won't necessary any time to run the app, then you can save the page to your computer if you want use it disconnected in the future.
+Neither data or use statistics is sending to Internet, you only need open
+the page to use the app. An Internet connection won't necessary any time
+to run the app, then you can save the page to your computer
+if you want use it disconnected in the future.
 
 ***
-## How to use
+## How to use - v.1.2.1
 
 ![alt text](https://user-images.githubusercontent.com/7187599/70058099-9b42f100-15de-11ea-8569-5dca03df1426.png "App v.1.2.0 example capture")
 
-You can create a new task typing something in the form field, then push the "Add button" or the Enter key.
+You can create a new task typing something in the form field, then push
+the "Add button" or the Enter key.
 
 Use the "Clear button" to clear the typed text.
 
 One task's card has five elements in this order:
  1. **The edit button**. Puts the focus over the text and allow to change it.
- 2. **The color picket**. Is used to priorize the tasks. Tasks are created with a green circle by default. Available colors are green, yellow and red.
+ 2. **The color picket**. Is used to prioritize the tasks. Tasks are created with
+a green circle by default. Available colors are green, yellow and red.
  3. **The task description**. The text that you typed to create the task.
  4. **One button to mark as completed** the task.
  5. **One button to delete** the task's card.
 
-Then, you can edit the task texts, use the color picket to assign diferent priorities to tasks and you can mark one task as completed or delete it when you want.
+Then, you can edit the task texts, use the color picket to assign different
+priorities to tasks and you can mark one task as completed or delete it when you want.
+
+## How to use - v.2.3.2
+
+This is the actual code version, no available online as the [previous app version 1.x][1].
+App **version 2.x include lists of tasks**. Then you can create several
+lists of TODOs for different purposes.
+
+![captura todo-list2](https://user-images.githubusercontent.com/7187599/94025121-75c6e400-fdb8-11ea-86f1-05b261f0ea39.png "App v.2.3.2 example capture - Lists screen")
+
+The tasks Screen is very similar to the previous app's version. Now, there exist
+other screen to handle the lists: create, edit, delete and select the
+"active list of tasks".
+
+The top-right corner button in both app's screens allow us to swap between them.
 
 ***
 ## Components structure
@@ -95,11 +116,14 @@ Then, you can edit the task texts, use the color picket to assign diferent prior
       |
       |--- helpers/
       |      |
+      |      |--- arrays.js
       |      |--- generateID.js
+      |      |--- lists.js
       |      |--- todo.js
       |
       |--- services/
       |      |
+      |      |--- AppStorage.js
       |      |--- Storage.js
       |
       |--- tests/*

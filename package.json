@@ -1,6 +1,6 @@
 {
   "name": "react__todo-list",
-  "version": "1.2.1",
+  "version": "2.3.2",
   "homepage": ".",
   "private": true,
   "dependencies": {

@@ -31,7 +31,7 @@ class TaskForm extends Component
                     onClickSwapButton={this.props.onClickSwapButton}>
                 </ConfigActions>
 
-                <div className="creation-form">
+                <form>
                     <input type="text"
                         id="input-title"
                         placeholder="¿Cuál es la tarea?"
@@ -51,7 +51,7 @@ class TaskForm extends Component
                             text="Limpiar"
                             onClick={this.cleanForm}></TextButton>
                     </div>
-                </div>
+                </form>
             </section>
         );
     }

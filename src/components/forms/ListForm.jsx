@@ -31,7 +31,7 @@ class ListForm extends Component
                     onClickSwapButton={this.props.onClickSwapButton}>
                 </ConfigActions>
 
-                <div className="form">
+                <form>
                     <label htmlFor="input-title" className="d-none">
                         Escribe un título para la tarea</label>
                     <input type="text"
@@ -67,7 +67,7 @@ class ListForm extends Component
                             text="Limpiar"
                             onClick={this.cleanForm}></TextButton>
                     </div>
-                </div>
+                </form>
             </section>
         );
     }

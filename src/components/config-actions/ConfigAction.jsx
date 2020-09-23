@@ -27,7 +27,7 @@ class ConfigActions extends Component
 
         return (
             <div className="config-actions">
-                <h2>{formLabel}</h2>
+                <h2 className="text-label">{formLabel}</h2>
 
                 {swapButton}
             </div>

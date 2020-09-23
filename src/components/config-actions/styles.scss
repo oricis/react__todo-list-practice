@@ -8,11 +8,11 @@
     .config-actions {
         display         : flex;
         justify-content : space-between;
-        margin-top      : -.5rem;
-        padding-bottom  : .5rem;
+        padding-bottom  : 1rem;
 
         .text-label {
             margin-top: .5rem;
+            text-align: left;
         }
     }
 }

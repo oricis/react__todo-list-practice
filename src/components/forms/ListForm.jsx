@@ -101,6 +101,8 @@ class ListForm extends Component
         const title       = this.state.title.trim();
         const description = this.state.description.trim();
         this.props.addList(title, description);
+
+        this.cleanForm();
     }
 
     onSubmitForm(event)

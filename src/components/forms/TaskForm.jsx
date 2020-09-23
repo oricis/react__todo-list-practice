@@ -82,6 +82,8 @@ class TaskForm extends Component
     {
         const title = this.state.title.trim();
         this.props.addTask(title);
+
+        this.cleanForm();
     }
 
     onSubmitForm(event)

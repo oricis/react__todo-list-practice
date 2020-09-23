@@ -12,7 +12,7 @@ class Task extends Component
     render()
     {
         return (
-            <div className="card task-card" data-id={this.props.dataId}>
+            <section className="card task-card" data-id={this.props.dataId}>
                 <CardHeader
                     bgColor={this.props.bgColor}
                     completed={this.props.completed}
@@ -32,7 +32,7 @@ class Task extends Component
                     onClickToDelete={this.deleteCard}
                     onClickToComplete={this.completeTask}>
                 </CardFooter>
-            </div>
+            </section>
         );
     }
 

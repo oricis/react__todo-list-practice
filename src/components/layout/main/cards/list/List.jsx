@@ -17,7 +17,7 @@ class List extends Component
             : 'card list-card';
 
         return (
-            <div className={classNameForListCard} data-id={this.props.dataId}>
+            <section className={classNameForListCard} data-id={this.props.dataId}>
                 <CardHeader
                     description={this.props.description}
                     showDetails={this.state.showDetails}
@@ -39,7 +39,7 @@ class List extends Component
                     onClickToDelete={this.deleteCard}
                     onClickToSelect={this.selectList}>
                 </CardFooter>
-            </div>
+            </section>
         );
     }
 

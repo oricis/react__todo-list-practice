@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Storage from '../../../services/Storage.js';
+import AppStorage from '../../../services/AppStorage.js';
 import {
     cleanTasksWithoutList,
     getSelected,
     getTasksOfList,
-    updateSelectedListTasks,
     isSomeSelected,
     markCardAsCompleted,
     selectCardColor,
@@ -29,13 +28,13 @@ class Main extends Component
     {
         super(props);
 
-        this.storage = new Storage();
-        this.state   = this.init();
+        this.appStorage = new AppStorage();
+        this.state = this.init();
     }
 
     render()
     {
-        console.log('HACK: render()', this.state);
+        // console.log('HACK: render()', this.state);
         let cards = this.state.data;
 
         const form = (this.state.appMode === 'tasks')
@@ -73,7 +72,7 @@ class Main extends Component
 
     componentDidUpdate()
     {
-        this.updateStoredData();
+        this.appStorage.updateStoredData(this.state);
     }
 
 
@@ -84,7 +83,7 @@ class Main extends Component
         if (selectedListId === '') {
             const lists = (arrLists && arrLists.length)
                 ? arrLists
-                : this.loadStoredLists();
+                : this.appStorage.loadStoredLists();
 
             if (lists.length) {
                 selectedListId = getSelected(lists).id;
@@ -94,10 +93,10 @@ class Main extends Component
 
     init = () =>
     {
-        this.deleteStoredOrphanTasks(); // NOTE: put this first on init()
+        this.appStorage.deleteStoredOrphanTasks(); // NOTE: put this first on init()
 
-        const storedLists = this.loadStoredLists();
-        const storedTasks = this.loadStoredTasks();
+        const storedLists = this.appStorage.loadStoredLists();
+        const storedTasks = this.appStorage.loadStoredTasks();
         console.log('Stored lists: ' + storedLists.length); // HACK:
         console.log('Stored tasks: ' + storedTasks.length); // HACK:
 
@@ -142,11 +141,11 @@ class Main extends Component
         if (this.state.appMode === 'lists') {
             appMode = 'tasks';
 
-            loadedData = this.loadStoredTasks(); // all tasks
+            loadedData = this.appStorage.loadStoredTasks(); // all tasks
             loadedData = getTasksOfList(loadedData, this.state.selectedListId);
 
         } else {
-            loadedData = this.loadStoredLists();
+            loadedData = this.appStorage.loadStoredLists();
         }
 
         const data = loadedData;
@@ -283,69 +282,13 @@ class Main extends Component
 
     /**
      * Custom methods
-     * Actions over store data
-     *
-     */
-
-    deleteStoredTasks = () =>
-    {
-        this.storeTasks([]);
-    }
-
-    deleteStoredOrphanTasks = () => {
-        const tasks = this.loadStoredTasks();
-        if (tasks.length) {
-            const lists = this.loadStoredLists();
-            if (lists.length) {
-                this.storeTasks(cleanTasksWithoutList(lists, tasks));
-            } else {
-                this.deleteStoredTasks();
-            }
-        }
-    }
-
-    loadStoredLists = () =>
-    {
-        return this.storage.get('stored-lists');
-    }
-
-    loadStoredTasks = () =>
-    {
-        return this.storage.get('stored-tasks');
-    }
-
-    storeTasks(tasks)
-    {
-        this.storage.set('stored-tasks', tasks);
-    }
-
-    updateStoredData()
-    {
-        let dataToStore = this.state.data; // lists || tasks
-        if (dataToStore) {
-
-            let storageKey = 'stored-lists';
-            if (this.state.appMode === 'tasks') {
-                storageKey  = 'stored-tasks';
-
-                const listId = this.state.selectedListId;
-                dataToStore  = updateSelectedListTasks(
-                    listId, dataToStore, this.loadStoredTasks());
-            }
-
-            this.storage.set(storageKey, dataToStore);
-        }
-    }
-
-    /**
-     * Custom methods
      * Generic
      *
      */
 
     getTasksOnLists = (allTasks) =>
     {
-        const storedList   = this.loadStoredLists();
+        const storedList   = this.appStorage.loadStoredLists();
         const tasksOnLists = cleanTasksWithoutList(storedList, allTasks);
 
         return tasksOnLists;

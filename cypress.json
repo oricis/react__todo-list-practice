@@ -1,6 +1,6 @@
 {
     "appName": "TODO-List",
     "baseUrl": "http://localhost:3000",
-    "defaultCommandTimeout": 3000,
+    "defaultCommandTimeout": 500,
     "video": true
 }

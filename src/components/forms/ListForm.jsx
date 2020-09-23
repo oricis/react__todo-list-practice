@@ -31,7 +31,7 @@ class ListForm extends Component
                     onClickSwapButton={this.props.onClickSwapButton}>
                 </ConfigActions>
 
-                <form>
+                <form onSubmit={this.onSubmitForm}>
                     <label htmlFor="input-title" className="d-none">
                         Escribe un título para la tarea</label>
                     <input type="text"
@@ -101,6 +101,11 @@ class ListForm extends Component
         const title       = this.state.title.trim();
         const description = this.state.description.trim();
         this.props.addList(title, description);
+    }
+
+    onSubmitForm(event)
+    {
+        event.preventDefault();
     }
 }
 

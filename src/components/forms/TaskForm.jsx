@@ -31,7 +31,7 @@ class TaskForm extends Component
                     onClickSwapButton={this.props.onClickSwapButton}>
                 </ConfigActions>
 
-                <form>
+                <form onSubmit={this.onSubmitForm}>
                     <input type="text"
                         id="input-title"
                         placeholder="¿Cuál es la tarea?"
@@ -82,6 +82,11 @@ class TaskForm extends Component
     {
         const title = this.state.title.trim();
         this.props.addTask(title);
+    }
+
+    onSubmitForm(event)
+    {
+        event.preventDefault();
     }
 }
 

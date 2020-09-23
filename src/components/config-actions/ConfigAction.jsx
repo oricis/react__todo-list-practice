@@ -11,12 +11,13 @@ class ConfigActions extends Component
         const labelText = (this.props.formLabel)
             ? this.props.formLabel
             : '';
+        const nextScreenName = this.getNextScreenName(this.props.actualMode);
 
         let swapButton = <ImageButton
             className="image-btn"
             image={swapIcon}
-            attrAlt={"Cambiar vista a " + this.props.actualMode}
-            attrTitle={"Cambiar vista a " + this.props.actualMode}
+            attrAlt={"Cambiar a vista de " + nextScreenName}
+            attrTitle={"Cambiar a vista de " + nextScreenName}
             onClick={this.props.onClickSwapButton}>
         </ImageButton>;
 
@@ -44,6 +45,14 @@ class ConfigActions extends Component
                 {swapButton}
             </div>
         );
+    }
+
+    getNextScreenName = (appMode) =>
+    {
+        if (appMode === 'lists')
+            return 'Tareas';
+
+        return 'Listas';
     }
 }
 

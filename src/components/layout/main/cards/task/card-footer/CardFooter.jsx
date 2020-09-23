@@ -11,14 +11,19 @@ class CardFooter extends Component
             ? 'btn btn-default btn-disabled'
             : 'btn btn-primary';
 
+        const completeBtnTitle = this.props.completed
+            ? ''
+            : 'Marcar tarea como completada';
         return (
             <div className="card-footer">
                 <button className={classNameForCompleteBtn}
+                    title={completeBtnTitle}
                     disabled={this.props.completed}
                     onClick={() => {this.props.onClickToComplete()}}>
                     Completada
                 </button>
                 <button className="btn btn-primary"
+                    title="Eliminar tarea"
                     onClick={() => { this.props.onClickToDelete()}}>
                     Eliminar
                 </button>

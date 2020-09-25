@@ -13,7 +13,6 @@ import {
 } from '../../../helpers/todo.js';
 import List from '../../../classes/List.js';
 import Task from '../../../classes/Task.js';
-
 import Cards from './cards/Cards';
 import ListForm from '../../forms/ListForm';
 import TaskForm from '../../forms/TaskForm';
@@ -22,6 +21,7 @@ class Main extends Component
 {
     // Default values
     defaultTaskColor = 'green';
+    lastUsedKeyCode  = 0;
 
 
     constructor(props)
@@ -70,9 +70,19 @@ class Main extends Component
         );
     }
 
+    componentDidMount()
+    {
+        document.addEventListener("keydown", this.handleKeyDown, false);
+    }
+
     componentDidUpdate()
     {
         this.appStorage.updateStoredData(this.state);
+    }
+
+    componentWillUnmount()
+    {
+        document.removeEventListener("keydown", this.handleKeyDown, false);
     }
 
 
@@ -89,6 +99,19 @@ class Main extends Component
                 selectedListId = getSelected(lists).id;
             }
         }
+    }
+
+    handleKeyDown = (e) => {
+        // Key codes
+        // 16 - caps
+        // 18 - alt
+
+        const keyCode = e.keyCode;
+        if (keyCode === 18 && this.lastUsedKeyCode === 16) {
+            this.lastUsedKeyCode = keyCode;
+            this.swapAppMode();
+        }
+        this.lastUsedKeyCode = keyCode;
     }
 
     init = () =>

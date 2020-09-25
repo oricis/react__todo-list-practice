@@ -3,11 +3,13 @@
  *
  */
 
-.image-btn {
-    cursor: pointer;
-    float : left;
-    height: 2rem;
-    width : 2rem;
+button.image-btn {
+    background: transparent;
+    border    : none;
+    float     : left;
+    height    : 2rem;
+    padding   : 0;
+    width     : 2rem;
 
     img {
         opacity: .3;

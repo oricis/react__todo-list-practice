@@ -41,12 +41,12 @@ class Main extends Component
             ? <TaskForm
                 selectedListText={this.state.selectedListText}
                 addTask={this.addTask}
-                onClickSwapButton={this.clickedSwapButton}>
+                onClickSwapButton={this.swapAppMode}>
             </TaskForm>
             : <ListForm
                 listNumber={cards.length}
                 addList={this.addList}
-                onClickSwapButton={this.clickedSwapButton}>
+                onClickSwapButton={this.swapAppMode}>
             </ListForm>;
 
 
@@ -133,7 +133,7 @@ class Main extends Component
      *
      */
 
-    clickedSwapButton = () =>
+    swapAppMode = () =>
     {
         let appMode    = 'lists';
         let loadedData = [];

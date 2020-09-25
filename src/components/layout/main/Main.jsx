@@ -22,6 +22,7 @@ class Main extends Component
 {
     // Default values
     defaultTaskColor = 'green';
+    lastUsedKeyCode  = '';
 
 
     constructor(props)
@@ -70,9 +71,19 @@ class Main extends Component
         );
     }
 
+    componentDidMount()
+    {
+        document.addEventListener("keydown", this.handleKeyDown, false);
+    }
+
     componentDidUpdate()
     {
         this.appStorage.updateStoredData(this.state);
+    }
+
+    componentWillUnmount()
+    {
+        document.removeEventListener("keydown", this.handleKeyDown, false);
     }
 
 
@@ -89,6 +100,19 @@ class Main extends Component
                 selectedListId = getSelected(lists).id;
             }
         }
+    }
+
+    handleKeyDown = (e) => {
+        // Key codes
+        // 16 - caps
+        // 18 - alt
+
+        const keyCode = e.keyCode;
+        if (keyCode == 18 && this.lastUsedKeyCode == '16') {
+            this.lastUsedKeyCode = keyCode;
+            this.swapAppMode();
+        }
+        this.lastUsedKeyCode = keyCode;
     }
 
     init = () =>

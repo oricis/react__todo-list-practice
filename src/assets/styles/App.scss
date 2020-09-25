@@ -9,14 +9,14 @@
     -moz-box-sizing:    border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    font-size:  18px;
-    margin:     0;
-    padding:    0;
+    font-size : 16px;
+    margin    : 0;
+    padding   : 0;
     text-align: center;
 
     .small-font,
     .small-font * {
-        font-size: 15px;
+        font-size: 14px;
     }
 }
 body {
@@ -24,8 +24,8 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing:  antialiased;
+    -moz-osx-font-smoothing : grayscale;
+    -webkit-font-smoothing  : antialiased;
 }
 
 
@@ -34,40 +34,42 @@ body {
  *
  */
 
-
-
 .App {
-    display:    grid;
-    grid-template-rows: 25vh 1fr 12vh;
-    min-height: 100vh;
+    display           : grid;
+    grid-template-rows: 20vh 1fr 18vh;
+    min-height        : 100vh;
 
     button,
     input {
-        border-radius: 5px;
-        font-size:     1em;
-        height:        3rem;
-        padding:       0 .5rem;
+        border-radius : 5px;
+        font-size     : 1rem;
+        height        : 3rem;
+        padding       : 0 .5rem;
     }
     input {
-        text-align: left;
+        margin-bottom : .5rem;
+        text-align    : left;
+        width         : 100%;
     }
     main {
-        margin:  0 auto;
-        padding: 1rem .2rem;
-        width:   95%;
+        margin    : 0 auto;
+        max-width : 840px;
+        padding   : 1rem 0;
+        width     : 96%;
     }
 
     .content-box {
-        background:  #edf2f7;
-        border-radius: 9px;
-        border:        1px solid gray;
-        padding:       1rem;
+        background    : #edf2f7;
+        border-radius : 9px;
+        border        : 1px solid gray;
+        padding       : .6rem;
     }
 }
 
-@media (min-width:860px) {
-    main {
-        width: 80%;
+@media (min-width:420px)
+{
+    .content-box {
+        padding: 1rem;
     }
 }
 

@@ -1,5 +1,3 @@
-
-import './styles.scss';
 import React, { Component } from 'react';
 import CardBody from './card-body/CardBody';
 import CardFooter from './card-footer/CardFooter';
@@ -19,7 +17,7 @@ class List extends Component
             : 'card list-card';
 
         return (
-            <div className={classNameForListCard} data-id={this.props.dataId}>
+            <section className={classNameForListCard} data-id={this.props.dataId}>
                 <CardHeader
                     description={this.props.description}
                     showDetails={this.state.showDetails}
@@ -41,7 +39,7 @@ class List extends Component
                     onClickToDelete={this.deleteCard}
                     onClickToSelect={this.selectList}>
                 </CardFooter>
-            </div>
+            </section>
         );
     }
 

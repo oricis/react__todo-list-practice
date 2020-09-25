@@ -16,11 +16,10 @@ class ImageButton extends Component
                 title={this.props.attrTitle}></i>
 
         return (
-            <div className={this.props.className}
-                role="button"
+            <button className={this.props.className}
                 onClick={this.emitOnClick}>
                 {btnContent}
-            </div>
+            </button>
         );
     }
 

@@ -17,7 +17,7 @@ class CardHeader extends Component
                 className="image-btn"
                 image={editIcon}
                 attrAlt="Editar"
-                attrTitle="Editar"
+                attrTitle="Editar lista"
                 onClick={this.props.onClickToEdit}>
             </ImageButton>;
 
@@ -27,14 +27,14 @@ class CardHeader extends Component
                     className="image-btn pull-right"
                     image={minusCircleIcon}
                     attrAlt="Ocultar detalles"
-                    attrTitle="Ocultar detalles"
+                    attrTitle="Ocultar detalles de la lista"
                     onClick={this.props.onClickToHideDetails}>
                 </ImageButton>
                 : <ImageButton
                     className="image-btn pull-right"
                     image={plusCircleIcon}
                     attrAlt="Ver detalles"
-                    attrTitle="Ver detalles"
+                    attrTitle="Ver detalles de la lista"
                     onClick={this.props.onClickToShowDetails}>
                 </ImageButton>
             : '';

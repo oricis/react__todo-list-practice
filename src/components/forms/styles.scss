@@ -5,9 +5,10 @@
  */
 
 .data-intro {
-    .creation-form {
+    form {
         align-items     : center;
         display         : flex;
+        flex-direction  : column;
         justify-content : space-evenly;
 
         .button-group {
@@ -16,18 +17,32 @@
 
             .btn {
                 height: 3rem;
-                margin: .5rem
+                margin: .5rem .5rem 0;
             }
         }
     }
 }
 
 
-@media (min-width:720px) {
-
+@media (min-width:420px)
+{
     .data-intro {
-        .creation-form {
+        form {
+            .button-group {
+                justify-content : flex-end;
+                width           : 100%;
 
+                .btn:last-child {
+                    margin-right: 0;
+                }
+            }
         }
+    }
+}
+
+@media (min-width:640px)
+{
+    .content-box.data-intro {
+        padding: 1rem 2rem;
     }
 }

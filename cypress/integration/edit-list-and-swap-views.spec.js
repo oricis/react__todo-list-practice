@@ -77,6 +77,6 @@ describe('Swap between the app\'s modes: lists and tasks views', () => {
     it('Check actual list', () => {
 
         cy.get('.config-actions h2')
-            .should('text', 'The Number One')
+            .should('text', 'Lista actual:The Number One')
     })
 })
